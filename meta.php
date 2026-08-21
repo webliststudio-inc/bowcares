@@ -29,14 +29,6 @@
 <!-- Slick JS -->
 <script src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js" type="text/javascript"></script>
 
-<!-- Load the Google Maps library with Places -->
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap" async defer></script> -->
- <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw6lTHl5SbSCo5U1WF5ytlVqltd6EBw3c&libraries=places&callback=initMap"
-    async
-    defer>
-</script>
-
 <meta property="og:type" content="Website" />
 <meta property="og:site_name" content="<?php echo $appName ?>">
 <meta property="og:url" content="<?php echo $websiteAutoUrl ?>" />
