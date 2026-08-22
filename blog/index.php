@@ -70,113 +70,30 @@
                             <h3>TAG LIST</h3>
 
                             <ul id="catId">
-                                <li>MAINTENANCE</li>
-                                <li>ANNOUNCEMENT</li>
-                                <li>GENERAL</li>
-                                <li>SERVICES</li>
-                                <li>RESIDENTIAL SERVICES</li>
+                                <script>
+                                    _fetchCategoryList('BLOG', 'pageMainBlogPageContainer,allRelatedBlogPageContainer');
+                                </script>
+                                
+                                <div class="content-loading-div">
+                                    <img src="<?php echo $websiteUrl ?>/all-images/images/spinner.gif" alt="Loading" />
+                                </div>
                             </ul>
                         </div>
                     </div>
 
                     <div class="left-div">
                         <div class="page-list-back-div" id="pageMainBlogPageContainer">
-                            <a href="<?php echo $websiteUrl ?>/blog/why-regular-property-maintenance-matters"
-                                title="Why Regular Property Maintenance Matters">
-                                <div class="main-blog-div">
-                                    <div class="top-text">MAINTENANCE</div>
+                            <script>
+                                _getPageList({
+                                    pageCategory: "BLOG",
+                                    limit: 3,
+                                    pageContainer: "pageMainBlogPageContainer"
+                                })
+                            </script>   
 
-                                    <div class="image-div">
-                                        <img src="<?php echo $websiteUrl ?>/uploaded_files/blog/blog-1.jpeg"
-                                            alt="Why Regular Property Maintenance Matters" />
-                                    </div>
-
-                                    <div class="text-content-div">
-                                        <h2>Why Regular Property Maintenance Matters</h2>
-
-                                        <div class="count">
-                                            <i class="bi-calendar3"></i> July 8, 2026
-                                            <span> | </span>
-                                            <i class="bi-eye"></i> 2,485 VIEWS
-                                        </div>
-
-                                        <p>
-                                            Regular maintenance helps identify potential problems early,
-                                            protect your property, reduce unexpected repair costs.
-                                        </p>
-
-                                        <div>
-                                            <button class="btn" title="Read More">
-                                                Read More <i class="bi-arrow-right"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a href="#" title="5 Signs Your Property Needs Professional Maintenance">
-                                <div class="main-blog-div">
-                                    <div class="top-text">GENERAL</div>
-
-                                    <div class="image-div">
-                                        <img src="<?php echo $websiteUrl ?>/uploaded_files/blog/blog-2.jpeg"
-                                            alt="5 Signs Your Property Needs Professional Maintenance" />
-                                    </div>
-
-                                    <div class="text-content-div">
-                                        <h2>5 Signs Your Property Needs Professional Maintenance</h2>
-
-                                        <div class="count">
-                                            <i class="bi-calendar3"></i> July 8, 2026
-                                            <span> | </span>
-                                            <i class="bi-eye"></i> 2,485 VIEWS
-                                        </div>
-
-                                        <p>
-                                            Strange noises, recurring problems, poor performance, and visible
-                                            damage can be signs of a bigger issue.
-                                        </p>
-
-                                        <div>
-                                            <button class="btn" title="Read More">
-                                                Read More <i class="bi-arrow-right"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a href="#" title="The Importance of Professional Property Maintenance">
-                                <div class="main-blog-div">
-                                    <div class="top-text">ANNOUNCEMENT</div>
-
-                                    <div class="image-div">
-                                        <img src="<?php echo $websiteUrl ?>/uploaded_files/blog/blog-3.jpeg"
-                                            alt="The Importance of Professional Property Maintenance" />
-                                    </div>
-
-                                    <div class="text-content-div">
-                                        <h2>The Importance of Professional Property Maintenance</h2>
-
-                                        <div class="count">
-                                            <i class="bi-calendar3"></i> July 8, 2026
-                                            <span> | </span>
-                                            <i class="bi-eye"></i> 2,485 VIEWS
-                                        </div>
-
-                                        <p>
-                                            Professional maintenance goes beyond fixing visible problems. With proper
-                                            inspection, expert knowledge.
-                                        </p>
-
-                                        <div>
-                                            <button class="btn" title="Read More">
-                                                Read More <i class="bi-arrow-right"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
+                            <div class="content-loading-div">
+                                <img src="<?php echo $websiteUrl ?>/all-images/images/spinner.gif" alt="Loading" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -193,124 +110,16 @@
                         </div>
                     </div>
 
-                    <div class="blog-back-div" id="indexBlogPageContainer">
-                        <div class="blog-div">
-                            <div class="blog-inner-div">
-                                <div class="title">MAINTENANCE</div>
-                                <div class="image-div">
-                                    <img src="<?php echo $websiteUrl ?>/uploaded_files/blog/blog-1.jpeg"
-                                        alt="Why Regular Property Maintenance Matters" />
-                                </div>
+                    <div class="blog-back-div" id="allRelatedBlogPageContainer">
+                        <script>
+                            _getPageList({
+                                pageCategory: "BLOG",
+                                pageContainer: "allRelatedBlogPageContainer"
+                            })
+                        </script>   
 
-                                <div class="text-div">
-
-                                    <div class="count">
-                                        <i class="bi bi-calendar3"></i> June 18, 2026
-                                        <span>|</span>
-                                        <i class="bi bi-eye-fill"></i> 1,100 VIEWS
-                                    </div>
-
-                                    <h3>Why Regular Property Maintenance Matters</h3>
-
-                                    <p>
-                                        Regular maintenance helps identify potential problems early,
-                                        protect your property, reduce unexpected repair costs...
-                                    </p>
-
-                                    <div class="btn-div" id="blogBtn1">
-                                        <script>
-                                        generalButtons({
-                                            container: "blogBtn1",
-                                            buttons: [{
-                                                id: "blogBtn1",
-                                                text: "Read More",
-                                                icon: "bi bi-arrow-right-circle",
-                                                iconPosition: "right",
-                                                link: "<?php echo $websiteUrl ?>/blog/why-regular-property-maintenance-matters"
-                                            }]
-                                        });
-                                        </script>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="blog-div">
-                            <div class="blog-inner-div">
-                                <div class="title">GENERAL</div>
-                                <div class="image-div">
-                                    <img src="<?php echo $websiteUrl ?>/uploaded_files/blog/blog-2.jpeg"
-                                        alt="5 Signs Your Property Needs Professional Maintenance" />
-                                </div>
-
-                                <div class="text-div">
-                                    <div class="count">
-                                        <i class="bi bi-calendar3"></i> June 12, 2026
-                                        <span>|</span>
-                                        <i class="bi bi-eye-fill"></i> 980 VIEWS
-                                    </div>
-
-                                    <h3>5 Signs Your Property Needs Professional Maintenance</h3>
-
-                                    <p>
-                                        Strange noises, recurring problems, poor performance, and visible
-                                        damage can be signs of a bigger issue...
-                                    </p>
-
-                                    <div class="btn-div" id="blogBtn2">
-                                        <script>
-                                        generalButtons({
-                                            container: "blogBtn2",
-                                            buttons: [{
-                                                id: "blogBtn2",
-                                                text: "Read More",
-                                                icon: "bi bi-arrow-right-circle",
-                                                iconPosition: "right",
-                                            }]
-                                        });
-                                        </script>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="blog-div">
-                            <div class="blog-inner-div">
-                                <div class="title">ANNOUNCEMENT</div>
-                                <div class="image-div">
-                                    <img src="<?php echo $websiteUrl ?>/uploaded_files/blog/blog-3.jpeg"
-                                        alt="The Importance of Professional Property Maintenance" />
-                                </div>
-
-                                <div class="text-div">
-                                    <div class="count">
-                                        <i class="bi bi-calendar3"></i> June 5, 2026
-                                        <span>|</span>
-                                        <i class="bi bi-eye-fill"></i> 1,450 VIEWS
-                                    </div>
-
-                                    <h3>The Importance of Professional Property Maintenance</h3>
-
-                                    <p>
-                                        Professional maintenance goes beyond fixing visible problems. With proper
-                                        inspection, expert knowledge...
-                                    </p>
-
-                                    <div class="btn-div" id="blogBtn3">
-                                        <script>
-                                        generalButtons({
-                                            container: "blogBtn3",
-                                            buttons: [{
-                                                id: "blogBtn3",
-                                                text: "Read More",
-                                                icon: "bi bi-arrow-right-circle",
-                                                iconPosition: "right",
-                                            }]
-                                        });
-                                        </script>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="content-loading-div">
+                            <img src="<?php echo $websiteUrl ?>/all-images/images/spinner.gif" alt="Loading" />
                         </div>
                     </div>
                 </div>

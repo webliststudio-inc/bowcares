@@ -49,7 +49,7 @@ function _fetchEachPageContent(pageCategory, pageId) {
 		.then((response) => {
 			const data = response?.data?.[0];
 			sessionStorage.setItem("useEachPageSession", JSON.stringify(data));
-			_getForm({page: 'editPagesForm', pageCategory: pageCategory, url: adminPortalMiddlewareUrl});
+			_getForm({page: 'editPagesForm', pageCategory: pageCategory, url: portalMiddleWareUrl});
 		})
 		.catch((error) => {
 			_staffValidationCheck(error.response);
@@ -64,11 +64,13 @@ function _fetchEachPageContent(pageCategory, pageId) {
 					trueActionBtnText: "OK",
 					closeOnOverlayClick: true,
 				});
+				$("#get-form-more-div").css({'display': 'none'});
 			}
 		});
 	} catch (error) {
 		console.error("Error:", error);
 		_callCatchError(() => _fetchEachPageContent(pageCategory, pageId));
+		$("#get-form-more-div").css({'display': 'none'});
   	}
 }
 
@@ -252,7 +254,7 @@ function _uploadPagePicture(fetchPageCategory, newSeoFlyer, message) {
 	formData.append("pageCategory", fetchPageCategory);
 
 	_callFileEndPoints({
-		url: adminPortalMiddlewareUrl,
+		url: portalMiddleWareUrl,
 		formData,
 		expectJson: false,
 	})
@@ -278,7 +280,7 @@ function _createPagesFolder(fetchPageCategory, pageId, pageUrl, oldPageUrl, page
 	formData.append("projectStageName", projectStageName);
 
 	_callFileEndPoints({
-		url: adminPortalMiddlewareUrl,
+		url: portalMiddleWareUrl,
 		formData,
 		expectJson: false,
 	})
@@ -382,7 +384,7 @@ function _uploadPagePictures(formData, pagePixNames, message, pageCategory, page
 
 	//// Upload Pictures ////
     _callFileEndPoints({
-        url: adminPortalMiddlewareUrl,
+        url: portalMiddleWareUrl,
         formData,
         expectJson: false,
     })
@@ -467,7 +469,7 @@ function _deleteOldPagePictures(oldPagePix, message, sn) {
 	formData.append("oldPagePix", oldPagePix);
 
 	_callFileEndPoints({
-		url: adminPortalMiddlewareUrl,
+		url: portalMiddleWareUrl,
 		formData,
 		expectJson: false,
 	})

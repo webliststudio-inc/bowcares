@@ -35,14 +35,12 @@
                     </div>
                 <?php } ?>
 
-                <?php if ($pageCategory == 'PORTFOLIO') { ?>
+                <?php if ($pageCategory == 'GALLERY') { ?>
                     <div class="text_field_container" id="projectCategoryId_container">
                         <script>
                             selectField({
                                 id: 'projectCategoryId',
-                                title: 'Select Project Category',
-                                fieldValue: useEachPageSession?.projectCategoryData?.projectCategoryId ?? '',
-                                fieldLabel: useEachPageSession?.projectCategoryData?.projectCategoryName ?? ''
+                                title: 'Select Gallery Category',
                             });
                             _getSelectProjectCategories('projectCategoryId');
                         </script>
@@ -153,7 +151,7 @@
                 <div class="issueText" id="issue_pageContentEditor"></div>
             </div>
 
-            <?php if ($pageCategory == 'PORTFOLIO') { ?>
+            <?php if ($pageCategory == 'GALLERY') { ?>
                 <div class="text-field-wrapper">
                     <div class="text_field_container" id="location_container">
                         <script>

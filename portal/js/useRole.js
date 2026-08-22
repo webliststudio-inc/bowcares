@@ -122,7 +122,7 @@ function _saveCreateUpdateRoleCallback(formData) {
 		_showCustomConfirm({
 			callback: () => {
 				_alertClose();
-				_getPage({page: 'userConfiguration', url: adminPortalMiddlewareUrl});
+				_getPage({page: 'userConfiguration', url: portalMiddleWareUrl});
 			},
 			title: 'Success!',
 			message: response.message,
@@ -169,7 +169,7 @@ function _fetchRolesData() {
 				container: "rolesContent",
 				message: error.message,
 				button: `
-					<button class="btn" title="ADD NEW ROLE" onclick="sessionStorage.removeItem('getEachRoleDetails'); _getForm({page: 'roleReg', url: adminPortalMiddlewareUrl});">
+					<button class="btn" title="ADD NEW ROLE" onclick="sessionStorage.removeItem('getEachRoleDetails'); _getForm({page: 'roleReg', url: portalMiddleWareUrl});">
 						<i class="bi-plus-square"></i> ADD NEW ROLE
 					</button>
 				`,
@@ -213,7 +213,7 @@ function _fetchEachRoles(roleId) {
 		})
 		.then((response) => {
 			sessionStorage.setItem("getEachRoleDetails", JSON.stringify(response?.data[0]));
-			_getForm({page: 'updateRole', url: adminPortalMiddlewareUrl});
+			_getForm({page: 'updateRole', url: portalMiddleWareUrl});
 		 })
 		.catch((error) => {
 			_staffValidationCheck(error.response);

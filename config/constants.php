@@ -47,7 +47,7 @@ $userDeviceId = getBrowserId();
 
     ////// EndPoints///
     var endPoint = "https://bowcares.com/api/dev"; /// For EndPoint Url //
-    var apiKey = "fa8ace893c172b5b05f3befef1dc22cd"; /// For Api Key //
+    var apiKey = "616531348a6a9a0c49b9ab7008c3c5c0"; /// For Api Key //
 
     /// Site Middleware Urls ///
     var siteMiddlewareUrl = websiteUrl + '/config/code'; //// For site url

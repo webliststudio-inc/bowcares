@@ -65,7 +65,7 @@ function _saveAddAndUpdateInfoCategoryCallback(formData) {
 		_showCustomConfirm({
 			callback: () => {
 				_alertClose();
-				_getPage({page: 'informationCategory', url: adminPortalMiddlewareUrl});
+				_getPage({page: 'informationCategory', url: portalMiddleWareUrl});
 			},
 			title: 'Success!',
 			message: response?.message,
@@ -121,7 +121,7 @@ function _fetchInfoCategoryData() {
 				message: error.message,
 				colspan: 20,
 				button: `
-					<button class="btn" title="ADD NEW INFORMATION CATEGORY" onclick="sessionStorage.removeItem('useEachInfoCategorySession'); _getForm({page: 'categoryReg', url: adminPortalMiddlewareUrl});">
+					<button class="btn" title="ADD NEW INFORMATION CATEGORY" onclick="sessionStorage.removeItem('useEachInfoCategorySession'); _getForm({page: 'categoryReg', url: portalMiddleWareUrl});">
 						<i class="bi-plus-square"></i> ADD NEW INFORMATION CATEGORY
 					</button>
 				`,
@@ -187,7 +187,7 @@ function _fetchEachInfoCategory(categoryId) {
 		})
 		.then((response) => {
 			sessionStorage.setItem("useEachInfoCategorySession", JSON.stringify(response.data[0]));
-			_getForm({page: 'categoryReg', url: adminPortalMiddlewareUrl});
+			_getForm({page: 'categoryReg', url: portalMiddleWareUrl});
 		 })
 		.catch((error) => {
 			_staffValidationCheck(error.response);
