@@ -113,29 +113,29 @@
                     </div>
                     <div class="inner-div">
                         <div class="div-in">
-                            <div class="text_field_container" id="conatactFullName_container">
+                            <div class="text_field_container" id="fullName_container">
                                 <script>
                                     textField({
-                                        id: 'conatactFullName',
+                                        id: 'fullName',
                                         title: 'Full Name'
                                     });
                                 </script>
                             </div>
 
-                            <div class="text_field_container" id="contactEmailAddress_container">
+                            <div class="text_field_container" id="emailAddress_container">
                                 <script>
                                     textField({
-                                        id: 'contactEmailAddress',
+                                        id: 'emailAddress',
                                         title: 'Email Address',
                                         type: 'email'
                                     });
                                 </script>
                             </div>
 
-                            <div class="text_field_container" id="contactPhoneNumber_container">
+                            <div class="text_field_container" id="phoneNumber_container">
                                 <script>
                                     textField({
-                                        id: 'contactPhoneNumber',
+                                        id: 'phoneNumber',
                                         title: 'Enter Your Phone Number',
                                         type: 'tel',
                                         onKeyPressFunction: 'isNumberCheck(event);'

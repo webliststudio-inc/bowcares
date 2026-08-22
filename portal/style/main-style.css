@@ -169,6 +169,7 @@ main {
   outline: none;
   font-size: 15px;
   font-family: body-font;
+  color: var(--sub-body-color);
 }
 
 .page-title-div .btn-div .search-div i {
@@ -933,7 +934,7 @@ main {
 	gap: 15px;
 	padding: 15px 0px;
 	margin-bottom: 30px;
-	border-bottom: #f0f0f0 1px solid;
+	border-bottom: var(--general-border-color) 1px solid;
 }
 
 #fetchedPermission{
@@ -955,7 +956,7 @@ main {
 	align-items: center;
 	padding: 10px 20px;
 	border-radius: 25px;
-    background: #f1eeee;
+    background: var(--permission-bg-color);
 }
 
 .fetched-permission-back-div .fetched-permission-div span{
@@ -982,7 +983,7 @@ main {
     flex-direction: column;
     background: var(--bg-white);
     border-radius: 10px;
-    border: 1px solid #e4e4e4;
+    border: 1px solid var(--general-border-color);
 	overflow: hidden;
 }
 
@@ -990,7 +991,7 @@ main {
 	display: flex;
     width:calc(100% - 40px);
 	padding: 10px 20px;
-	border-bottom: 1px solid #e4e4e4;
+	border-bottom: 1px solid var(--general-border-color);
 	font-family: sub-title-font;
 	font-size: 13px;
 	color: var(--text-color);
@@ -1015,7 +1016,7 @@ main {
 	font-size: 12px;
 	padding: 11px 0px;
 	color: var(--text-color);
-	border-bottom: 1px dashed #dfdfdf;
+	border-bottom: 1px dashed var(--general-border-color);
 }
 
 .details-div .details-list .each-details-back-list .each-details-list span{
@@ -1187,7 +1188,7 @@ main {
 	width:23.7%;
 	max-width: 380px;
 	flex-grow: 1;
-	border:rgba(204,204,204,.4) 1px solid;
+	border: var(--general-border-color) 1px solid;
 	cursor:pointer;
 	border-radius: 10px;
 	flex-direction: column;
@@ -1354,7 +1355,6 @@ main {
   	border: 1px solid var(--secondary-color);
   	background: rgba(247, 160, 37, 0.1);
 }
-
 
 .grid-div:hover{
 	background: linear-gradient(
@@ -2196,7 +2196,7 @@ main {
 .user-managment-back-div .user-managment-list{
 	width: 32%;
 	min-height: 100px;
-	border: 1px solid rgba(215, 215, 215, .4);
+	border: var(--general-border-color) 1px solid;
 	box-shadow: 0px 0px 12px 3px var(--card-shadow);
 	background: linear-gradient(
 		-120deg,
@@ -2208,11 +2208,7 @@ main {
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
-	-moz-transition:all 0.2s ease-in 02s;
 	transition:all 0.2s ease-in 0.2s;
-	-webkit-transition:all 0.2s ease-in 0.2s;
-	-ms-transition:all 0.2s ease-in 0.2s;
-	-o-transition:all 0.2s ease-in 0.2s;
 }
 
 .user-managment-back-div .staff-managment-list{
@@ -2265,7 +2261,6 @@ main {
 	); 
 	transform: scale(1.02);
   	transition: 0.2s ease-in;
-	border: 1px solid rgba(157, 4, 60, 0.096);
 }
 
 
@@ -4587,14 +4582,10 @@ main {
 	justify-content: space-between;
 	min-height: 100px;
 	background: var(--bg-white);
-	border: 1px solid #ecf0f1;
+	border: 1px solid var(--general-border-color);
 	border-radius: 10px;
 	cursor: pointer;
-	-moz-transition:all 0.2s ease-in 02s;
 	transition:all 0.2s ease-in 0.2s;
-	-webkit-transition:all 0.2s ease-in 0.2s;
-	-ms-transition:all 0.2s ease-in 0.2s;
-	-o-transition:all 0.2s ease-in 0.2s;
 }
 
 .role-list-back-div .role-list-div .div-in{
@@ -4614,7 +4605,7 @@ main {
 	border-radius: 100%;
 	color: #e68836ec;
 	background-color: var(--dashboard-bg-color);
-	border: 1px solid #ecf0f1;
+	border: 1px solid var(--general-border-color);
 } 
 
 .role-list-back-div .role-list-div .div-in .text-div{
@@ -4640,7 +4631,7 @@ main {
 
 .role-list-back-div .role-list-div .bottom-div{
 	width: calc(100% - 30px);
-	border-top: 1px solid #ecf0f1;
+	border-top: 1px solid var(--general-border-color);
 	padding: 15px;
 }
 

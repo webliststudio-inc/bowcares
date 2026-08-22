@@ -45,7 +45,7 @@
                             </tr>
                         </thead>
 
-                        <tbody id="staffContent">
+                        <tbody id="staffPageContent">
                             <script>
                                 _fetchStaffData();
                             </script>
@@ -243,7 +243,7 @@
             <div class="nav-div">
                 <div class="div-in">
                     <ul>
-                        <li class="active" title="My Profile" id="staffProfileDetails" onclick="_getActiveStaffPage({divid:'staffProfileDetails', page: 'staffProfileDetails', url: adminPortalMiddlewareUrl});"><i class="bi-person-bounding-box"></i> Staff Profile</li>
+                        <li class="active" title="My Profile" id="staffProfileDetails" onclick="_getActiveStaffPage({divid:'staffProfileDetails', page: 'staffProfileDetails', url: portalMiddleWareUrl});"><i class="bi-person-bounding-box"></i> Staff Profile</li>
                     </ul>
                 </div>
             </div>
@@ -254,7 +254,7 @@
                         _getActiveStaffPage({
                             divid: 'staffProfileDetails',
                             page: 'staffProfileDetails',
-                            url: adminPortalMiddlewareUrl
+                            url: portalMiddleWareUrl
                         });
                     </script>
                 </div>
@@ -265,33 +265,49 @@
 
 <!-- For Staffs Modal Pages -->
 <?php if ($page == 'staffProfileDetails') { ?>
+    <div class="main-content-div dash-main-content-div">
+        <div class="tables-content-div">
+            <div class="content-title">
+                <div class="title">
+                    <i class="bi bi-people"></i>
+                    <p>Staff Basic Information</p>
+                </div>
+            </div>
 
-    <div class="user-in">
-        <div class="title">STAFF BASIC INFORMATION</div>
-
-        <div class="profile-segment-div">
-            <div class="text_field_container col-1" id="updateFirstName_container">
-                <script>
+            <div class="inner-table-content colum-table-content">
+                <div class="text_field_container col-3" id="updateFirstName_container">
+                    <script>
                     textField({
                         id: 'updateFirstName',
                         title: 'First Name',
                         value: getEachStaffDetailsSession?.firstName ?? ''
                     });
-                </script>
-            </div>
+                    </script>
+                </div>
 
-            <div class="text_field_container col-1" id="updateLastName_container">
-                <script>
+                <div class="text_field_container col-3" id="updateLastName_container">
+                    <script>
                     textField({
                         id: 'updateLastName',
                         title: 'Last Name',
                         value: getEachStaffDetailsSession?.lastName ?? ''
                     });
-                </script>
-            </div>
+                    </script>
+                </div>
 
-            <div class="text_field_container col-1" id="updatePhoneNumber_container">
-                <script>
+                <div class="text_field_container col-3" id="updateEmailAddress_container">
+                    <script>
+                    textField({
+                        id: 'updateEmailAddress',
+                        title: 'Email Address',
+                        type: 'email',
+                        value: getEachStaffDetailsSession?.emailAddress ?? ''
+                    });
+                    </script>
+                </div> 
+
+                <div class="text_field_container col-2" id="updatePhoneNumber_container">
+                    <script>
                     textField({
                         id: 'updatePhoneNumber',
                         title: 'Phone Number',
@@ -299,66 +315,70 @@
                         value: getEachStaffDetailsSession?.phoneNumber ?? '',
                         onKeyPressFunction: 'isNumberCheck(event);'
                     });
-                </script>
+                    </script>
+                </div>
             </div>
-
-            <div class="text_field_container col-1" id="updateEmailAddress_container">
-                <script>
-                    textField({
-                        id: 'updateEmailAddress',
-                        title: 'Email Address',
-                        type: 'email',
-                        value: getEachStaffDetailsSession?.emailAddress ?? ''
-                    });
-                </script>
-            </div>            
         </div>
     </div>
 
-    <div class="user-in">
-        <div class="title">STAFF ACCOUNT INFORMATION</div>
-        <div class="profile-segment-div">
-            <div class="text_field_container col-3" id="staffId_container">
-                <script>
+    <div class="main-content-div dash-main-content-div">
+        <div class="tables-content-div">
+            <div class="content-title">
+                <div class="title">
+                    <i class="bi bi-people"></i>
+                    <p>Staff Account Information</p>
+                </div>
+            </div>
+
+            <div class="inner-table-content colum-table-content">
+                <div class="text_field_container col-3" id="staffId_container">
+                    <script>
                     textField({
                         id: 'staffId',
                         title: 'Staff ID',
                         readonly: true,
                         value: getEachStaffDetailsSession?.staffId ?? ''
                     });
-                </script>
-            </div>
+                    </script>
+                </div>
 
-            <div class="text_field_container col-3" id="createdTime_container">
-                <script>
+                <div class="text_field_container col-3" id="createdTime_container">
+                    <script>
                     textField({
                         id: 'createdTime',
                         title: 'Date Of Registration',
                         readonly: true,
                         value: getEachStaffDetailsSession?.createdTime ?? ''
                     });
-                </script>
-            </div>
+                    </script>
+                </div>
 
-            <div class="text_field_container col-3" id="lastLogin_container">
-                <script>
+                <div class="text_field_container col-3" id="lastLogin_container">
+                    <script>
                     textField({
                         id: 'lastLogin',
                         title: 'Last Login Date',
                         readonly: true,
                         value: getEachStaffDetailsSession?.lastLoginTime ?? ''
                     });
-                </script>
+                    </script>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="user-in">
-        <div class="title">ADMINISTRATIVE INFORMATION</div>
+    <div class="main-content-div dash-main-content-div">
+        <div class="tables-content-div">
+            <div class="content-title">
+                <div class="title">
+                    <i class="bi bi-people"></i>
+                    <p>Administrative Information</p>
+                </div>
+            </div>
 
-        <div class="profile-segment-div">
-            <div class="text_field_container col-1" id="updateRoleId_container">
-                <script>
+            <div class="inner-table-content colum-table-content">
+                <div class="text_field_container col-1" id="updateRoleId_container">
+                    <script>
                     selectField({
                         id: 'updateRoleId',
                         title: 'Select Role',
@@ -366,11 +386,11 @@
                         fieldLabel: getEachStaffDetailsSession?.roleData?.roleName ?? ''
                     });
                     _getSelectRole('updateRoleId');
-                </script>
-            </div>
+                    </script>
+                </div>
 
-            <div class="text_field_container col-1" id="updateStatusId_container">
-                <script>
+                <div class="text_field_container col-1" id="updateStatusId_container">
+                    <script>
                     selectField({
                         id: 'updateStatusId',
                         title: 'Select Status',
@@ -378,11 +398,14 @@
                         fieldLabel: getEachStaffDetailsSession?.statusData?.statusName ?? ''
                     });
                     _getSelectStatusId('updateStatusId', '1,2');
-                </script>
+                    </script>
+                </div>
             </div>
         </div>
-        <div class="btn-div">
-            <button class="btn" title="UPDATE PROFILE" id="updateBtn" onclick="_updateStaff();"> UPDATE PROFILE <i class="bi-check"></i></button>
-        </div>
+    </div>
+
+    <div class="form-bottom-btn-div">
+        <button class="btn" title="UPDATE PROFILE" id="updateBtn" onclick="_updateStaff();"> UPDATE PROFILE <i
+        class="bi-check"></i></button>
     </div>
 <?php } ?>

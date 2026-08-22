@@ -74,7 +74,7 @@ function _getSelectProjectCategories(fieldId) {
 // 					container: "galleryPageContent",
 // 					message: error.message,
 // 					button: `
-// 						<button class="btn" title="ADD NEW GALLERY" onclick="sessionStorage.removeItem('useEachPageSession'); _getForm({page: 'editPagesForm', pageCategory: 'GALLERY', url: adminPortalMiddlewareUrl});">
+// 						<button class="btn" title="ADD NEW GALLERY" onclick="sessionStorage.removeItem('useEachPageSession'); _getForm({page: 'editPagesForm', pageCategory: 'GALLERY', url: portalMiddleWareUrl});">
 // 							<i class="bi-plus-square"></i> ADD NEW GALLERY
 // 						</button>
 // 					`,

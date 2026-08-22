@@ -120,19 +120,14 @@
 
             <div class="segment-div">
                 <h3>Services</h3>
-                <ul>
-                    <a href="<?php echo $websiteUrl?>" title="Corporate">
-                        <li><i class="bi bi-chevron-right"></i> Corporate</li>
-                    </a>
-                    <a href="<?php echo $websiteUrl?>" title="Commercial">
-                       <li><i class="bi bi-chevron-right"></i> Commercial </li>
-                    </a>
-                    <a href="<?php echo $websiteUrl?>" title="Industrial">
-                        <li><i class="bi bi-chevron-right"></i> Industrial</li>
-                    </a>
-                    <a href="<?php echo $websiteUrl?>/" title="Residential">
-                       <li><i class="bi bi-chevron-right"></i> Residential</li>
-                    </a>
+                <ul id="footerServiceList">
+                    <script>
+                        _getPageList({
+                            pageCategory: "SERVICE",
+                            limit: 5,
+                            pageContainer: "footerServiceList"
+                        })
+                    </script>
                 </ul>
             </div>
 

@@ -65,7 +65,7 @@ function _saveAddAndUpdateProjectCategoryCallback(formData) {
 		_showCustomConfirm({
 			callback: () => {
 				_alertClose();
-				_getPage({page: 'projectCategory', url: adminPortalMiddlewareUrl});
+				_getPage({page: 'projectCategory', url: portalMiddleWareUrl});
 			},
 			title: 'Success!',
 			message: response?.message,
@@ -121,7 +121,7 @@ function _fetchProjectCategoryData() {
 				message: error.message,
 				colspan: 20,
 				button: `
-					<button class="btn" title="ADD NEW PROJECT CATEGORY" onclick="sessionStorage.removeItem('useEachProjectCategorySession'); _getForm({page: 'projectCategoryReg', url: adminPortalMiddlewareUrl});">
+					<button class="btn" title="ADD NEW PROJECT CATEGORY" onclick="sessionStorage.removeItem('useEachProjectCategorySession'); _getForm({page: 'projectCategoryReg', url: portalMiddleWareUrl});">
 						<i class="bi-plus-square"></i> ADD NEW PROJECT CATEGORY
 					</button>
 				`,
@@ -187,7 +187,7 @@ function _fetchEachProjectCategory(projectCategoryId) {
 		})
 		.then((response) => {
 			sessionStorage.setItem("useEachProjectCategorySession", JSON.stringify(response.data[0]));
-			_getForm({page: 'projectCategoryReg', url: adminPortalMiddlewareUrl});
+			_getForm({page: 'projectCategoryReg', url: portalMiddleWareUrl});
 		 })
 		.catch((error) => {
 			_staffValidationCheck(error.response);

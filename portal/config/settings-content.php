@@ -46,12 +46,12 @@
                         </div>
                     </div>
 
-                    <div class="user-managment-list" title="Project Category Configurations" onclick="_getPage({page: 'projectCategory', url: portalMiddleWareUrl});">
+                    <div class="user-managment-list" title="Profession Management" onclick="_getPage({page: 'professionCategory', url: portalMiddleWareUrl});">
                         <div class="inner-div">
-                            <div class="icon-div"><img src="<?php echo $websiteUrl ?>/all-images/images/blog.png" alt="Project Category Configurations" /></div>
+                            <div class="icon-div"><img src="<?php echo $websiteUrl ?>/all-images/images/blog.png" alt="Profession Category Configurations" /></div>
                             <div class="text-div">
-                                <h3>Project Category Configurations</h3>
-                                <p>Project category configurations, ensuring organized project management.</p>
+                                <h3>Profession Management</h3>
+                                <p>Profession management, ensuring organized profession management.</p>
                             </div>
                         </div>
                     </div>

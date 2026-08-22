@@ -68,11 +68,11 @@ switch ($action){
 		}
 		
 		if ($pageCategory==="blog") {
-			$uploadPagesPictureDir = "../../../uploaded_files/blog/";
+			$uploadPagesPictureDir = "../../uploaded_files/blog/";
 		} else if ($pageCategory==="service") {
-			$uploadPagesPictureDir = "../../../uploaded_files/services/";
+			$uploadPagesPictureDir = "../../uploaded_files/services/";
 		} else if ($pageCategory==="portfolio") {
-			$uploadPagesPictureDir = "../../../uploaded_files/portfolio/";
+			$uploadPagesPictureDir = "../../uploaded_files/portfolio/";
 		}
 
 		//// Create Directory If Not Exists ////
@@ -88,7 +88,7 @@ switch ($action){
 			$myArray = explode(',', $pagePixNames);
 				$i=0;
 				foreach($myArray as $picture){
-					move_uploaded_file($_FILES["pagePixArr"]["tmp_name"][$i], '../../../uploaded_files/pagePictures/' . $picture);
+					move_uploaded_file($_FILES["pagePixArr"]["tmp_name"][$i], '../../uploaded_files/pagePictures/' . $picture);
 					$i++;
 				}
 		}
@@ -97,7 +97,7 @@ switch ($action){
 	case 'deleteOldPagePictures':
 		$oldPagePix=$_POST['oldPagePix'];
 
-		$uploadDir = "../../../uploaded_files/pagePictures/";
+		$uploadDir = "../../uploaded_files/pagePictures/";
 
 		// Delete old image only if it's not the default
 		if (!empty($oldPagePix) && file_exists($uploadDir . $oldPagePix)) {
@@ -136,42 +136,42 @@ switch ($action){
 		if (empty($oldPageUrl) || $oldPageUrl===null) {
 			////////// Create Page Folder //////////
 			if ($pageCategory == 'blog') {
-				mkdir('../../../blog/' . $pageUrl);
-				$myfile = fopen("../../../blog/" . $pageUrl . "/index.php", "w") or die("Unable to open file!");
+				mkdir('../../blog/' . $pageUrl);
+				$myfile = fopen("../../blog/" . $pageUrl . "/index.php", "w") or die("Unable to open file!");
 			} else if ($pageCategory == 'service') {
-				mkdir('../../../services/' . $pageUrl);
-				$myfile = fopen("../../../services/" . $pageUrl . "/index.php", "w") or die("Unable to open file!");
+				mkdir('../../services/' . $pageUrl);
+				$myfile = fopen("../../services/" . $pageUrl . "/index.php", "w") or die("Unable to open file!");
 			} else if ($pageCategory == 'portfolio') {
-				mkdir('../../../portfolio/'.$projectStageName.'/' . $pageUrl);
-				$myfile = fopen("../../../portfolio/".$projectStageName."/" . $pageUrl . "/index.php", "w") or die("Unable to open file!");	
+				mkdir('../../portfolio/'.$projectStageName.'/' . $pageUrl);
+				$myfile = fopen("../../portfolio/".$projectStageName."/" . $pageUrl . "/index.php", "w") or die("Unable to open file!");	
 			}
 			fwrite($myfile, $txt);
 			fclose($myfile);
 		} else {
 			if ($pageCategory == 'blog') {
 				//// delete file with folders ////
-				array_map('unlink', glob("../../../blog/$oldPageUrl/*.*"));
-				rmdir("../../../blog/$oldPageUrl");
+				array_map('unlink', glob("../../blog/$oldPageUrl/*.*"));
+				rmdir("../../blog/$oldPageUrl");
 
 				//// recreate new file with folders ////
-				mkdir('../../../blog/' . $pageUrl);
-				$myfile = fopen("../../../blog/" . $pageUrl . "/index.php", "w") or die("Unable to open file!");
+				mkdir('../../blog/' . $pageUrl);
+				$myfile = fopen("../../blog/" . $pageUrl . "/index.php", "w") or die("Unable to open file!");
 			} else if ($pageCategory == 'service') {
 				//// delete file with folders ////
-				array_map('unlink', glob("../../../services/$oldPageUrl/*.*"));
-				rmdir("../../../services/$oldPageUrl");
+				array_map('unlink', glob("../../services/$oldPageUrl/*.*"));
+				rmdir("../../services/$oldPageUrl");
 
 				//// recreate new file with folders ////
-				mkdir('../../../services/' . $pageUrl);
-				$myfile = fopen("../../../services/" . $pageUrl . "/index.php", "w") or die("Unable to open file!");
+				mkdir('../../services/' . $pageUrl);
+				$myfile = fopen("../../services/" . $pageUrl . "/index.php", "w") or die("Unable to open file!");
 			} else if ($pageCategory == 'portfolio') {
 				//// delete file with folders ////
-				array_map('unlink', glob("../../../portfolio/".$projectStageName."/$oldPageUrl/*.*"));
-				rmdir("../../../portfolio/".$projectStageName."/$oldPageUrl");
+				array_map('unlink', glob("../../portfolio/".$projectStageName."/$oldPageUrl/*.*"));
+				rmdir("../../portfolio/".$projectStageName."/$oldPageUrl");
 
 				//// recreate new file with folders ////
-				mkdir('../../../portfolio/'.$projectStageName.'/' . $pageUrl);
-				$myfile = fopen("../../../portfolio/".$projectStageName."/" . $pageUrl . "/index.php", "w") or die("Unable to open file!");	
+				mkdir('../../portfolio/'.$projectStageName.'/' . $pageUrl);
+				$myfile = fopen("../../portfolio/".$projectStageName."/" . $pageUrl . "/index.php", "w") or die("Unable to open file!");	
 			}
 			fwrite($myfile, $txt);
 			fclose($myfile);

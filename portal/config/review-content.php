@@ -12,7 +12,7 @@
 
         <div class="btn-div">
             <div class="search-div">
-                <input type="text" id="searchContent" onkeyup="filters('Content');" placeholder="Search Reviews Here...">
+                <input type="text" onkeyup="_filtersReview(this.value);" placeholder="Search Reviews Here...">
                 <i class="bi bi-search"></i>
             </div>
         </div>

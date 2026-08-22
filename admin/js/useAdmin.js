@@ -61,74 +61,15 @@ function _confirmLogin(){
 }
 
 //// //// ADMIN LOGIN CALLBACK FUNCTION ////////
-//// //// ADMIN LOGIN CALLBACK FUNCTION ////////
 function _proceedLoginCallback(formData) {
-
     ///// get btn text /////
     const btnText = $("#submitBtn").html();
     _btnDisable("submitBtn", btnText, true);
 
-    // =====================================
-    // DUMMY LOGIN RESPONSE FOR TESTING
-    // =====================================
-    const response = {
-        response: 200,
-        success: true,
-        message: "LOGIN SUCCESSFUL!",
-        data: {
-            staffId: "STF00220260703122232",
-            accessKey: "fe5a0cda504ecd6c9f446f74b921f430",
-            firstName: "EMMANUEL",
-            lastName: "IKONG",
-            emailAddress: "seunemmanuel107@gmail.com",
-            phoneNumber: "08131252996",
-            roleId: "R001",
-            statusId: 1,
-            lastLoginTime: "2026-08-09 20:45:59",
-            createdBy: "STAFF001",
-            updatedBy: null,
-            createdTime: "2026-07-03 10:22:31",
-            updatedTime: "2026-07-28 21:06:13",
-
-            roleData: {
-                roleId: "R001",
-                roleName: "SUPER ADMIN",
-                rolePermissionIds: "1,10,11,12,41"
-            },
-
-            statusData: {
-                statusId: 1,
-                statusName: "ACTIVE"
-            },
-
-            createdByData: {
-                fullname: "OLUWAGBENGA AFOLABI",
-                emailAddress: "sunaf4real@gmail.com"
-            },
-
-            updatedByData: null
-        }
-    };
-
-    // Simulate API delay
-    setTimeout(() => {
-        sessionStorage.setItem(
-            "staffLoginData",
-            JSON.stringify(response.data)
-        );
-
-        _actionAlert(response.message, true);
-
-        window.location.href = portalUrl;
-    }, 1000);
-
-
-
-    /*
     ///// call endpoint //////
     _callRawEndPoints({
-        url: `admin/auth/login`,
-        formData,
+      url: `admin/auth/login`,
+      formData,
     })
     .then((response) => {
         sessionStorage.setItem("staffLoginData", JSON.stringify(response?.data));
@@ -137,7 +78,6 @@ function _proceedLoginCallback(formData) {
     })
     .catch((error) => {
         console.error("Error:", error);
-
         if (error.status == 0) {
             _callAjaxError(() => _proceedLoginCallback(formData), error.message);
             _btnDisable("submitBtn", btnText, false);
@@ -153,7 +93,6 @@ function _proceedLoginCallback(formData) {
             _btnDisable("submitBtn", btnText, false);
         }
     });
-    */
 }
 
 //// Proceed Reset Password ///
