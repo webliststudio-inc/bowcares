@@ -125,29 +125,9 @@
             </div>
 
             <div class="div">
-                <li onclick="_openLi('services')">
-                    <i class="bi bi-bricks"></i>
-                    <span>Services</span>
-                    <i class="bi-plus" id="side-expand"></i>
-                </li>
-
-                <div class="sub-li" id="services-sub-li">
-                    <a href="<?php echo $websiteUrl ?>/services/residential" title="Residential">
-                        <li>Residential</li>
-                    </a>
-                    
-                    <a href="<?php echo $websiteUrl ?>" title="Corporate">
-                        <li>Corporate</li>
-                    </a>
-
-                    <a href="<?php echo $websiteUrl ?>" title="Commercial">
-                        <li>Commercial</li>
-                    </a>
-
-                    <a href="<?php echo $websiteUrl ?>" title="Industrial">
-                        <li>Industrial</li>
-                    </a>
-                </div>
+                <a href="<?php echo $websiteUrl; ?>/services" title="Services">
+                    <li <?php if ($page == 'services') { ?> id="active-li" <?php } ?>><i class="bi bi-bricks"></i> Services</li>
+                </a>
             </div>
 
             <div class="div">

@@ -231,7 +231,7 @@
             </div>
 
             <div class="main-content-div form-main-content-div">
-                <div class="tables-content-div form-table-content-div">
+                <div class="other-tables-content-div">
                     <div class="content-title">
                         <div class="title">
                             <i class="bi bi-chat-quote-fill"></i>

@@ -14,7 +14,7 @@ function _getActivePagesTab(props) {
 
 /// Get Active Pages Tab Link ///
 function _getActivePagesTabLink(divid){
-	$('#pageContent, #picturePage').removeClass('active-li');
+	$('#pageContent, #picturePage, #serviceFaqPage').removeClass('active-li');
 	$("#"+divid).addClass('active-li');
 }
 
@@ -84,8 +84,6 @@ function _createOrUpdatePage(pageCategory){
 		////////get all needed values////////////
 		let issueCount = 0;
 		const categoryId = $('#categoryId').val()?.trim();
-		const projectStageId = $('#projectStageId').val()?.trim();
-		const projectCategoryId = $('#projectCategoryId').val()?.trim();
 		const pageTitle = $('#pageTitles').val()?.trim().replace(/['’]/g, '');
 		const pageUrl = $('#pageUrl').val()?.trim();
 		const seoKeywords = $('#seoKeywords').val()?.trim();
@@ -102,7 +100,7 @@ function _createOrUpdatePage(pageCategory){
 		issueCount += _validateEmptyValue("seoDescription", "SEO DESCRIPTION");
 		issueCount += _validateEmptyValue("statusId", "STATUS");
 		
-		if (pageCategory === 'PORTFOLIO'){
+		if (pageCategory === 'GALLERY'){
 			issueCount += _validateEmptyValue("location", "LOCATION");
 		}
 
@@ -112,10 +110,6 @@ function _createOrUpdatePage(pageCategory){
 		
 		if (pageCategory === 'PORTFOLIO') {
 			issueCount += _validateEmptyValue("projectStageId", "PROJECT STAGE");
-		}
-
-		if (pageCategory === 'PORTFOLIO'){
-			issueCount += _validateEmptyValue("projectCategoryId", "PROJECT CATEGORY");
 		}
 
 		if (!pageContent) {
@@ -150,9 +144,7 @@ function _createOrUpdatePage(pageCategory){
             pageContent,
             statusId,
 			...(pageCategory === "BLOG" && { categoryId }),
-			...(pageCategory === "PORTFOLIO" && { location }),
-			...(pageCategory === "PORTFOLIO" && { projectStageId }),
-			...(pageCategory === "PORTFOLIO" && { projectCategoryId }),
+			...(pageCategory === "GALLERY" && { location }),
 		};
 
 		////// confirm action////
@@ -199,10 +191,9 @@ function _createOrUpdatePageCallback(formData) {
 			const pageTitle = fetchData.pageTitle; 
 			const seoKeywords = fetchData.seoKeywords; 
 			const seoDescription = fetchData.seoDescription; 
-			const projectStageName = fetchData.projectStageData?.projectStageName?.toLowerCase().trim().replace(/\s+/g, '-') ?? '';
 
 			_uploadPagePicture(fetchPageCategory, newSeoFlyer, message);
-			_createPagesFolder(fetchPageCategory, pageId, pageUrl, oldPageUrl, pageTitle, seoKeywords, seoDescription, newSeoFlyer, message, btnText, projectStageName);
+			_createPagesFolder(fetchPageCategory, pageId, pageUrl, oldPageUrl, pageTitle, seoKeywords, seoDescription, newSeoFlyer, message, btnText);
 		})
 		.catch((error) => {
 			_staffValidationCheck(error.response);
@@ -265,7 +256,7 @@ function _uploadPagePicture(fetchPageCategory, newSeoFlyer, message) {
 }
 
 //// Create Pages Folder ////
-function _createPagesFolder(fetchPageCategory, pageId, pageUrl, oldPageUrl, pageTitle, seoKeywords, seoDescription, newSeoFlyer, message, btnText, projectStageName) {
+function _createPagesFolder(fetchPageCategory, pageId, pageUrl, oldPageUrl, pageTitle, seoKeywords, seoDescription, newSeoFlyer, message, btnText) {
 
 	const formData = new FormData();
     formData.append("action", "createPagesFolder");
@@ -277,7 +268,6 @@ function _createPagesFolder(fetchPageCategory, pageId, pageUrl, oldPageUrl, page
 	formData.append("seoKeywords", seoKeywords);
 	formData.append("seoDescription", seoDescription);
 	formData.append("newSeoFlyer", newSeoFlyer);
-	formData.append("projectStageName", projectStageName);
 
 	_callFileEndPoints({
 		url: portalMiddleWareUrl,

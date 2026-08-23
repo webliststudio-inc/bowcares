@@ -56,6 +56,9 @@ function _pageListDisplay(data, pageContainer) {
 	if (pageContainer=='footerServiceList') {
 	    _footerServicesListData(data, pageContainer);   
 	}
+	if (pageContainer=='headerServiceList') {
+	    _headerServicesListData(data, pageContainer);   
+	}
 }
 
 /// Initialize Fetch Service List ///
@@ -257,6 +260,16 @@ function _footerServicesListData(data, pageContainer) {
 		<a href="${websiteUrl}/services/${item.pageUrl}" title="${item.pageTitle}">
 			<li><i class="bi bi-chevron-right"></i> ${item.pageTitle}</li>
 		</a>
+	`;
+  }).join("");
+  $(`#${pageContainer}`).html(content);
+}
+
+/// Initialize Fetch Header Services List ///
+function _headerServicesListData(data, pageContainer) {
+	const content = data.map((item) => {
+	return `
+		
 	`;
   }).join("");
   $(`#${pageContainer}`).html(content);

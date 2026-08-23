@@ -41,7 +41,7 @@
 <script src="<?php echo $websiteUrl?>/portal/js/useInformationCategory.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
 <script src="<?php echo $websiteUrl?>/portal/js/useBlog.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
 <script src="<?php echo $websiteUrl?>/portal/js/useGallery.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
-<script src="<?php echo $websiteUrl?>/portal/js/useProjectCategory.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
+<script src="<?php echo $websiteUrl?>/portal/js/useProfession.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
 <script src="<?php echo $websiteUrl?>/portal/js/useFaq.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
 <script src="<?php echo $websiteUrl?>/portal/js/useReview.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
 <script src="<?php echo $websiteUrl?>/portal/js/useArtisan.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
