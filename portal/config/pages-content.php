@@ -6,6 +6,7 @@
                     <?php if ($pageCategory == 'SERVICE') { ?>
                         <li class="active-li" title="PAGE CONTENT" id="pageContent" onclick="_getActivePagesTab({divid: 'pageContent', page: 'pageContent', pageCategory: 'SERVICE', url: portalMiddleWareUrl});">PAGE CONTENT</li>
                         <li title="UPLOAD PICTURE" id="picturePage" onclick="_getActivePagesTab({divid:'picturePage', page: 'picturePage', pageCategory: 'SERVICE', url: portalMiddleWareUrl});">UPLOAD PICTURE</li>
+                        <li title="Page Frequently Asked Questions" id="serviceFaqPage" onclick="_getActivePagesTab({divid:'serviceFaqPage', page: 'serviceFaqPage', pageCategory: 'SERVICE', url: portalMiddleWareUrl});">FAQ</li>
                     <?php } ?>
 
                     <?php if ($pageCategory == 'GALLERY') { ?>

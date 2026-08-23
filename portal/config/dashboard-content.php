@@ -28,18 +28,22 @@
             </div>
         </div>
 
-        <div class="login-info">
+       <div class="login-info">
             <div class="info-item">
                 <i class="bi bi-calendar-event"></i>
                 <span id="lastLoginDate">
-                    Aug 4, 2026
+                    <script>
+                        $("#lastLoginDate").html(_formatShortDate(staffLoginData.lastLoginTime));
+                    </script>
                 </span>
             </div>
 
             <div class="info-item">
                 <i class="bi bi-clock"></i>
                 <span id="lastLoginTime">
-                    12:23:55 PM
+                    <script>
+                        $("#lastLoginTime").html(_formatTime(staffLoginData.lastLoginTime));
+                    </script>
                 </span>
             </div>
         </div>
@@ -66,7 +70,7 @@
                         </div>
 
                         <div class="statistics-count">
-                            <h2 id="totalActiveStaffCount">10</h2>
+                            <h2 id="totalActiveStaffCount">0</h2>
                         </div>
 
                         <div class="statistics-action-div">
@@ -97,7 +101,7 @@
                         </div>
 
                         <div class="statistics-count">
-                            <h2 id="totalActiveServiceCount">4</h2>
+                            <h2 id="totalActiveServiceCount">0</h2>
                         </div>
 
                         <div class="statistics-action-div">
@@ -159,7 +163,7 @@
                         </div>
 
                         <div class="statistics-count">
-                            <h2 id="totalActiveBlogCount">7</h2>
+                            <h2 id="totalActiveBlogCount">0</h2>
                         </div>
 
                         <div class="statistics-action-div">
@@ -189,7 +193,7 @@
                         </div>
 
                         <div class="statistics-count">
-                            <h2 id="totalActiveFaqCount">7</h2>
+                            <h2 id="totalActiveFaqCount">0</h2>
                         </div>
 
                         <div class="statistics-action-div">
@@ -219,7 +223,7 @@
                         </div>
 
                         <div class="statistics-count">
-                            <h2 id="totalActiveReviewCount">3</h2>
+                            <h2 id="totalActiveReviewCount">0</h2>
                         </div>
 
                         <div class="statistics-action-div">
@@ -253,90 +257,17 @@
 
                         <div class="inner-table-content review-table-content">
                             <div class="review-back-div" id="fetchDashboardReviews">
-                                <div class="review-div">
-                                    <div class="review-header">
-                                        <div class="review-user">
-                                            <div class="avatar">
-                                                PE
-                                            </div>
+                                <script>
+                                    _getReviewList({
+                                        pageContainer: 'fetchDashboardReviews',
+                                        crFlag: 'REVIEW',
+                                        limit: 2,
+                                        statusId: 3,
+                                    });
+                                </script>
 
-                                            <div class="user-info">
-                                                <h4>Peter Emmanuel</h4>
-                                                <span>
-                                                    peter.emmanuel@gmail.com
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <div class="review-meta">
-                                            <div class="star-div">
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                            </div>
-
-                                            <span class="status approved">
-                                                Pending
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <div class="review-content">
-                                        BowCare provided excellent service. The technician arrived on time,
-                                        explained the issue clearly, and completed the repair...
-                                    </div>
-
-                                    <div class="review-action">
-                                        <button class="btn page-view-btn" title="Approve Review">
-                                            <i class="bi bi-check-all"></i>
-                                            APPROVE
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div class="review-div">
-                                    <div class="review-header">
-                                        <div class="review-user">
-                                            <div class="avatar">
-                                                PE
-                                            </div>
-
-                                            <div class="user-info">
-                                                <h4>Peter Emmanuel</h4>
-                                                <span>
-                                                    peter.emmanuel@gmail.com
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <div class="review-meta">
-                                            <div class="star-div">
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                            </div>
-
-                                            <span class="status approved">
-                                                Pending
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <div class="review-content">
-                                        BowCare provided excellent service. The technician arrived on time,
-                                        explained the issue clearly, and completed the repair...
-                                    </div>
-
-                                    <div class="review-action">
-                                        <button class="btn page-view-btn" title="Approve Review">
-                                            <i class="bi bi-check-all"></i>
-                                            APPROVE
-                                        </button>
-                                    </div>
+                                <div class="content-loading-div">
+                                    <img src="<?php echo $websiteUrl ?>/all-images/images/spinner.gif" alt="Loading" />
                                 </div>
                             </div>
                         </div>
@@ -728,6 +659,9 @@
         </div>
     </div>
 </div>
+    <script>
+        _fetchDashboardStatistics();
+    </script>
 <?php } ?>
 
 <?php if ($page == 'logoutConfirmForm') { ?>

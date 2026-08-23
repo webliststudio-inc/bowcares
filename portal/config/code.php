@@ -22,12 +22,12 @@ switch ($action){
 		require_once('pages-content.php');
 		require_once('page-details.php');
 		require_once('information-category-content.php');
-		require_once('project-category-content.php');
 		require_once('artisan-content.php');
 		require_once('task-content.php');
 		require_once('invoice-content.php');
 		require_once('account-report/account-report-content.php');
 		require_once('system-alert-content.php');
+		require_once('profession-management-content.php');
 	break;
 
 	case 'get_form':
@@ -47,12 +47,12 @@ switch ($action){
 		require_once('pages-content.php');
 		require_once('page-details.php');
 		require_once('information-category-content.php');
-		require_once('project-category-content.php');
 		require_once('artisan-content.php');
 		require_once('task-content.php');
 		require_once('invoice-content.php');
 		require_once('account-report/account-report-content.php');
 		require_once('system-alert-content.php');
+		require_once('profession-management-content.php');
 	break;
 
 	case 'uploadPagePix':
@@ -71,8 +71,8 @@ switch ($action){
 			$uploadPagesPictureDir = "../../uploaded_files/blog/";
 		} else if ($pageCategory==="service") {
 			$uploadPagesPictureDir = "../../uploaded_files/services/";
-		} else if ($pageCategory==="portfolio") {
-			$uploadPagesPictureDir = "../../uploaded_files/portfolio/";
+		} else if ($pageCategory==="gallery") {
+			$uploadPagesPictureDir = "../../uploaded_files/gallery/";
 		}
 
 		//// Create Directory If Not Exists ////
@@ -105,6 +105,25 @@ switch ($action){
 		}
 	break;
 
+	case 'uploadProfessionImagePix':
+		$newProfessionImage = $_POST['newProfessionImage'] ?? '';
+		$professionImage = $_POST['professionImage'] ?? '';
+	
+		///// Validate SEO Flyer /////
+		if (!empty($professionImage)) {
+    		$professionImage = preg_replace('#^data:image/\w+;base64,#i', '', $professionImage);
+			$professionImage = str_replace(' ', '+', $professionImage);
+			$professionImage = base64_decode($professionImage);
+		}
+		
+		$uploadProfessionImageDir = "../../uploaded_files/professionImages/";
+		
+		//// Create Directory If Not Exists ////
+		if (!empty($newProfessionImage) && !empty($professionImage)) {
+			file_put_contents($uploadProfessionImageDir . $newProfessionImage, $professionImage);
+		}
+    break;
+
 	case 'createPagesFolder':
 		$pageCategory = strtolower(trim($_POST['pageCategory']));
 		$pageId = trim($_POST['pageId']);
@@ -114,7 +133,6 @@ switch ($action){
 		$seoKeywords = $_POST['seoKeywords'];
 		$seoDescription = $_POST['seoDescription'];
 		$newSeoFlyer = $_POST['newSeoFlyer'];
-		$projectStageName = $_POST['projectStageName'] ?? '';
 		$pageSeoPix = $newSeoFlyer;
 
 		// common text content
@@ -141,9 +159,9 @@ switch ($action){
 			} else if ($pageCategory == 'service') {
 				mkdir('../../services/' . $pageUrl);
 				$myfile = fopen("../../services/" . $pageUrl . "/index.php", "w") or die("Unable to open file!");
-			} else if ($pageCategory == 'portfolio') {
-				mkdir('../../portfolio/'.$projectStageName.'/' . $pageUrl);
-				$myfile = fopen("../../portfolio/".$projectStageName."/" . $pageUrl . "/index.php", "w") or die("Unable to open file!");	
+			} else if ($pageCategory == 'gallery') {
+				mkdir('../../gallery/' . $pageUrl);
+				$myfile = fopen("../../gallery/" . $pageUrl . "/index.php", "w") or die("Unable to open file!");	
 			}
 			fwrite($myfile, $txt);
 			fclose($myfile);
@@ -164,14 +182,14 @@ switch ($action){
 				//// recreate new file with folders ////
 				mkdir('../../services/' . $pageUrl);
 				$myfile = fopen("../../services/" . $pageUrl . "/index.php", "w") or die("Unable to open file!");
-			} else if ($pageCategory == 'portfolio') {
+			} else if ($pageCategory == 'gallery') {
 				//// delete file with folders ////
-				array_map('unlink', glob("../../portfolio/".$projectStageName."/$oldPageUrl/*.*"));
-				rmdir("../../portfolio/".$projectStageName."/$oldPageUrl");
+				array_map('unlink', glob("../../gallery/$oldPageUrl/*.*"));
+				rmdir("../../gallery/$oldPageUrl");
 
 				//// recreate new file with folders ////
-				mkdir('../../portfolio/'.$projectStageName.'/' . $pageUrl);
-				$myfile = fopen("../../portfolio/".$projectStageName."/" . $pageUrl . "/index.php", "w") or die("Unable to open file!");	
+				mkdir('../../gallery/' . $pageUrl);
+				$myfile = fopen("../../gallery/" . $pageUrl . "/index.php", "w") or die("Unable to open file!");	
 			}
 			fwrite($myfile, $txt);
 			fclose($myfile);

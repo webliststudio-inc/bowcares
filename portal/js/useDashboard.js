@@ -177,18 +177,16 @@ function _fetchDashboardStatistics() {
 			})
 			.then((response) => {
         _staffValidationCheck(response.response);
-					const data = response?.data[0];
+					const data = response?.data?.[0];
 
 					const totalActiveStaffCount = data.totalActiveStaffCount;
 					const totalActiveServiceCount = data.totalActiveServiceCount;
-					const totalActivePortfolioCount = data.totalActivePortfolioCount;
 					const totalActiveBlogCount = data.totalActiveBlogCount;
 					const totalActiveFaqCount = data.totalActiveFaqCount;
 					const totalActiveReviewCount = data.totalActiveReviewCount;
 
 					$('#totalActiveStaffCount').html(totalActiveStaffCount);
 					$('#totalActiveServiceCount').html(totalActiveServiceCount);
-					$('#totalActivePortfolioCount').html(totalActivePortfolioCount);
 					$('#totalActiveBlogCount').html(totalActiveBlogCount);
 					$('#totalActiveFaqCount, #sideFaqCount').html(totalActiveFaqCount);
           $('#totalActiveReviewCount').html(totalActiveReviewCount);

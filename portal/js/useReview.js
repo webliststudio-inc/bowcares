@@ -56,8 +56,8 @@ function _reviewListDisplay(data, pageContainer, paginationContainer) {
 /// Initialize Dashboard Review List ///
 function _dashboardReviewData(data, pageContainer) {
 	const content = data.map((item) => {
-    return `
-      	<div class="review-div">
+	return `
+		<div class="review-div">
 			<div class="review-header">
 				<div class="review-user">
 					<div class="avatar">

@@ -46,7 +46,7 @@
                         </div>
                     </div>
 
-                    <div class="user-managment-list" title="Profession Management" onclick="_getPage({page: 'professionCategory', url: portalMiddleWareUrl});">
+                    <div class="user-managment-list" title="Profession Management" onclick="_getPage({page: 'professionManagement', url: portalMiddleWareUrl});">
                         <div class="inner-div">
                             <div class="icon-div"><img src="<?php echo $websiteUrl ?>/all-images/images/blog.png" alt="Profession Category Configurations" /></div>
                             <div class="text-div">

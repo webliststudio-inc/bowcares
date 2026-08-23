@@ -16,7 +16,8 @@ function _otherPagesBtn($websiteUrl)
             text: "Join Our Team",
             icon: "bi bi-briefcase-fill",
             size: "btn-lg",
-            variant: "btn-outline"
+            variant: "btn-outline",
+            onClick: "window.location.href=artisanSignUpUrl;"
         }]
     });
     </script>
@@ -529,7 +530,7 @@ function _customerReviewSection($extraClass = '') {
     global $websiteUrl;
     ?>
 
-<section class="body-div <?= !empty($extraClass) ? ' '.$extraClass : ''; ?>">
+<section id="review-section" class="body-div <?= !empty($extraClass) ? ' '.$extraClass : ''; ?>">
     <div class="body-div-in">
         <div class="main-pages-back-div">
             <div class="title-div" data-aos="fade-in" data-aos-duration="1200">
@@ -546,8 +547,9 @@ function _customerReviewSection($extraClass = '') {
                             id: "btnStart",
                             text: "Submit Review",
                             icon: "bi bi-arrow-right-circle",
-                            iconPosition: "right"
-                        }, ]
+                            iconPosition: "right",
+                            onClick: "_getForm({page: 'reviewForm', url: siteMiddlewareUrl});",
+                        },]
                     });
                     </script>
                 </div>
