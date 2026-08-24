@@ -68,7 +68,6 @@
                     buttons: [{
                         id: "backBtn",
                         text: "Back",
-                        size: "btn-lg",
                         icon: "bi bi-arrow-left-circle",
                         variant: 'btn-outline',
                         onClick: "_getNextPage({page:'customreInfoPage'});"
@@ -76,9 +75,54 @@
                         id: "addressBtn",
                         text: "Save and Continue",
                         icon: "bi bi-arrow-right-circle",
-                        size: "btn-lg",
                         iconPosition: "right",
-                        onClick: "_getNextPage({page:'consentPage'});"
+                        onClick: "_getNextPage({page:'summaryPage'});"
+                    }]
+                });
+            </script>
+        </div>
+    </div>
+<?php } ?>
+
+<?php if ($page == 'summaryPage') { ?>
+    <div class="form-wrapper">
+        <div class="text_area_container" id="messageRequest_container">
+            <script>
+                textField({
+                    id: 'messageRequest',
+                    title: 'Describe Your Service Request',
+                    type: 'textarea',
+                    maxlength: 180,
+                });
+            </script>
+        </div>
+
+        <div class="check-box-container" id="notificationConsent_container">
+            <label class="check-box-label">
+                <input type="checkbox" id="notificationConsent" name="notificationConsent" value="1">
+
+                <span>
+                    By checking this box, I agree to receive emails, notifications, and other important updates from BowCare regarding my service request, including request status, appointment confirmations, service updates, reminders, and other information related to the services I have requested. I can opt out at any time.
+                </span>
+            </label>
+        </div>
+
+        <div class="btn-div btn-flex-end" id="backBtn">
+            <script>
+                generalButtons({
+                    container: "backBtn",
+                    buttons: [{
+                        id: "backBtn",
+                        text: "Back",
+                        icon: "bi bi-arrow-left-circle",
+                        variant: 'btn-outline',
+                        onClick: "_getNextPage({page:'addressPage'});"
+                    }, {
+                        id: "addressBtn",
+                        text: "Submit Request",
+                        icon: "bi bi-arrow-right-circle",
+                        iconPosition: "right",
+                        onClick: "_completeServiceRequest();"
                     }]
                 });
             </script>

@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="inner-form">
-                        <div class="main-content-div form-main-content-div">
+                        <div class="main-content-div artisan-main-content-div">
                             <div class="pages-tables-content-div form-main-content">
                                 <div class="content-title">
                                     <div class="title">
@@ -106,7 +106,7 @@
                             </div>
                         </div>
 
-                        <div class="main-content-div form-main-content-div">
+                        <div class="main-content-div artisan-main-content-div">
                             <div class="pages-tables-content-div form-main-content">
                                 <div class="content-title">
                                     <div class="title">

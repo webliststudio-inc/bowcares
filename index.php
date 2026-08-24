@@ -42,9 +42,10 @@
                             container: "slideBtn",
                             buttons: [{
                                 id: "slideBtn",
-                                text: "Request For a Service",
+                                text: "Request a Service",
                                 size: "btn-lg",
                                 icon: "bi bi-calendar-check-fill",
+                                link: "<?php echo $websiteUrl ?>/request-service"
                             }, {
                                 id: "ff",
                                 text: "Join Our Team",
