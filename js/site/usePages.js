@@ -294,7 +294,7 @@ function _headerServicesListData(data, pageContainer) {
 function _pageGalleryListData(data, pageContainer) {
 	const content = data.map((item) => {
 	return `
-		<div class="gallery-card" onclick="_getForm({page:'galleryDetails', url:siteMiddlewareUrl});">
+		<div class="gallery-card" onclick="_fetchEachGallery('${item?.pageId}');">
 			<div class="title ${item.professionNameData?.professionName}">${item.professionNameData?.professionName}</div>
 			<div class="image-div">
 				<img src="${galleryPixPath}/${item?.seoFlyer}?t=${Date.now()}" alt="${item?.pageTitle}" />
@@ -311,6 +311,30 @@ function _pageGalleryListData(data, pageContainer) {
 	`;
   }).join("");
   $(`#${pageContainer}`).html(content);
+}
+
+//// Fetch Each Gallery ////
+function _fetchEachGallery(pageId) {
+    $("#get-form-more-div").css({'display': 'flex','justify-content': 'center','align-items': 'center'}) .fadeIn(500);
+	try {
+		//// call endpoint //////
+		_callFetchEndPoints({
+			url: `site/fetch-page?pageCategory=GALLERY&pageId=${pageId}`,
+		})
+		.then((response) => {
+			sessionStorage.setItem("getEachGalleySessionData", JSON.stringify(response?.data?.[0]));
+			_getForm({page:'galleryDetails', url:siteMiddlewareUrl});
+		 })
+		.catch((error) => {
+			_alertClose();
+			console.error("Error:", error);
+			_callAjaxError(() => _fetchEachGallery(pageId), error.message); // retry if needed
+		});
+	} catch (error) {
+		_alertClose();
+		console.error("Error:", error);
+		_callCatchError(() => _fetchEachGallery(pageId));
+  	}
 }
 
 /// Fetch Each Page Details ///
@@ -366,7 +390,7 @@ function _getEachPageDetails(options) {
 			for (let item of picturesArray) {
 				pixHtml += `
 					<div class="each-img-div" title="Click to Preview" id="img${item.sn}"
-						onclick="_viewPreviewImage('img${item.sn}', 'pagesPreviewPix')">
+						onclick="_viewPreviewImage('img${item.sn}', 'pagePreviewPix')">
 						<img src="${pagesPixPath}/${item.pagePix}"
 						alt="${pageTitle}" />
 					</div>
@@ -375,7 +399,6 @@ function _getEachPageDetails(options) {
 			$('#fetchPagePictures').html(pixHtml);
 			if (picturesArray.length>0) {
 				$('.bottom-img-div').show();
-				_slideImages();
 			} else {
 				$(".bottom-img-div").hide();
 			}
