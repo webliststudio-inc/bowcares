@@ -427,17 +427,17 @@ header .header-bottom .header-bottom-inner nav ul li i{
 }
 
 #expand-li:before {
-    content: "";
-    width: 0;
-    height: 0;
-    border: 10px solid transparent;
-    border-bottom-color: #f8f8f8; 
-    position: absolute;
-    top: 50%;
-	  margin-left: -4px;
-    z-index: 1;
-    opacity: 0;
-    transition: opacity 0.3s; 
+  content: "";
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-bottom-color: #f8f8f8; 
+  position: absolute;
+  top: 50%;
+  margin-left: -4px;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s; 
 }
 
 #expand-li:hover:before {
@@ -453,23 +453,24 @@ header .header-bottom .header-bottom-inner nav ul .read-more{
 }
 
 #expand-li ul .sub-nav-div{
-	min-width: 200px;
+	min-width: 550px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	gap: 20px;
 	padding: 15px;
+  flex-wrap: wrap;
 }
 
 #expand-li ul .sub-nav-div .left-div{
 	display: flex;
-	flex-direction: column;
 	align-items: center;
+  flex-wrap: wrap;
 	gap: 10px;
 }
 
 #expand-li ul .sub-nav-div .left-div .listig-div{
-	width: calc(100% - 20px);
+  width: 20%;
 	min-width: 250px;
 	padding: 10px;
 	border-radius: 10px;

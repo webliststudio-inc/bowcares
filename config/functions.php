@@ -17,7 +17,7 @@ function _otherPagesBtn($websiteUrl)
             icon: "bi bi-briefcase-fill",
             size: "btn-lg",
             variant: "btn-outline",
-            onClick: "window.location.href=artisanSignUpUrl;"
+            link: "<?php echo $websiteUrl ?>/artisan/sign-up"
         }]
     });
     </script>
@@ -67,7 +67,7 @@ function _otherPagesTitleContent($props)
             <?php _otherPagesBtn($websiteUrl); ?>
         </div>
 
-        <div class="right-wrapper">
+        <div class="right-wrapper" id="requestCallForm">
             <div class="form-back-div">
                 <div class="main-content-div dash-main-content-div">
                     <div class="tables-content-div">

@@ -59,6 +59,9 @@ function _pageListDisplay(data, pageContainer) {
 	if (pageContainer=='headerServiceList') {
 	    _headerServicesListData(data, pageContainer);   
 	}
+	if (pageContainer=='allGalleryContainer') {
+	    _pageGalleryListData(data, pageContainer);   
+	}
 }
 
 /// Initialize Fetch Service List ///
@@ -70,7 +73,7 @@ function _indexServicesData(data, pageContainer) {
 			<div class="service-div" data-aos="fade-up" data-aos-duration="1200">
 				<div class="image-div">
 					<img 
-						src="${servicePixPath}/${item.seoFlyer}" 
+						src="${servicePixPath}/${item.seoFlyer}?t=${new Date().getTime()}" 
 						alt="${item.title}" 
 					/>
 				</div>
@@ -267,9 +270,44 @@ function _footerServicesListData(data, pageContainer) {
 
 /// Initialize Fetch Header Services List ///
 function _headerServicesListData(data, pageContainer) {
+	const bgClasses = ["bg-1", "bg-2", "bg-3", "bg-4"];
+	const content = data.map((item, index) => {
+		const bgClass = bgClasses[index % bgClasses.length];
+
+		return `
+			<a class="listig-div" href="${websiteUrl}/services/${item?.pageUrl ?? ""}" title="${item?.pageTitle ?? ""}">
+				<div class="icon-div ${bgClass}">
+					<i class="bi bi-tools"></i>
+				</div>
+
+				<div class="text-div">
+					<h3>${item?.pageTitle ?? ""}</h3>
+					<p>${item?.seoDescription?.substring(0, 30)}...</p>
+				</div>
+			</a>
+		`;
+	}).join("");
+	$(`#${pageContainer}`).html(content);
+}
+
+/// Initialize Fetch Gallery List ///
+function _pageGalleryListData(data, pageContainer) {
 	const content = data.map((item) => {
 	return `
-		
+		<div class="gallery-card" onclick="_getForm({page:'galleryDetails', url:siteMiddlewareUrl});">
+			<div class="title ${item.professionNameData?.professionName}">${item.professionNameData?.professionName}</div>
+			<div class="image-div">
+				<img src="${galleryPixPath}/${item?.seoFlyer}?t=${Date.now()}" alt="${item?.pageTitle}" />
+			</div>
+			<div class="card-content">
+				<h3 class="card-title" title="${item?.pageTitle}">${item?.pageTitle}</h3>
+				<div class="gallery-meta">
+					<div class="location"><i class="bi bi-calendar3"></i> <span>${_fetchFormatDate(item?.updatedTime)}</span>
+					</div>
+					<div class="location"><i class="bi bi-images"></i> <span>18</span></div>
+				</div>
+			</div>
+		</div>
 	`;
   }).join("");
   $(`#${pageContainer}`).html(content);
@@ -319,7 +357,7 @@ function _getEachPageDetails(options) {
 			$('#createdByEmail').html(createdByEmail);
 			$('#updatedTime').html(_fetchFormatDate(updatedTime));
 			$('#viewCount').html(viewCount);
-			$('#seoFlyer').attr('src', (pixPath) + '/' + seoFlyer);
+			$('#seoFlyer').attr('src',`${pixPath}/${seoFlyer}?t=${new Date().getTime()}`);
 			updateReadingTime();
 			
 			const picturesArray = data?.pagePicturesData ?? [];
@@ -588,4 +626,47 @@ function _fetchTabPagesData(pageCategory, pageContainers, projectStageId, catego
             });
         }
     });
+}
+
+/// Fetch Index Profession Data ///
+function _fetchIndexProfessionData() {
+	try {
+		//// call endpoint //////
+		_callFetchEndPoints({
+			url: `site/fetch-information-category`,
+		})
+		.then((response) => {
+			let text = '';
+			for (let i = 0; i < response?.data?.length; i++) {
+				text += `
+				<div class="each-services">
+					<div class="img-div">
+						<img src="${professionPixPath}/${data?.professionImage}?t=${new Date().getTime()}"
+						alt="${data?.professionName}">
+					</div>
+
+					<div class="text-div">
+						<h4>${data?.professionName}</h4>
+					</div>
+				</div>`
+			}
+			$('#indexProfessionContent').html(text);
+		 })
+		.catch((error) => {
+			console.error("Error:", error);
+			if (error.status==0) {
+				_showEmptyState({
+					container: 'indexProfessionContent',
+					message: "Check your internet connection and try again",
+				});
+			} else {
+				_showEmptyState({
+					container: 'indexProfessionContent',
+					message: error.message,
+				});
+			}
+		});
+	} catch (error) {
+		console.error("Error:", error);
+  	}
 }
