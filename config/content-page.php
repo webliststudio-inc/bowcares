@@ -131,6 +131,8 @@
 <?php } ?>
 
 <?php if ($page == 'galleryDetails') { ?>
+    <script>getEachGalleySessionData = JSON.parse(sessionStorage.getItem("getEachGalleySessionData"));</script>
+
     <div class="user-profile-div" data-aos="fade-left" data-aos-duration="900" onclick="event.stopPropagation();">
         <div class="form-title-wrapper">
             <div class="form-title-div">
@@ -155,30 +157,41 @@
                     <button class="gallery-nav-btn gallery-next" id="galleryNextBtn" onclick="_navigateGallery(1);">
                         <i class="bi bi-chevron-right"></i>
                     </button>
+
+                    <script>
+                        $(document).ready(function() {
+                            const galleryImage = getEachGalleySessionData?.seoFlyer ? galleryPixPath + "/" + getEachGalleySessionData?.seoFlyer + '?t=' + new Date().getTime() : "<?php echo $websiteUrl ?>/all-images/images/defaultPage.jpg";
+                            $("#galleryMainImage").attr("src", galleryImage).attr("alt", getEachGalleySessionData?.pageTitle + " Image");
+                        });
+                    </script>
                 </div>
 
                 <div class="bottom-img-div">
                     <div class="inner-img-container">
                         <div class="inner-img-div" id="fetchPagePictures">
-                            <div class="each-img-div" title="Click to Preview" id="img1"
-                                onclick="_viewPreviewImage('img1', 'galleryPreviewPix')">
-                                <img src="<?php echo $websiteUrl?>/uploaded_files/gallery/Plumber-Repairing.jpeg" alt="Plumber Repairing" />
-                            </div>
+                            <script>
+                                $(document).ready(function() {
+                                    const picturesArray = getEachGalleySessionData?.pagePicturesData ?? [];
+                                    let galleryPixHtml = '';
 
-                            <div class="each-img-div" title="Click to Preview" id="img2"
-                                onclick="_viewPreviewImage('img2', 'galleryPreviewPix')">
-                                <img src="<?php echo $websiteUrl?>/uploaded_files/gallery/Plumber-Repairing.jpeg" alt="Plumber Repairing" />
-                            </div>
+                                    for (let item of picturesArray) {
+                                        galleryPixHtml += `
+                                            <div class="each-img-div" title="Click to Preview" id="img${item.sn}"
+                                                onclick="_viewPreviewImage('img${item.sn}', 'galleryPreviewPix')">
+                                                <img src="${pagesPixPath}/${item.pagePix}"
+                                                alt="${pageTitle}" />
+                                            </div>
+                                        `;
+                                    }
+                                    $('#fetchPagePictures').html(galleryPixHtml);
 
-                            <div class="each-img-div" title="Click to Preview" id="img3"
-                                onclick="_viewPreviewImage('img3', 'galleryPreviewPix')">
-                               <img src="<?php echo $websiteUrl?>/uploaded_files/gallery/Plumber-Repairing.jpeg" alt="Plumber Repairing" />
-                            </div>
-
-                            <div class="each-img-div" title="Click to Preview" id="img4"
-                                onclick="_viewPreviewImage('img4', 'galleryPreviewPix')">
-                                <img src="<?php echo $websiteUrl?>/uploaded_files/gallery/Plumber-Repairing.jpeg" alt="Plumber Repairing" />
-                            </div>
+                                    if (picturesArray.length>0) {
+                                        $('.bottom-img-div').show();
+                                    } else {
+                                        $(".bottom-img-div").hide();
+                                    }
+                                });
+                            </script>                        
                         </div>
                     </div>
                 </div>  
@@ -186,13 +199,24 @@
                 
             <div class="gallery-info-back-div">
                 <div class="left-info-container">
-                    <h2>Emergency Plumbing Repair</h2>
+                    <h2 id="galleryTitle">
+                        <script>
+                            $("#galleryTitle").html(getEachGalleySessionData?.pageTitle);
+                        </script>
+                    </h2>
                     <div class="info-wrapper">
                         <div class="title">Plumbing</div>
-                        <div class="info"><i class="bi bi-calendar3"></i> <span>May 15, 2026</span></div>
+                        <div class="info"><i class="bi bi-calendar3"></i> <span id="craetedDate">
+                            <script>
+                            $("#craetedDate").html(_fetchFormatDate(getEachGalleySessionData?.updatedTime));
+                        </script></span></div>
                         <div class="info"><i class="bi bi-images"></i> <span>18</span></div>
                     </div>
-                    <p>Take a look at our skilled technicians delivering reliable maintenance and repair services with precision, professionalism, and attention to detail. Every project reflects our commitment to quality workmanship and customer satisfaction.</p>
+                    <p id="galleryDescription">
+                        <script>
+                            $("#galleryDescription").html(getEachGalleySessionData?.seoDescription);
+                        </script>
+                    </p>
 
                     <h4>Share this photo</h4>
                     <div class="social-info">
@@ -234,7 +258,9 @@
 
                                     <div class="list-content-div"> 
                                         <div>Date</div>
-                                        <span>May 15, 2026</span>
+                                        <span id="infoDate"><script>
+                                            $("#infoDate").html(_fetchFormatDate(getEachGalleySessionData?.updatedTime));
+                                        </script></span>
                                     </div>
 
                                     <div class="list-content-div"> 

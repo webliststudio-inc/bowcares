@@ -188,9 +188,9 @@
                             <div class="li" id="li"><strong>MORE</strong></div>
                             <a href="<?php echo $websiteUrl?>/contact-us" title="Contact Us">
                             <div class="li">Contact Us</div></a>
-                            <a href="<?php echo $websiteUrl?>" title="Reviews">
+                            <a href="<?php echo $websiteUrl?>/reviews" title="Reviews">
                             <div class="li">Reviews</div></a>
-                            <a href="<?php echo $websiteUrl?>" title="Gallery">
+                            <a href="<?php echo $websiteUrl?>/gallery" title="Gallery">
                             <div class="li">Gallery</div></a>
                             <a href="<?php echo $websiteUrl?>/blog" title="Blog">
                             <div class="li">Blog</div></a>

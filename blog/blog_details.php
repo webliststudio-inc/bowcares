@@ -66,16 +66,21 @@
                     <div class="left-div">
                         <div class="page-list-back-div">
                             <div class="main-picture-back-div">
-                                <div class="main-picture-div" id="pagesPreviewPix">
+                                <div class="main-picture-div gallery-main-picture-div" id="pagePreviewPix">
                                     <img id="seoFlyer" src="<?php echo $websiteUrl ?>/all-images/images/defaultPage.jpg" alt="<?php echo $pageTitle?>" />
+                                    <button class="gallery-nav-btn gallery-prev" id="galleryPrevBtn" onclick="_navigateGallery(-1);">
+                                        <i class="bi bi-chevron-left"></i>
+                                    </button>
+
+                                    <button class="gallery-nav-btn gallery-next" id="galleryNextBtn" onclick="_navigateGallery(1);">
+                                        <i class="bi bi-chevron-right"></i>
+                                    </button>
                                 </div>
 
                                 <div class="bottom-img-div">
                                     <div class="inner-img-container">
                                         <div class="inner-img-div" id="fetchPagePictures"></div>
                                     </div>
-                                    <button class="left-btn"> <i class="bi-chevron-double-left"></i></button>
-                                    <button class="right-click-btn"> <i class="bi-chevron-double-right"></i></button>
                                 </div>
                             </div>
 
