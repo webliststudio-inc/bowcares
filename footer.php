@@ -26,7 +26,7 @@
                     </span>
                 </a>
 
-                <a href="#" class="support-schedule-btn">
+               <a href="#requestCallForm" class="support-schedule-btn">
                     <i class="bi bi-calendar2-week"></i>
 
                     <span>

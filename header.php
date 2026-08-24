@@ -135,40 +135,14 @@
                             <i class="bi-plus"></i> Services </a>
                         <ul class="animated fadeIn">
                             <div class="sub-nav-div">
-                                <div class="left-div">
-                                    <a class="listig-div" href="<?php echo $websiteUrl ?>/services/residential" title="Residential">
-                                        <div class="icon-div bg-4"><i class="bi bi-house-door-fill"></i></div>
-                                        <div class="text-div">
-                                            <h3>Residential</h3>
-                                            <p>Home cleaning & maintenance</p>
-                                        </div>
-                                    </a>
-
-                                    <a class="listig-div" href="<?php echo $websiteUrl?>" title="Corporate">
-                                        <div class="icon-div"><i class="bi bi-building-fill"></i></div>
-                                        <div class="text-div">
-                                            <h3>Corporate</h3>
-                                            <p>Professional office maintenance</p>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="left-div">
-                                    <a class="listig-div" href="<?php echo $websiteUrl?>" title="Industrial">
-                                        <div class="icon-div bg-3"><i class="bi bi-gear-wide-connected"></i></div>
-                                        <div class="text-div">
-                                            <h3>Industrial</h3>
-                                            <p>Factory & warehouse maintenance</p>
-                                        </div>
-                                    </a>
-
-                                    <a class="listig-div" href="<?php echo $websiteUrl?>" title="Commercial">
-                                        <div class="icon-div bg-1"><i class="bi bi-briefcase-fill"></i></div>
-                                        <div class="text-div">
-                                            <h3>Commercial</h3>
-                                            <p>Retail & business cleaning</p>
-                                        </div>
-                                    </a>
+                                <div class="left-div" id="headerServiceList">
+                                    <script>
+                                        _getPageList({
+                                            pageCategory: "SERVICE",
+                                            limit: 4,
+                                            pageContainer: "headerServiceList"
+                                        })
+                                    </script>
                                 </div>
                             </div>
                         </ul>
@@ -233,7 +207,7 @@
                             text: "Join Our Team",
                             icon: "bi bi-briefcase-fill",
                             variant: 'btn-secondary',
-                            onClick: "window.location.href=artisanSignUpUrl;"
+                            link: "<?php echo $websiteUrl ?>/artisan/sign-up"
                         }, ]
                     });
                 </script>

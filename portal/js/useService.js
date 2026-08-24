@@ -44,7 +44,7 @@ function _renderServiceData(data) {
   	<div class="grid-div">
 		<div class="status-div ${item.statusData?.statusName}">${item.statusData?.statusName}</div>
 		<div class="img-div">
-			<img src="${servicePixPath}/${item.seoFlyer}" alt="${item.pageTitle}" />
+			<img src="${servicePixPath}/${item.seoFlyer}?t=${new Date().getTime()}" alt="${item.pageTitle}" />
 		</div>
 
 		<div class="text-div">

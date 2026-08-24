@@ -62,8 +62,18 @@
                         <button class="btn" title="Windows">Windows</button>
                     </div>
 
-                    <div class="gallery-back-div" id="allProjectContainer">
-                        <div class="gallery-card" onclick="_getForm({page:'galleryDetails', url:siteMiddlewareUrl});">
+                    <div class="gallery-back-div" id="allGalleryContainer">
+                        <script>
+                            _getPageList({
+                                pageCategory: "GALLERY",
+                                pageContainer: "allGalleryContainer",
+                            })
+                        </script>
+
+                        <div class="content-loading-div">
+                            <img src="<?php echo $websiteUrl ?>/all-images/images/spinner.gif" alt="Loading" />
+                        </div>
+                        <!-- <div class="gallery-card" onclick="_getForm({page:'galleryDetails', url:siteMiddlewareUrl});">
                             <div class="title">Plumbing</div>
                             <div class="image-div">
                                 <img src="<?php echo $websiteUrl?>/uploaded_files/gallery/Plumber-Repairing.jpeg"
@@ -162,7 +172,7 @@
                                     <div class="location"><i class="bi bi-images"></i> <span>30</span></div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

@@ -50,14 +50,15 @@
                                 text: "Join Our Team",
                                 icon: "bi bi-briefcase-fill",
                                 size: "btn-lg",
-                                variant: 'btn-outline'
+                                variant: 'btn-outline',
+                                link: "<?php echo $websiteUrl ?>/artisan/sign-up"
                             }]
                         });
                         </script>
                     </div>
                 </div>
 
-                <div class="form-back-div">
+                <div class="form-back-div" id="requestCallForm">
                     <div class="main-content-div dash-main-content-div">
                         <div class="tables-content-div">
                             <div class="content-title">
@@ -78,21 +79,15 @@
                 </div>
             </div>
         </div>
-        <!-- <script>
-            $(document).ready(function () {
-                let savedPage = sessionStorage.getItem("currentContactPage") ?? "customreInfoPage";
-                _getPage({
-                    page: savedPage,
-                    url: siteMiddlewareUrl
-                });
-            });
-        </script> -->
     </div>
 
     <section class="index-content-div">
         <section class="service-slide-body-div">
             <div class="service-slide-body-div-in">
-                <div class="service-slider">
+                <div class="service-slider" id="indexProfessionContent">
+                    <!-- <script>
+                        _fetchIndexProfessionData();
+                    </script> -->
                     <div class="each-services">
                         <div class="img-div">
                             <img src="<?php echo $websiteUrl?>/all-images/services/landscaping.png" alt="Landscaping">
@@ -277,7 +272,8 @@
                                             id: "btnStart",
                                             text: "Join Our Team",
                                             icon: "bi bi-arrow-right-circle",
-                                            iconPosition: "right"
+                                            iconPosition: "right",
+                                            link: "<?php echo $websiteUrl ?>/artisan/sign-up"
                                         }, ]
                                     });
                                     </script>

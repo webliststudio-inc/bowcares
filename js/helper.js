@@ -7,6 +7,21 @@ function _fetchFormatDate(dateString) {
   return dateObj.toLocaleDateString("en-GB", options).replace(" ", " ");
 }
 
+function _fetchFormatDate(dateString) {
+  if (!dateString) return "N/A";
+  const dateObj = new Date(dateString);
+  const options = {
+    day: "2-digit",
+    month: "short",
+    year: "numeric"
+  };
+
+  // Example: 25 Jan, 2025
+  return dateObj
+      .toLocaleDateString("en-GB", options)
+      .replace(/(\w{3}) (\d{4})/, "$1, $2");
+}
+
 function _formatShortDate(dateTime) {
   if (!dateTime) return "";
 

@@ -5963,15 +5963,11 @@ main {
 
 .service-back-div .service-div .image-div{
     width: 100%;
-    height: 240px;
+    height: 200px;
     border-radius: 10px 10px 0px 0px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
-}
-
-.service-back-div .page-service-div .image-div{
-    height: 200px;
 }
 
 .service-back-div .service-div .image-div img{
@@ -6000,7 +5996,7 @@ main {
 	border: 1px solid rgba(255, 105, 0, 0.4);
 	position: absolute;
 	z-index:100;
-	top: 215px;
+	top: 175px;
 	left: 4%;
   	overflow: hidden;
 }
@@ -6014,7 +6010,6 @@ main {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-top: 5px;
 	padding: 15px 15px;
     cursor: pointer;
 }
@@ -6048,16 +6043,16 @@ main {
 .service-back-div .service-div .text-div .btn-div .btn{
     border: none;
 	background: var(--primary-color);
-	padding: 8px 20px;
+	padding: 7px 15px;
 	border-radius: 25px;
 	color: var(--text-white);
 	font-family: sub-title-font;
-	font-size: 13px;
+	font-size: 12px;
 	cursor: pointer;
 	transition: all 0.2s ease-in 0.2s;
 }
 .service-back-div .service-div .text-div .btn-div .btn i{
-	font-size: 12px;
+	font-size: 11px;
 }
 
 .service-back-div .service-div .text-div .btn-div .btn:hover{
