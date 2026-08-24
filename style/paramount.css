@@ -607,6 +607,10 @@ a {
   z-index: 500;
 }
 
+#request-service-html .media-link-div {
+ display: none;
+}
+
 .media-link-div li {
   list-style: none;
   width: 50px;

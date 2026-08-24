@@ -104,6 +104,7 @@
                             id: "getStartedBtn",
                             text: "Get Started",
                             icon: "bi bi-calendar-check-fill",
+                            link: "<?php echo $websiteUrl ?>/request-service"
                         }, ]
                     });
                     </script>

@@ -7,10 +7,11 @@ function _otherPagesBtn($websiteUrl)
         container: "otherPagesBtn",
         buttons: [{
             id: "otherPagesBtn",
-            text: "Request For a Service",
+            text: "Request a Service",
             size: "btn-lg",
             icon: "bi bi-calendar-check-fill",
-            variant: "btn-secondary"
+            variant: "btn-secondary",
+            link: "<?php echo $websiteUrl ?>/request-service"
         }, {
             id: "ff",
             text: "Join Our Team",

@@ -1769,9 +1769,14 @@ header .header-bottom .header-bottom-inner nav ul .mini-menu{
 	flex-direction: column;
 }
 
+.request-how-it-works-wrapper {
+	margin-top: 0px;
+  margin-bottom: 20px;
+}
+
 .how-it-works-progress{
 	min-width: 200px;
-   	margin-top:20px;
+  margin-top:20px;
 }
 
 .how-it-works-progress .steps{
@@ -1844,6 +1849,10 @@ header .header-bottom .header-bottom-inner nav ul .mini-menu{
     min-height: 300px;
     gap: 28px;
     position: relative;
+}
+
+.requst-how-it-works-div {
+    min-height: 220px;
 }
 
 .how-it-works-div .step-info {
@@ -4898,6 +4907,11 @@ header .header-bottom .header-bottom-inner nav ul .mini-menu{
 	padding: 0px 0px !important;
 }
 
+.artisan-main-content-div {
+  width: 100%;
+	padding: 0px 0px !important;
+}
+
 .pages-tables-content-div {
 	background-color: var(--bg-white);
 	border-radius: 15px;
@@ -5256,4 +5270,14 @@ header .header-bottom .header-bottom-inner nav ul .mini-menu{
 
 .form-alert-div{
     margin: 0px;
+}
+
+.check-box-container label input{
+  cursor: pointer;
+}
+
+.check-box-container span{
+  color:  var(--sub-body-color);
+  font-size: 12px;
+  font-family: body-font;
 }
