@@ -7,16 +7,18 @@ function _otherPagesBtn($websiteUrl)
         container: "otherPagesBtn",
         buttons: [{
             id: "otherPagesBtn",
-            text: "Request For a Service",
+            text: "Request a Service",
             size: "btn-lg",
             icon: "bi bi-calendar-check-fill",
-            variant: "btn-secondary"
+            variant: "btn-secondary",
+            link: "<?php echo $websiteUrl ?>/request-service"
         }, {
             id: "ff",
             text: "Join Our Team",
             icon: "bi bi-briefcase-fill",
             size: "btn-lg",
-            variant: "btn-outline"
+            variant: "btn-outline",
+            link: "<?php echo $websiteUrl ?>/artisan/sign-up"
         }]
     });
     </script>
@@ -66,7 +68,7 @@ function _otherPagesTitleContent($props)
             <?php _otherPagesBtn($websiteUrl); ?>
         </div>
 
-        <div class="right-wrapper">
+        <div class="right-wrapper" id="requestCallForm">
             <div class="form-back-div">
                 <div class="main-content-div dash-main-content-div">
                     <div class="tables-content-div">
@@ -78,38 +80,29 @@ function _otherPagesTitleContent($props)
                         </div>
 
                         <div class="inner-table-content">
-                            <div class="text_field_container col-3" id="firstName_container">
+                            <div class="text_field_container col-3" id="FullName_container">
                                 <script>
                                 textField({
-                                    id: 'firstName',
-                                    title: 'First Name',
+                                    id: 'FullName',
+                                    title: 'Full Name',
                                 });
                                 </script>
                             </div>
 
-                            <div class="text_field_container col-3" id="lastName_container">
+                            <div class="text_field_container col-3" id="contactEmailAddress_container">
                                 <script>
                                 textField({
-                                    id: 'lastName',
-                                    title: 'Last Name',
-                                });
-                                </script>
-                            </div>
-
-                            <div class="text_field_container col-3" id="emailAddress_container">
-                                <script>
-                                textField({
-                                    id: 'emailAddress',
+                                    id: 'contactEmailAddress',
                                     title: 'Email Address',
                                     type: 'email',
                                 });
                                 </script>
                             </div>
 
-                            <div class="text_field_container col-3" id="phoneNumber_container">
+                            <div class="text_field_container col-3" id="contactPhoneNumber_container">
                                 <script>
                                 textField({
-                                    id: 'phoneNumber',
+                                    id: 'contactPhoneNumber',
                                     title: 'Phone Number',
                                     type: 'tel',
                                 });
@@ -538,7 +531,7 @@ function _customerReviewSection($extraClass = '') {
     global $websiteUrl;
     ?>
 
-<section class="body-div <?= !empty($extraClass) ? ' '.$extraClass : ''; ?>">
+<section id="review-section" class="body-div <?= !empty($extraClass) ? ' '.$extraClass : ''; ?>">
     <div class="body-div-in">
         <div class="main-pages-back-div">
             <div class="title-div" data-aos="fade-in" data-aos-duration="1200">
@@ -555,8 +548,9 @@ function _customerReviewSection($extraClass = '') {
                             id: "btnStart",
                             text: "Submit Review",
                             icon: "bi bi-arrow-right-circle",
-                            iconPosition: "right"
-                        }, ]
+                            iconPosition: "right",
+                            onClick: "_getForm({page: 'reviewForm', url: siteMiddlewareUrl});",
+                        },]
                     });
                     </script>
                 </div>
@@ -565,172 +559,13 @@ function _customerReviewSection($extraClass = '') {
             <div class="cg-carousel">
                 <div class="cg-carousel__container" id="js-carousel_1">
                     <div class="cg-carousel__track js-carousel__track" id="fetchSiteReviews">
-                        <div class="cg-carousel__slide js-carousel__slide" data-aos="fade-left"
-                            data-aos-duration="1200">
-                            <div class="main-testimonial">
-                                <div class="top-wrapper">
-                                    <div class="img-back-div">
-                                        <div class="name-div">
-                                            <h3>MR</h3>
-                                        </div>
-                                        <div class="icon">
-                                            <i class="bi-quote"></i>
-                                        </div>
-                                    </div>
-
-                                    <div class="content">
-                                        <div class="star-div">
-                                            <i class="bi-star-fill"></i>
-                                            <i class="bi-star-fill"></i>
-                                            <i class="bi-star-fill"></i>
-                                            <i class="bi-star-fill"></i>
-                                            <i class="bi-star-fill"></i>
-                                        </div>
-
-                                        <h5>Michael R.</h5>
-                                    </div>
-                                </div>
-
-                                <p>BowCare did an excellent job with our home maintenance needs. The technician
-                                    was professional,
-                                    arrived on time, and completed the work efficiently. Everything was handled
-                                    with great attention
-                                    to detail, and the entire experience was smooth from start to finish.</p>
-                            </div>
+                        <div class="cg-carousel__track js-carousel__track" id="fetchSiteReviews">
+                            <script>_fetchSiteReviews();</script>
                         </div>
 
-                        <div class="cg-carousel__slide js-carousel__slide" data-aos="fade-left"
-                            data-aos-duration="1200">
-                            <div class="main-testimonial">
-                                <div class="top-wrapper">
-                                    <div class="img-back-div">
-                                        <div class="name-div">
-                                            <h3>ST</h3>
-                                        </div>
-                                        <div class="icon">
-                                            <i class="bi-quote"></i>
-                                        </div>
-                                    </div>
-
-                                    <div class="content">
-                                        <div class="star-div">
-                                            <i class="bi-star-fill"></i>
-                                            <i class="bi-star-fill"></i>
-                                            <i class="bi-star-fill"></i>
-                                            <i class="bi-star-fill"></i>
-                                            <i class="bi-star-fill"></i>
-                                        </div>
-
-                                        <h5>Sarah T.</h5>
-                                    </div>
-                                </div>
-
-                                <p>I had a great experience with BowCare Maintenance Services. Booking the
-                                    service was easy, and the
-                                    team was friendly, reliable, and very professional. They did a fantastic job
-                                    and left everything
-                                    looking clean and properly taken care of.</p>
-                            </div>
-                        </div>
-
-                        <div class="cg-carousel__slide js-carousel__slide" data-aos="fade-left"
-                            data-aos-duration="1200">
-                            <div class="main-testimonial">
-                                <div class="top-wrapper">
-                                    <div class="img-back-div">
-                                        <div class="name-div">
-                                            <h3>DM</h3>
-                                        </div>
-                                        <div class="icon">
-                                            <i class="bi-quote"></i>
-                                        </div>
-                                    </div>
-
-                                    <div class="content">
-                                        <div class="star-div">
-                                            <i class="bi-star-fill"></i>
-                                            <i class="bi-star-fill"></i>
-                                            <i class="bi-star-fill"></i>
-                                            <i class="bi-star-fill"></i>
-                                            <i class="bi-star-fill"></i>
-                                        </div>
-
-                                        <h5>David M.</h5>
-                                    </div>
-                                </div>
-
-                                <p>From scheduling the appointment to completing the job, BowCare made the whole
-                                    process simple and
-                                    stress-free. The technician was knowledgeable, respectful of our property,
-                                    and delivered quality
-                                    work. I would definitely recommend their services.</p>
-                            </div>
-                        </div>
-
-                        <div class="cg-carousel__slide js-carousel__slide" data-aos="fade-left"
-                            data-aos-duration="1200">
-                            <div class="main-testimonial">
-                                <div class="top-wrapper">
-                                    <div class="img-back-div">
-                                        <div class="name-div">
-                                            <h3>RB</h3>
-                                        </div>
-                                        <div class="icon">
-                                            <i class="bi-quote"></i>
-                                        </div>
-                                    </div>
-
-                                    <div class="content">
-                                        <div class="star-div">
-                                            <i class="bi-star-fill"></i>
-                                            <i class="bi-star-fill"></i>
-                                            <i class="bi-star-fill"></i>
-                                            <i class="bi-star-fill"></i>
-                                            <i class="bi-star-fill"></i>
-                                        </div>
-
-                                        <h5>Robert B.</h5>
-                                    </div>
-                                </div>
-
-                                <p>I have used BowCare several times, and every experience has been excellent. Their
-                                    technicians are friendly, skilled, and committed to delivering quality work. I can
-                                    always rely on their services.</p>
-                            </div>
-                        </div>
-
-                        <div class="cg-carousel__slide js-carousel__slide" data-aos="fade-left"
-                            data-aos-duration="1200">
-                            <div class="main-testimonial">
-                                <div class="top-wrapper">
-                                    <div class="img-back-div">
-                                        <div class="name-div">
-                                            <h3>OC</h3>
-                                        </div>
-                                        <div class="icon">
-                                            <i class="bi-quote"></i>
-                                        </div>
-                                    </div>
-
-                                    <div class="content">
-                                        <div class="star-div">
-                                            <i class="bi-star-fill"></i>
-                                            <i class="bi-star-fill"></i>
-                                            <i class="bi-star-fill"></i>
-                                            <i class="bi-star-fill"></i>
-                                            <i class="bi-star-fill"></i>
-                                        </div>
-
-                                        <h5>Olivia C.</h5>
-                                    </div>
-                                </div>
-
-                                <p>From my first call to the completed service, everything was handled professionally.
-                                    The
-                                    technician was punctual, respectful, and completed every task with precision. I will
-                                    definitely choose BowCare again.</p>
-                            </div>
-                        </div>
+                        <div class="content-loading-div">
+                            <img src="<?php echo $websiteUrl ?>/all-images/images/spinner.gif" alt="Loading" />
+                        </div>                       
                     </div>
                 </div>
             </div>
@@ -766,7 +601,6 @@ function _customerReviewSection($extraClass = '') {
 
         }
     });
-    _call_carousel(1);
     </script>
 </section>
 <?php }

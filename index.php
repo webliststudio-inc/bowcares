@@ -42,22 +42,24 @@
                             container: "slideBtn",
                             buttons: [{
                                 id: "slideBtn",
-                                text: "Request For a Service",
+                                text: "Request a Service",
                                 size: "btn-lg",
                                 icon: "bi bi-calendar-check-fill",
+                                link: "<?php echo $websiteUrl ?>/request-service"
                             }, {
                                 id: "ff",
                                 text: "Join Our Team",
                                 icon: "bi bi-briefcase-fill",
                                 size: "btn-lg",
-                                variant: 'btn-outline'
+                                variant: 'btn-outline',
+                                link: "<?php echo $websiteUrl ?>/artisan/sign-up"
                             }]
                         });
                         </script>
                     </div>
                 </div>
 
-                <div class="form-back-div">
+                <div class="form-back-div" id="requestCallForm">
                     <div class="main-content-div dash-main-content-div">
                         <div class="tables-content-div">
                             <div class="content-title">
@@ -78,21 +80,15 @@
                 </div>
             </div>
         </div>
-        <!-- <script>
-            $(document).ready(function () {
-                let savedPage = sessionStorage.getItem("currentContactPage") ?? "customreInfoPage";
-                _getPage({
-                    page: savedPage,
-                    url: siteMiddlewareUrl
-                });
-            });
-        </script> -->
     </div>
 
     <section class="index-content-div">
         <section class="service-slide-body-div">
             <div class="service-slide-body-div-in">
-                <div class="service-slider">
+                <div class="service-slider" id="indexProfessionContent">
+                    <!-- <script>
+                        _fetchIndexProfessionData();
+                    </script> -->
                     <div class="each-services">
                         <div class="img-div">
                             <img src="<?php echo $websiteUrl?>/all-images/services/landscaping.png" alt="Landscaping">
@@ -226,146 +222,18 @@
                         </div>
                     </div>
 
-                    <div class="service-back-div">
-                        <div class="service-div" data-aos="fade-up" data-aos-duration="1200">
-                            <div class="image-div">
-                                <img src="<?php echo $websiteUrl ?>/uploaded_files/services/service-1.jpeg"
-                                    alt="Corporate" />
-                            </div>
+                    <div class="service-back-div" id="indexServicePageContent">
+                        <script>
+                            _getPageList({
+                                pageCategory: "SERVICE",
+                                limit: 6,
+                                pageContainer: "indexServicePageContent"
+                            })
+                        </script>
 
-                            <div class="icon-div">
-                                <img src="<?php echo $websiteUrl ?>/all-images/images/icon.png"
-                                    alt="<?php echo $appName ?> Icon" />
-                            </div>
-
-                            <a href="<?php echo $websiteUrl?>">
-                                <div class="text-div">
-                                    <h3>Corporate</h3>
-                                    <p>Professional maintenance solutions for offices, corporate facilities, and
-                                        business environments, ensuring...</p>
-
-                                    <div class="btn-div" id="serviceBtn">
-                                        <script>
-                                        generalButtons({
-                                            container: "serviceBtn",
-                                            buttons: [{
-                                                id: "serviceBtn",
-                                                text: "Learn More",
-                                                icon: "bi bi-arrow-right-circle",
-                                                width: "btn-full",
-                                                iconPosition: "right"
-                                            }]
-                                        });
-                                        </script>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="service-div" data-aos="fade-up" data-aos-duration="1200">
-                            <div class="image-div">
-                                <img src="<?php echo $websiteUrl ?>/uploaded_files/services/service-2.jpeg"
-                                    alt="Commercial" />
-                            </div>
-
-                            <div class="icon-div">
-                                <img src="<?php echo $websiteUrl ?>/all-images/images/icon.png"
-                                    alt="<?php echo $appName ?> Icon" />
-                            </div>
-
-                            <a href="<?php echo $websiteUrl?>">
-                                <div class="text-div">
-                                    <h3>Commercial</h3>
-                                    <p>Reliable maintenance services for retail stores, restaurants, shopping centers,
-                                        and commercial...</p>
-
-                                    <div class="btn-div" id="serviceBtn2">
-                                        <script>
-                                        generalButtons({
-                                            container: "serviceBtn2",
-                                            buttons: [{
-                                                id: "serviceBtn",
-                                                text: "Learn More",
-                                                icon: "bi bi-arrow-right-circle",
-                                                width: "btn-full",
-                                                iconPosition: "right"
-                                            }]
-                                        });
-                                        </script>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="service-div" data-aos="fade-up" data-aos-duration="1200">
-                            <div class="image-div">
-                                <img src="<?php echo $websiteUrl ?>/uploaded_files/services/service-3.jpeg"
-                                    alt="Industrial" />
-                            </div>
-
-                            <div class="icon-div">
-                                <img src="<?php echo $websiteUrl ?>/all-images/images/icon.png"
-                                    alt="<?php echo $appName ?> Icon" />
-                            </div>
-
-                            <a href="<?php echo $websiteUrl?>">
-                                <div class="text-div">
-                                    <h3>Industrial</h3>
-                                    <p>Comprehensive maintenance for warehouses, manufacturing plants, and industrial
-                                        facilities with a focus...</p>
-
-                                    <div class="btn-div" id="serviceBtn3">
-                                        <script>
-                                        generalButtons({
-                                            container: "serviceBtn3",
-                                            buttons: [{
-                                                id: "serviceBtn",
-                                                text: "Learn More",
-                                                icon: "bi bi-arrow-right-circle",
-                                                width: "btn-full",
-                                                iconPosition: "right"
-                                            }]
-                                        });
-                                        </script>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="service-div" data-aos="fade-up" data-aos-duration="1200">
-                            <div class="image-div">
-                                <img src="<?php echo $websiteUrl ?>/uploaded_files/services/service-3.jpeg"
-                                    alt="Residential" />
-                            </div>
-
-                            <div class="icon-div">
-                                <img src="<?php echo $websiteUrl ?>/all-images/images/icon.png"
-                                    alt="<?php echo $appName ?> Icon" />
-                            </div>
-
-                            <a href="<?php echo $websiteUrl?>">
-                                <div class="text-div">
-                                    <h3>Residential</h3>
-                                    <p>Comprehensive maintenance for warehouses, manufacturing plants, and industrial
-                                        facilities with a focus...</p>
-
-                                    <div class="btn-div" id="serviceBtn4">
-                                        <script>
-                                        generalButtons({
-                                            container: "serviceBtn4",
-                                            buttons: [{
-                                                id: "serviceBtn",
-                                                text: "Learn More",
-                                                icon: "bi bi-arrow-right-circle",
-                                                width: "btn-full",
-                                                iconPosition: "right"
-                                            }]
-                                        });
-                                        </script>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                        <div class="content-loading-div">
+                            <img src="<?php echo $websiteUrl ?>/all-images/images/spinner.gif" alt="Loading" />
+                        </div>                     
                     </div>
                 </div>
             </div>
@@ -405,7 +273,8 @@
                                             id: "btnStart",
                                             text: "Join Our Team",
                                             icon: "bi bi-arrow-right-circle",
-                                            iconPosition: "right"
+                                            iconPosition: "right",
+                                            link: "<?php echo $websiteUrl ?>/artisan/sign-up"
                                         }, ]
                                     });
                                     </script>
@@ -471,78 +340,17 @@
                         </div>
 
                         <div class="faq-toggle-back" id="indexFaqPageContent">
-                            <div class="faq-toggle" id="faq1">
-                                <div class="title-text" onclick="_collapse('faq1')">
-                                    <div class="quest-text-div">
-                                        <div class="icon-div">
-                                            <i class="bi bi-question"></i>
-                                        </div>
-                                        <h3>What maintenance services does BowCares provide?</h3>
-                                    </div>
+                            <script>
+                                _getFaqList({
+                                    limit: 3,
+                                    pageContainer: "indexFaqPageContent"
+                                })
+                            </script>
 
-                                    <div class="expand-div" id="faq1num">
-                                        <i class="bi bi-plus"></i>
-                                    </div>
-                                </div>
-
-                                <div class="answer-div" id="faq1answer">
-                                    <p>
-                                        BowCares provides professional maintenance and repair services for homes,
-                                        businesses, and properties. Our services include inspections, repairs,
-                                        installations, preventive maintenance, and other property maintenance
-                                        solutions tailored to your needs.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="faq-toggle" id="faq2">
-                                <div class="title-text" onclick="_collapse('faq2')">
-                                    <div class="quest-text-div">
-                                        <div class="icon-div">
-                                            <i class="bi bi-question"></i>
-                                        </div>
-                                        <h3>How do I schedule a maintenance appointment?</h3>
-                                    </div>
-
-                                    <div class="expand-div" id="faq2num">
-                                        <i class="bi bi-plus"></i>
-                                    </div>
-                                </div>
-
-                                <div class="answer-div" id="faq2answer" style="display: none;">
-                                    <p>
-                                        Getting started is simple. Contact BowCares with details about the
-                                        maintenance service you need, and our team will help you schedule a
-                                        convenient visitation appointment with a qualified technician.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="faq-toggle" id="faq3">
-                                <div class="title-text" onclick="_collapse('faq3')">
-                                    <div class="quest-text-div">
-                                        <div class="icon-div">
-                                            <i class="bi bi-question"></i>
-                                        </div>
-                                        <h3>What happens during a maintenance visit?</h3>
-                                    </div>
-
-                                    <div class="expand-div" id="faq3num">
-                                        <i class="bi bi-plus"></i>
-                                    </div>
-                                </div>
-
-                                <div class="answer-div" id="faq3answer" style="display: none;">
-                                    <p>
-                                        Our technician will inspect the issue, identify the required solution,
-                                        explain the work involved, and carry out the service professionally.
-                                        Once the job is completed, we ensure everything is working properly
-                                        before completing the service.
-                                    </p>
-                                </div>
+                            <div class="content-loading-div">
+                                <img src="<?php echo $websiteUrl ?>/all-images/images/spinner.gif" alt="Loading" />
                             </div>
                         </div>
-
 
                         <div class="btn-div" id="faqBtn">
                             <script>
@@ -552,7 +360,8 @@
                                     id: "faqBtn",
                                     text: "Read More FAQ",
                                     icon: "bi bi-arrow-right-circle",
-                                    iconPosition: "right"
+                                    iconPosition: "right",
+                                    link: "<?php echo $websiteUrl ?>/faq"
                                 }, ]
                             });
                             </script>
@@ -595,123 +404,16 @@
                     </div>
 
                     <div class="blog-back-div" id="indexBlogPageContainer">
-                        <div class="blog-div">
-                            <div class="blog-inner-div">
-                                <div class="title">MAINTENANCE</div>
-                                <div class="image-div">
-                                    <img src="<?php echo $websiteUrl ?>/uploaded_files/blog/blog-1.jpeg"
-                                        alt="Why Regular Property Maintenance Matters" />
-                                </div>
+                        <script>
+                            _getPageList({
+                                pageCategory: "BLOG",
+                                limit: 3,
+                                pageContainer: "indexBlogPageContainer"
+                            })
+                        </script>   
 
-                                <div class="text-div">
-
-                                    <div class="count">
-                                        <i class="bi bi-calendar3"></i> June 18, 2026
-                                        <span>|</span>
-                                        <i class="bi bi-eye-fill"></i> 1,100 VIEWS
-                                    </div>
-
-                                    <h3>Why Regular Property Maintenance Matters</h3>
-
-                                    <p>
-                                        Regular maintenance helps identify potential problems early,
-                                        protect your property, reduce unexpected repair costs...
-                                    </p>
-
-                                    <div class="btn-div" id="blogBtn1">
-                                        <script>
-                                        generalButtons({
-                                            container: "blogBtn1",
-                                            buttons: [{
-                                                id: "blogBtn1",
-                                                text: "Read More",
-                                                icon: "bi bi-arrow-right-circle",
-                                                iconPosition: "right",
-                                                link: "<?php echo $websiteUrl ?>/blog/why-regular-property-maintenance-matters"
-                                            }]
-                                        });
-                                        </script>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="blog-div">
-                            <div class="blog-inner-div">
-                                <div class="title">GENERAL</div>
-                                <div class="image-div">
-                                    <img src="<?php echo $websiteUrl ?>/uploaded_files/blog/blog-2.jpeg"
-                                        alt="5 Signs Your Property Needs Professional Maintenance" />
-                                </div>
-
-                                <div class="text-div">
-                                    <div class="count">
-                                        <i class="bi bi-calendar3"></i> June 12, 2026
-                                        <span>|</span>
-                                        <i class="bi bi-eye-fill"></i> 980 VIEWS
-                                    </div>
-
-                                    <h3>5 Signs Your Property Needs Professional Maintenance</h3>
-
-                                    <p>
-                                        Strange noises, recurring problems, poor performance, and visible
-                                        damage can be signs of a bigger issue...
-                                    </p>
-
-                                    <div class="btn-div" id="blogBtn2">
-                                        <script>
-                                        generalButtons({
-                                            container: "blogBtn2",
-                                            buttons: [{
-                                                id: "blogBtn2",
-                                                text: "Read More",
-                                                icon: "bi bi-arrow-right-circle",
-                                                iconPosition: "right",
-                                            }]
-                                        });
-                                        </script>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="blog-div">
-                            <div class="blog-inner-div">
-                                <div class="title">ANNOUNCEMENT</div>
-                                <div class="image-div">
-                                    <img src="<?php echo $websiteUrl ?>/uploaded_files/blog/blog-3.jpeg"
-                                        alt="The Importance of Professional Property Maintenance" />
-                                </div>
-
-                                <div class="text-div">
-                                    <div class="count">
-                                        <i class="bi bi-calendar3"></i> June 5, 2026
-                                        <span>|</span>
-                                        <i class="bi bi-eye-fill"></i> 1,450 VIEWS
-                                    </div>
-
-                                    <h3>The Importance of Professional Property Maintenance</h3>
-
-                                    <p>
-                                        Professional maintenance goes beyond fixing visible problems. With proper
-                                        inspection, expert knowledge...
-                                    </p>
-
-                                    <div class="btn-div" id="blogBtn3">
-                                        <script>
-                                        generalButtons({
-                                            container: "blogBtn3",
-                                            buttons: [{
-                                                id: "blogBtn3",
-                                                text: "Read More",
-                                                icon: "bi bi-arrow-right-circle",
-                                                iconPosition: "right",
-                                            }]
-                                        });
-                                        </script>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="content-loading-div">
+                            <img src="<?php echo $websiteUrl ?>/all-images/images/spinner.gif" alt="Loading" />
                         </div>
                     </div>
                 </div>

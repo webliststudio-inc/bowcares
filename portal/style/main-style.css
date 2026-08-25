@@ -169,6 +169,7 @@ main {
   outline: none;
   font-size: 15px;
   font-family: body-font;
+  color: var(--sub-body-color);
 }
 
 .page-title-div .btn-div .search-div i {
@@ -486,14 +487,14 @@ main {
 	display: flex;
 	flex-direction: column;
 	gap: 30px;
-	width: calc(100% - 220px);
+	width: calc(100% - 420px);
 }
 
 .dashboard-wrapper .right-container{
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
-	min-width: 300px;
+	width: 400px;
 }
 
 .dashboard-wrapper .right-container .recent-review-wrapper{
@@ -808,7 +809,7 @@ main {
 	height: 250px;
 	overflow: hidden;
 	border-radius: 10px;
-	border: #e6e6e6 1px solid;
+	border: var(--general-border-color) 1px solid;
 }
 
 .slide-form-div .container-back-div .pix-div img{
@@ -933,7 +934,7 @@ main {
 	gap: 15px;
 	padding: 15px 0px;
 	margin-bottom: 30px;
-	border-bottom: #f0f0f0 1px solid;
+	border-bottom: var(--general-border-color) 1px solid;
 }
 
 #fetchedPermission{
@@ -955,7 +956,7 @@ main {
 	align-items: center;
 	padding: 10px 20px;
 	border-radius: 25px;
-    background: #f1eeee;
+    background: var(--permission-bg-color);
 }
 
 .fetched-permission-back-div .fetched-permission-div span{
@@ -982,7 +983,7 @@ main {
     flex-direction: column;
     background: var(--bg-white);
     border-radius: 10px;
-    border: 1px solid #e4e4e4;
+    border: 1px solid var(--general-border-color);
 	overflow: hidden;
 }
 
@@ -990,7 +991,7 @@ main {
 	display: flex;
     width:calc(100% - 40px);
 	padding: 10px 20px;
-	border-bottom: 1px solid #e4e4e4;
+	border-bottom: 1px solid var(--general-border-color);
 	font-family: sub-title-font;
 	font-size: 13px;
 	color: var(--text-color);
@@ -1015,7 +1016,7 @@ main {
 	font-size: 12px;
 	padding: 11px 0px;
 	color: var(--text-color);
-	border-bottom: 1px dashed #dfdfdf;
+	border-bottom: 1px dashed var(--general-border-color);
 }
 
 .details-div .details-list .each-details-back-list .each-details-list span{
@@ -1187,7 +1188,7 @@ main {
 	width:23.7%;
 	max-width: 380px;
 	flex-grow: 1;
-	border:rgba(204,204,204,.4) 1px solid;
+	border: var(--general-border-color) 1px solid;
 	cursor:pointer;
 	border-radius: 10px;
 	flex-direction: column;
@@ -1196,14 +1197,14 @@ main {
 
 .grid-div .status-div{
 	position:absolute;
-	padding:5px 10px;
+	padding:5px 12px;
 	margin:15px;
 	height:15px;
 	color: var(--text-white);
 	font-size:11px;
 	font-family: sub-title-font;
 	background: var(--active-color);
-	border-radius:5px;
+	border-radius:25px;
 	z-index: 100;
 }
 
@@ -1354,7 +1355,6 @@ main {
   	border: 1px solid var(--secondary-color);
   	background: rgba(247, 160, 37, 0.1);
 }
-
 
 .grid-div:hover{
 	background: linear-gradient(
@@ -1563,13 +1563,20 @@ main {
 
 .pages-creation-panel .pages-content-div .pages-back-div .page-form-div .form-div .form-input-div .text-field-wrapper .title{
 	padding: 4px;
-	color:var(--text-color);
+	color:var(--sub-body-color);
 	font-size:12px;
     font-family: sub-title-font;
 }
 
 .pages-creation-panel .pages-content-div .pages-back-div .page-form-div .form-div .form-input-div .text-field-wrapper .title span{
 	color:#F00;
+}
+
+.pages-creation-panel .pages-content-div .pages-back-div .page-form-div .form-div .form-input-div .title{
+	padding: 4px;
+	color:var(--sub-body-color);
+	font-size:12px;
+    font-family: sub-title-font;
 }
 
 .pages-creation-panel .pages-content-div .pages-back-div .page-form-div .form-div .form-input-div .picture-back-div{
@@ -1760,6 +1767,7 @@ main {
 	object-fit:cover;
 }
 
+
 .page-content-back-div .issueText{
 	margin-top: 5px;
 	color: #f00;
@@ -1767,6 +1775,112 @@ main {
 	font-size: 10px;
 	font-style: italic;
 }
+
+
+.faq-toggle-back{
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.faq-toggle-back .product-faq-toggle{
+	width: calc(100% - 40px);
+	padding: 20px;
+    background: #F2F4F4;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	border-radius: 8px;
+	cursor: pointer;
+	transition:all 0.2s ease-in 0.2s;
+}
+
+.faq-toggle-back .product-faq-toggle:hover {
+    box-shadow: 0px 0px 9px 1px #e9e9e9;
+}
+
+.faq-toggle-back .product-faq-toggle.active-faq {
+    box-shadow: 0px 0px 9px 1px #e9e9e9;
+}
+
+.faq-toggle-back .product-faq-toggle .title-wrapper{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.faq-toggle-back .product-faq-toggle .title-wrapper .text-back-div{
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.faq-toggle-back .product-faq-toggle .title-wrapper .text-back-div .icon-div{
+	width: 20px;
+	height: 20px;
+	padding: 2px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 5px;
+	color: var(--text-white);
+	font-size: 13px;
+	background: var(--close-color);
+}
+
+.faq-toggle-back .product-faq-toggle .title-wrapper .text-back-div .title-text{
+	width: calc(100% - 30px);
+	display: flex;
+	align-items: center;
+}
+
+.faq-toggle-back .product-faq-toggle .title-wrapper .text-back-div .title-text h3 {
+    padding: 0;
+    margin: 0;
+    color: rgb(14, 42, 70);
+    font-family: body-font;
+    font-size: 17px;
+    line-height: 28px;
+    text-transform: lowercase;
+}
+
+.faq-toggle-back .product-faq-toggle .title-wrapper .text-back-div .title-text h3::first-letter {
+    text-transform: uppercase;
+}
+
+.faq-toggle-back .product-faq-toggle .title-wrapper .expand-div{
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.faq-toggle-back .product-faq-toggle .title-wrapper .expand-div i{
+	color: rgb(14, 42, 70);
+	font-size: 25px;
+}
+
+.faq-toggle-back .product-faq-toggle .faq-answer-div{
+	padding: 10px 15px;
+	font-size: 15px;
+	display: none;
+}
+
+.faq-toggle-back .product-faq-toggle .faq-answer-div p{
+	padding: 0px;
+	margin: 0px;
+	text-align: justify;
+	line-height: 30px;
+	color: var(--sub-body-color);
+	text-transform: lowercase;
+}
+
+.faq-toggle-back .product-faq-toggle .faq-answer-div p::first-letter{
+	text-transform: uppercase;
+}
+
 
 .faq-back-wrapper{
 	width: 100%;
@@ -2196,7 +2310,7 @@ main {
 .user-managment-back-div .user-managment-list{
 	width: 32%;
 	min-height: 100px;
-	border: 1px solid rgba(215, 215, 215, .4);
+	border: var(--general-border-color) 1px solid;
 	box-shadow: 0px 0px 12px 3px var(--card-shadow);
 	background: linear-gradient(
 		-120deg,
@@ -2208,11 +2322,7 @@ main {
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
-	-moz-transition:all 0.2s ease-in 02s;
 	transition:all 0.2s ease-in 0.2s;
-	-webkit-transition:all 0.2s ease-in 0.2s;
-	-ms-transition:all 0.2s ease-in 0.2s;
-	-o-transition:all 0.2s ease-in 0.2s;
 }
 
 .user-managment-back-div .staff-managment-list{
@@ -2265,7 +2375,6 @@ main {
 	); 
 	transform: scale(1.02);
   	transition: 0.2s ease-in;
-	border: 1px solid rgba(157, 4, 60, 0.096);
 }
 
 
@@ -3390,7 +3499,7 @@ main {
 	padding: 20px 20px;
 	background: var(--dashboard-bg-color);
 	border-radius: 3px;
-	border: 1px dashed #e6e6e6;
+	border: 1px dashed var(--general-border-color);
 }
   
 .pdf-back-div .div-in{
@@ -4587,14 +4696,10 @@ main {
 	justify-content: space-between;
 	min-height: 100px;
 	background: var(--bg-white);
-	border: 1px solid #ecf0f1;
+	border: 1px solid var(--general-border-color);
 	border-radius: 10px;
 	cursor: pointer;
-	-moz-transition:all 0.2s ease-in 02s;
 	transition:all 0.2s ease-in 0.2s;
-	-webkit-transition:all 0.2s ease-in 0.2s;
-	-ms-transition:all 0.2s ease-in 0.2s;
-	-o-transition:all 0.2s ease-in 0.2s;
 }
 
 .role-list-back-div .role-list-div .div-in{
@@ -4614,7 +4719,7 @@ main {
 	border-radius: 100%;
 	color: #e68836ec;
 	background-color: var(--dashboard-bg-color);
-	border: 1px solid #ecf0f1;
+	border: 1px solid var(--general-border-color);
 } 
 
 .role-list-back-div .role-list-div .div-in .text-div{
@@ -4640,7 +4745,7 @@ main {
 
 .role-list-back-div .role-list-div .bottom-div{
 	width: calc(100% - 30px);
-	border-top: 1px solid #ecf0f1;
+	border-top: 1px solid var(--general-border-color);
 	padding: 15px;
 }
 
@@ -5807,5 +5912,170 @@ main {
     align-items: flex-start;
     gap: 10px;
     padding: 15px 20px;
+  }
+}
+
+
+
+
+
+.service-back-div {
+    width: 100%;
+    display: flex;
+    gap: 40px 2%;
+    flex-wrap: wrap;
+}
+
+.service-back-div .service-div{
+    width: 23%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+	border: 1px solid var(--general-border-color);
+	border-radius: 10px;
+	position: relative;
+}
+
+.service-back-div .service-div .status-div{
+	position:absolute;
+	padding:5px 12px;
+	margin:15px;
+	height:15px;
+	color: var(--text-white);
+	font-size:11px;
+	font-family: sub-title-font;
+	background: var(--active-color);
+	border-radius:25px;
+	z-index: 100;
+}
+
+.service-back-div .service-div .ACTIVE{
+	color: var(--text-white);
+	background: var(--active-color);
+	border: none;
+}
+
+.service-back-div .service-div .SUSPEND{
+	background: rgba(241, 157, 67, 0.9);
+    color: var(--text-white);
+	border: none;
+}
+
+.service-back-div .service-div .image-div{
+    width: 100%;
+    height: 200px;
+    border-radius: 10px 10px 0px 0px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-back-div .service-div .image-div img{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px 10px 0px 0px;
+    object-fit: cover;
+    transition: all 2000ms cubic-bezier(.19,1,.22,1) 0ms;
+}
+
+.service-back-div .service-div:hover .image-div img{
+	-webkit-transform: scale(1.10);
+	-moz-transform: scale(1.10);
+	
+}
+
+.service-back-div .service-div .service-icon-div{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	padding: 3px;
+	border-radius: 5px;
+	background: var(--bg-white);
+	border: 1px solid rgba(255, 105, 0, 0.4);
+	position: absolute;
+	z-index:100;
+	top: 175px;
+	left: 4%;
+  	overflow: hidden;
+}
+
+.service-back-div .service-div .service-icon-div img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.service-back-div .service-div .text-div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+	padding: 15px 15px;
+    cursor: pointer;
+}
+
+.service-back-div .service-div .text-div h3{
+    font-size: 18px;
+    color: var(--sub-body-color);
+    font-family: sub-title-font;
+	text-transform: lowercase;
+}
+
+.service-back-div .service-div .text-div h3::first-letter {
+    text-transform: uppercase;
+}
+
+.service-back-div .service-div .text-div p{
+    font-size: 14px;
+    color: var(--sub-body-color);
+	text-transform: lowercase;
+}
+
+.service-back-div .service-div .text-div p::first-letter{
+    text-transform: uppercase;
+}
+
+.service-back-div .service-div .text-div .btn-div{
+    display: flex;
+	align-items: center;
+}
+
+.service-back-div .service-div .text-div .btn-div .btn{
+    border: none;
+	background: var(--primary-color);
+	padding: 7px 15px;
+	border-radius: 25px;
+	color: var(--text-white);
+	font-family: sub-title-font;
+	font-size: 12px;
+	cursor: pointer;
+	transition: all 0.2s ease-in 0.2s;
+}
+.service-back-div .service-div .text-div .btn-div .btn i{
+	font-size: 11px;
+}
+
+.service-back-div .service-div .text-div .btn-div .btn:hover{
+	background: var(--secondary-color);
+}
+
+@media all and (max-width:970px) {	
+  .service-back-div{
+    gap: 40px 3%;
+  }
+  .service-back-div .service-div{
+    width: 48.5%;
+  }
+  .service-back-div .page-service-div{
+    width: 100%;
+  }
+}
+
+@media all and (max-width:450px) {	
+	.service-back-div .service-div{
+    width: 100%;
+  }
+  .service-back-div .page-service-div{
+    width: 100%;
   }
 }

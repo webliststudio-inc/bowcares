@@ -5,7 +5,7 @@ function _getActiveStaffPage(props) {
         _getPage({
         page: page,
         pageContainer: pageContainer,
-        url: adminPortalMiddlewareUrl,
+        url: portalMiddleWareUrl,
         });
     }
 }
@@ -16,7 +16,7 @@ function _getStaffPagesActiveLink(divid) {
 
 //// Filter Staffs ////
 function _filtersStaffs(value) {
-    $("#staffContent .tb-row").each(function () {
+    $("#staffPageContent .tb-row").each(function () {
         var text = $(this).text();
         text.toLowerCase().indexOf(value.toLowerCase()) > -1
         ? $(this).show()
@@ -112,7 +112,6 @@ function _createStaff(){
 
 ///// Save Create or Update Role Callback /////
 function _createStaffCallback(formData) {
-
 	///// get btn text/////
 	const btnText = $("#submitBtn").html();
 	_btnDisable("submitBtn", btnText, true);
@@ -157,83 +156,46 @@ function _createStaffCallback(formData) {
 }
 
 /// Fetch Staff Data ///
-// function _fetchStaffData() {
-// 	try {
-// 		//// call endpoint //////
-// 		_callFetchEndPoints({
-// 			url: `admin/staff/fetch-staff`,
-// 			// accessKey: true,
-// 		})
-// 		.then((response) => {
-//             _initFetchStaffData(response.data);
-// 		 })
-// 		.catch((error) => {
-// 			_staffValidationCheck(error.response);
-// 			console.error("Error:", error);
-// 			if (error.status==0) {
-// 				_showEmptyState({
-// 					container: "staffContent",
-// 					message: "Check your internet connection and try again",
-//                     colspan: 20,
-// 					paginationContainer: "staffContentPaginationControls",
-// 				});
-
-// 				_callAjaxError(() => _fetchStaffData(), error.message); // retry if needed
-// 			} else {
-// 				_showEmptyState({
-// 					container: "staffContent",
-// 					message: error.message,
-//                     colspan: 20,
-// 					button: `
-// 						<button class="btn" title="ADD NEW STAFF" onclick="sessionStorage.removeItem('useEachStaffSession'); _getForm({page: 'staffReg', url: adminPortalMiddlewareUrl});">
-// 							<i class="bi-plus-square"></i> ADD NEW STAFF
-// 						</button>
-// 					`,
-// 					paginationContainer: "staffContentPaginationControls",
-// 				});
-// 			}
-// 		});
-// 	} catch (error) {
-// 		console.error("Error:", error);
-// 		_callCatchError(() => _fetchStaffData());
-//   	}
-// }
-
 function _fetchStaffData() {
-    const response = {
-        data: [
-            {
-                staffId: "STF001",
-                firstName: "Emmanuel",
-                lastName: "Afolabi",
-                emailAddress: "emmanuel.afolabi@schoolbolt.com",
-                phoneNumber: "+2348012345678",
-                lastLoginTime: "2026-08-03 09:15:22",
-                roleData: {
-					roleName: "SUPER ADMIN"
-				},
-				statusData: {
-					statusName: "ACTIVE"
-				}
-            },
-            {
-                staffId: "STF002",
-                firstName: "Grace",
-                lastName: "Johnson",
-                emailAddress: "grace.johnson@schoolbolt.com",
-                phoneNumber: "+2348023456789",
-                lastLoginTime: "2026-08-02 15:42:10",
-                roleData: {
-					roleName: "SUPER ADMIN"
-				},
-				statusData: {
-					statusName: "ACTIVE"
-				}
-            }
-        ]
-    };
+	try {
+		//// call endpoint //////
+		_callFetchEndPoints({
+			url: `admin/staff/fetch-staff`,
+			accessKey: true,
+		})
+		.then((response) => {
+            _initFetchStaffData(response?.data);
+		 })
+		.catch((error) => {
+			_staffValidationCheck(error.response);
+			console.error("Error:", error);
+			if (error.status==0) {
+				_showEmptyState({
+					container: "staffPageContent",
+					message: "Check your internet connection and try again",
+                    colspan: 20,
+					paginationContainer: "staffContentPaginationControls",
+				});
 
-    _initFetchStaffData(response.data);
+				_callAjaxError(() => _fetchStaffData(), error.message); // retry if needed
+			} else {
+				_showEmptyState({
+					container: "staffPageContent",
+					message: error.message,
+                    colspan: 20,
+					button: `
+						<button class="btn" title="ADD NEW STAFF" onclick="sessionStorage.removeItem('getEachStaffDetailsSession'); _getForm({page: 'staffReg', url: portalMiddleWareUrl});">
+							<i class="bi-plus-square"></i> ADD NEW STAFF
+						</button>
+					`,
+					paginationContainer: "staffContentPaginationControls",
+				});
+			}
+		});
+	} catch (error) {
+		console.error("Error:", error);
+		_callCatchError(() => _fetchStaffData());
+  	}
 }
 
 /// Render Staff Data ///
@@ -276,7 +238,7 @@ function _initFetchStaffData(data) {
     data,
     _renderStaffData,
     "staffContentPaginationControls",
-    "staffContent",
+    "staffPageContent",
     10
   );
   __paginatorHandlers["staffContentPaginationControls"] = paginator;
@@ -293,8 +255,8 @@ function _fetchEachSaff(staffId) {
 			accessKey: true,
 		})
 		.then((response) => {
-			sessionStorage.setItem("getEachStaffDetailsSession", JSON.stringify(response.data[0]));
-			_getForm({page: 'staffProfile', url: adminPortalMiddlewareUrl});
+			sessionStorage.setItem("getEachStaffDetailsSession", JSON.stringify(response?.data?.[0]));
+			_getForm({page: 'staffProfile', url: portalMiddleWareUrl});
 		 })
 		.catch((error) => {
 			_staffValidationCheck(error.response);
@@ -377,7 +339,7 @@ function _saveUpdateStaffCallback(formData) {
 				let getEachStaffDetailsSession =response?.data;
 				sessionStorage.setItem("getEachStaffDetailsSession", JSON.stringify(getEachStaffDetailsSession));
                 _showLoader("Please wait while we load the staff profile...");
-				_getForm({page: 'staffProfile', url: adminPortalMiddlewareUrl});
+				_getForm({page: 'staffProfile', url: portalMiddleWareUrl});
 				_getActivePage({page:'adminPage', divid:'adminPage'});
 
                 setTimeout(() => {

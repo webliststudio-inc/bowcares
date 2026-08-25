@@ -1,3 +1,5 @@
+
+
 //// create and update faq ///
 function _createAndUpdatefaq() {
 	try {
@@ -91,91 +93,42 @@ function _saveFaqCallback(formData) {
 }
 
 //// fetch faq data ///
-// function _fetchFaqData() {
-// 	try {
-// 		//// call endpoint //////
-// 		_callFetchEndPoints({
-// 			url: `admin/faq/fetch-faq`,
-// 			accessKey: true,
-// 		})
-// 		.then((response) => {
-//             _initFetchFaqData(response.data);
-// 		})
-// 		.catch((error) => {
-// 			_staffValidationCheck(error.response);
-// 			console.error("Error:", error);
-// 			if (error.status==0) {
-// 				_showFalseNotification({
-// 					container: "faqPageContent",
-// 					message: "Check your internet connection and try again",
-// 				});
-
-// 				_callAjaxError(() => _fetchFaqData(), error.message); // retry if needed
-// 			} else {
-// 				_showEmptyState({
-// 					container: "faqPageContent",
-// 					message: error.message,
-// 					button: `
-// 						<button class="btn" title="ADD NEW FAQ" onclick="sessionStorage.removeItem('useEachFaqSession'); _getForm({page: 'faqReg', url: adminPortalMiddlewareUrl});">
-// 							<i class="bi-plus-square"></i> ADD NEW FAQ
-// 						</button>
-// 					`,
-// 				});
-// 			}
-// 		});
-// 	} catch (error) {
-// 		console.error("Error:", error);
-// 		_callCatchError(() => _fetchFaqData());
-//   	}
-// }
-
 function _fetchFaqData() {
-    const response = {
-        data: [
-            {
-                faqId: "FAQ001",
-                faqQuestion: "How do I book a maintenance service?",
-                faqAnswer: "You can book a service by calling us, sending a WhatsApp message, or filling out the booking form on our website.",
-                statusData: {
-                    statusName: "ACTIVE"
-                }
-            },
-            {
-                faqId: "FAQ002",
-                faqQuestion: "What areas do you serve?",
-                faqAnswer: "We provide maintenance services across residential and commercial properties within our service coverage areas.",
-                statusData: {
-                    statusName: "ACTIVE"
-                }
-            },
-            {
-                faqId: "FAQ003",
-                faqQuestion: "Do you offer emergency repairs?",
-                faqAnswer: "Yes, we offer emergency repair services for urgent plumbing, electrical, and HVAC issues.",
-                statusData: {
-                    statusName: "ACTIVE"
-                }
-            },
-            {
-                faqId: "FAQ004",
-                faqQuestion: "How do I make payment?",
-                faqAnswer: "Payments can be made via bank transfer, debit card, or other approved payment methods.",
-                statusData: {
-                    statusName: "SUSPEND"
-                }
-            },
-            {
-                faqId: "FAQ005",
-                faqQuestion: "Are your technicians certified?",
-                faqAnswer: "Yes, all our technicians are trained, experienced, and certified in their respective fields.",
-                statusData: {
-                    statusName: "ACTIVE"
-                }
-            }
-        ]
-    };
+	try {
+		//// call endpoint //////
+		_callFetchEndPoints({
+			url: `admin/faq/fetch-faq`,
+			accessKey: true,
+		})
+		.then((response) => {
+            _initFetchFaqData(response.data);
+		})
+		.catch((error) => {
+			_staffValidationCheck(error.response);
+			console.error("Error:", error);
+			if (error.status==0) {
+				_showFalseNotification({
+					container: "faqPageContent",
+					message: "Check your internet connection and try again",
+				});
 
-    _initFetchFaqData(response.data);
+				_callAjaxError(() => _fetchFaqData(), error.message); // retry if needed
+			} else {
+				_showEmptyState({
+					container: "faqPageContent",
+					message: error.message,
+					button: `
+						<button class="btn" title="ADD NEW FAQ" onclick="sessionStorage.removeItem('useEachFaqSession'); _getForm({page: 'faqReg', url: portalMiddleWareUrl});">
+							<i class="bi-plus-square"></i> ADD NEW FAQ
+						</button>
+					`,
+				});
+			}
+		});
+	} catch (error) {
+		console.error("Error:", error);
+		_callCatchError(() => _fetchFaqData());
+  	}
 }
 
 //// init faq data ///
@@ -209,7 +162,7 @@ function _fetchEachFaq(faqId) {
 		})
 		.then((response) => {
 			sessionStorage.setItem("useEachFaqSession", JSON.stringify(response?.data[0]));
-			_getForm({page: 'faqReg', url: adminPortalMiddlewareUrl});
+			_getForm({page: 'faqReg', url: portalMiddleWareUrl});
 		})
 		.catch((error) => {
 			_staffValidationCheck(error.response);
@@ -225,7 +178,7 @@ function _fetchEachFaq(faqId) {
 }
 
 function _filtersFaq(value) {
-  $("#mainFaqPageContent .faq-back-div").each(function () {
+  $("#faqPageContent .faq-back-div").each(function () {
     var text = $(this).text();
     text.toLowerCase().indexOf(value.toLowerCase()) > -1
       ? $(this).show()

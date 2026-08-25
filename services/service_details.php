@@ -39,8 +39,8 @@
 
             <div class="main-content-back-div">
                 <div class="text-content-div" data-aos="fade-in" data-aos-duration="900">
-                    <h1 data-aos="fade-in" data-aos-duration="800"><?php echo $pageTitle?></h1>
-                    <p id="seoDescription"><?php echo $seoDescription?></p>
+                    <h1 data-aos="fade-in" data-aos-duration="800"><span id="pageTitle">Loading...</span></h1>
+                    <p id="seoDescription">Loading...</p>
                 </div>
             </div>
         </div>
@@ -53,104 +53,34 @@
                     <div class="left-div">
                         <div class="main-picture-back-div">
                             <div class="main-picture-div">
-                                <img id="seoFlyer"
-                                    src="<?php echo $websiteUrl ?>/uploaded_files/services/service-3.jpeg"
-                                    alt="<?php echo $pageTitle?>" />
+                                <img id="seoFlyer" src="<?php echo $websiteUrl ?>/all-images/images/defaultPage.jpg" alt="<?php echo $pageTitle?>" />
                             </div>
                         </div>
 
-                        <div class="main-pages-content-div" id="pageContent">
-                            <h2>Reliable Home Maintenance You Can Count On</h2>
-                            <p>
-                                At <strong>BowCares</strong>, we help homeowners keep their properties safe,
-                                comfortable, and well maintained. Whether you need a quick repair, routine
-                                maintenance, or a complete home improvement project, our experienced team
-                                delivers quality workmanship with attention to detail and dependable service.
-                            </p>
-
-                            <p>
-                                We understand that every home is unique, which is why we provide tailored
-                                maintenance solutions that meet your specific needs. From minor fixes to
-                                ongoing property care, BowCares is committed to protecting your investment
-                                and giving you peace of mind.
-                            </p>
-
-                            <h3>Our Residential Services Include:</h3>
-                            <ul>
-                                <li>✔ General Home Repairs & Handyman Services</li>
-                                <li>✔ Plumbing Repairs & Installations</li>
-                                <li>✔ Electrical Maintenance & Troubleshooting</li>
-                                <li>✔ Interior & Exterior Painting</li>
-                                <li>✔ Carpentry & Wood Repairs</li>
-                                <li>✔ Drywall & Ceiling Repairs</li>
-                                <li>✔ Home Cleaning & Property Maintenance</li>
-                                <li>✔ Preventive Maintenance & Seasonal Inspections</li>
-                            </ul>
-
-                            <div>
-                                <strong>Why Choose BowCares?</strong>
-                                <p>
-                                    We pride ourselves on reliable service, transparent communication,
-                                    skilled professionals, and quality results. Our goal is to keep your
-                                    home in excellent condition while making every service experience
-                                    simple, efficient, and stress-free.
-                                </p>
-                            </div>
-                        </div>
+                        <div class="main-pages-content-div" id="pageContent"></div>
                     </div>
 
                     <div class="right-div sticky-div">
                         <div class="div-in">
                             <h3>RELATED SERVICES</h3>
                             <div class="related-services-cont" id="relatedServicesCont">
-                                <a href="<?php echo $websiteUrl ?>/services/residential">
-                                    <div class="services-cont">
-                                        <div class="icon">
-                                            <i class="bi bi-check2-circle"></i>
-                                        </div>
-                                        <div class="content">
-                                            <h4 title="Residential">Residential</h4>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="<?php echo $websiteUrl ?>/services">
-                                    <div class="services-cont">
-                                        <div class="icon">
-                                            <i class="bi bi-check2-circle"></i>
-                                        </div>
-                                        <div class="content">
-                                            <h4 title="Industrial">Industrial</h4>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="<?php echo $websiteUrl ?>/services">
-                                    <div class="services-cont">
-                                        <div class="icon">
-                                            <i class="bi bi-check2-circle"></i>
-                                        </div>
-                                        <div class="content">
-                                            <h4 title="Corporate">Corporate</h4>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="<?php echo $websiteUrl ?>/services">
-                                    <div class="services-cont">
-                                        <div class="icon">
-                                            <i class="bi bi-check2-circle"></i>
-                                        </div>
-                                        <div class="content">
-                                            <h4 title="Commercial">Commercial</h4>
-                                        </div>
-                                    </div>
-                                </a>
+                                <script>
+                                    _getPageList({
+                                        pageCategory: "SERVICE",
+                                        pageContainer: "relatedServicesCont"
+                                    })
+                                </script>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <script>
+                _getEachPageDetails({
+                    pageCategory: "SERVICE",
+                    pageId: "<?php echo $pageId ?>"
+                })
+            </script>
         </section>
 
         <section class="body-div">

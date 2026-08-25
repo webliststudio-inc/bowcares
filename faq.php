@@ -69,68 +69,27 @@
                             <h3>TAG LIST</h3>
 
                             <ul id="catId">
-                                <li>MAINTENANCE</li>
-                                <li>ANNOUNCEMENT</li>
-                                <li>GENERAL</li>
-                                <li>SERVICES</li>
-                                <li>RESIDENTIAL SERVICES</li>
+                                <script>
+                                    _fetchCategoryList('FAQ', 'faqPageContent');
+                                </script>
+
+                                <div class="content-loading-div">
+                                    <img src="<?php echo $websiteUrl ?>/all-images/images/spinner.gif" alt="Loading" />
+                                </div>
                             </ul>
                         </div>
                     </div>
 
                     <div class="left-div">
                         <div class="general-faq-div" id="faqPageContent">
-                            <div class="faq-title" id="faq1">
-                                <div class="inner-title-div" onclick="_collapse('faq1')">
-                                    <h2>What maintenance services does BowCares provide?</h2>
+                            <script>
+                                _getFaqList({
+                                    pageContainer: "faqPageContent"
+                                })
+                            </script>
 
-                                    <div class="expand-div" id="faq1num">
-                                        &nbsp;<i class="bi-plus"></i>&nbsp;
-                                    </div>
-                                </div>
-                                <div class="faq-answer-div" id="faq1answer">
-                                    <p>
-                                        BowCares provides professional maintenance and repair services for homes,
-                                        businesses, and properties. Our services include inspections, repairs,
-                                        installations, preventive maintenance, and other property maintenance
-                                        solutions tailored to your needs.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="faq-title" id="faq2">
-                                <div class="inner-title-div" onclick="_collapse('faq2')">
-                                    <h2>How do I schedule a maintenance appointment?</h2>
-
-                                    <div class="expand-div" id="faq2num">
-                                        &nbsp;<i class="bi-plus"></i>&nbsp;
-                                    </div>
-                                </div>
-                                <div class="faq-answer-div" id="faq2answer" style="display: none;">
-                                    <p>
-                                        Getting started is simple. Contact BowCares with details about the
-                                        maintenance service you need, and our team will help you schedule a
-                                        convenient visitation appointment with a qualified technician.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="faq-title" id="faq3">
-                                <div class="inner-title-div" onclick="_collapse('faq3')">
-                                    <h2>What happens during a maintenance visit?</h2>
-
-                                    <div class="expand-div" id="faq3num">
-                                        &nbsp;<i class="bi-plus"></i>&nbsp;
-                                    </div>
-                                </div>
-                                <div class="faq-answer-div" id="faq3answer" style="display: none;">
-                                    <p>
-                                        Our technician will inspect the issue, identify the required solution,
-                                        explain the work involved, and carry out the service professionally.
-                                        Once the job is completed, we ensure everything is working properly
-                                        before completing the service.
-                                    </p>
-                                </div>
+                            <div class="content-loading-div">
+                                <img src="<?php echo $websiteUrl ?>/all-images/images/spinner.gif" alt="Loading" />
                             </div>
                         </div>
                     </div>

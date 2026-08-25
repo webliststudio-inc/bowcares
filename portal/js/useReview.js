@@ -1,45 +1,4 @@
 /// Fetch Review List ///
-// function _getReviewList(options) {
-// 	const {
-// 		pageContainer = '',
-// 		paginationContainer = '',
-// 	    crFlag = "",
-//         limit = '',
-//         crId = '',
-// 		statusId = '',
-//     } = options;
-// 	try {
-// 		//// call endpoint //////
-// 		_callFetchEndPoints({
-// 			url: `admin/contact-review/fetch-contacts-reviews?crFlag=${crFlag}&limit=${limit || ''}&crId=${crId || ''}&statusId=${statusId || ''}`,
-// 			accessKey: true,
-// 		})
-// 		.then((response) => {
-// 			_reviewListDisplay(response?.data, pageContainer, paginationContainer);
-// 		})
-// 		.catch((error) => {
-// 			_staffValidationCheck(error.response);
-// 			console.error("Error:", error);
-// 			if (error.status==0) {
-// 				_showEmptyState({
-// 					container: pageContainer,
-// 					message: "Check your internet connection and try again",
-// 					paginationContainer: paginationContainer,
-// 				});
-// 			} else {
-// 				_showEmptyState({
-// 					container: pageContainer,
-// 					message: error.message,
-// 					paginationContainer: paginationContainer,
-// 				});
-// 			}
-// 		});
-// 	} catch (error) {
-// 		console.error("Error:", error);
-//   	}
-// }
-
-/// Fetch Review List ///
 function _getReviewList(options) {
 	const {
 		pageContainer = '',
@@ -49,71 +8,8 @@ function _getReviewList(options) {
         crId = '',
 		statusId = '',
     } = options;
-
-	// TEMPORARY DUMMY DATA
-	const response = {
-		data: [
-			{
-				crId: "REV001",
-				crFlag: "CR001",
-				fullName: "Peter Emmanuel",
-				emailAddress: "peter@gmail.com",
-				message: "Excellent service. The technician arrived on time and completed the repair professionally. I highly recommend BowCare.",
-				statusData: {
-					statusName: "PENDING"
-				}
-			},
-			{
-				crId: "REV002",
-				crFlag: "CR002",
-				fullName: "Grace Johnson",
-				emailAddress: "grace@gmail.com",
-				message: "Very satisfied with the quality of work and customer support. Scheduling was easy and seamless.",
-				statusData: {
-					statusName: "APPROVED"
-				}
-			},
-			{
-				crId: "REV003",
-				crFlag: "CR003",
-				fullName: "Michael Brown",
-				emailAddress: "michael@gmail.com",
-				message: "Good service overall. Will definitely recommend BowCare to friends and family.",
-				statusData: {
-					statusName: "REJECTED"
-				}
-			},
-			{
-				crId: "REV004",
-				crFlag: "CR004",
-				fullName: "Sarah Williams",
-				emailAddress: "sarah@gmail.com",
-				message: "Professional technicians and excellent customer service. The issue was resolved quickly.",
-				statusData: {
-					statusName: "PENDING"
-				}
-			},
-			{
-				crId: "REV005",
-				crFlag: "CR005",
-				fullName: "David Ojo",
-				emailAddress: "david@gmail.com",
-				message: "Great experience from booking to completion. Highly recommended.",
-				statusData: {
-					statusName: "APPROVED"
-				}
-			}
-		]
-	};
-
-	_reviewListDisplay(
-		response.data,
-		pageContainer,
-		paginationContainer
-	);
-
-	/*
 	try {
+		//// call endpoint //////
 		_callFetchEndPoints({
 			url: `admin/contact-review/fetch-contacts-reviews?crFlag=${crFlag}&limit=${limit || ''}&crId=${crId || ''}&statusId=${statusId || ''}`,
 			accessKey: true,
@@ -122,13 +18,27 @@ function _getReviewList(options) {
 			_reviewListDisplay(response?.data, pageContainer, paginationContainer);
 		})
 		.catch((error) => {
-			// existing error handling
+			_staffValidationCheck(error.response);
+			console.error("Error:", error);
+			if (error.status==0) {
+				_showEmptyState({
+					container: pageContainer,
+					message: "Check your internet connection and try again",
+					paginationContainer: paginationContainer,
+				});
+			} else {
+				_showEmptyState({
+					container: pageContainer,
+					message: error.message,
+					paginationContainer: paginationContainer,
+				});
+			}
 		});
 	} catch (error) {
 		console.error("Error:", error);
   	}
-	*/
 }
+
 //// Display Page Review List ////
 function _reviewListDisplay(data, pageContainer, paginationContainer) {
 	if (pageContainer === "fetchDashboardReviews") {
@@ -146,8 +56,8 @@ function _reviewListDisplay(data, pageContainer, paginationContainer) {
 /// Initialize Dashboard Review List ///
 function _dashboardReviewData(data, pageContainer) {
 	const content = data.map((item) => {
-    return `
-      	<div class="review-div">
+	return `
+		<div class="review-div">
 			<div class="review-header">
 				<div class="review-user">
 					<div class="avatar">
@@ -195,7 +105,23 @@ function _dashboardReviewData(data, pageContainer) {
 }
 
 function _renderPageReviewData(data) {
-	return data.map((item) => `
+	return data.map((item) => {
+			let reviewButton = item.statusData?.statusId === 3 ? `
+				<div class="review-action flex-end">
+					<button class="btn page-view-btn" onclick="_fetchEachReview('${item?.crId}', '${item?.crFlag}', 'PAGEFORM');">
+						<i class="bi bi-check-all"></i>
+						APPROVE
+					</button>
+				</div>
+			` : `
+				<div class="review-action flex-end">
+					<button class="btn page-view-btn" onclick="_fetchEachReview('${item?.crId}', '${item?.crFlag}', 'PAGEFORM');">
+						<i class="bi bi-eye-fill"></i>
+						VIEW DETAILS
+					</button>
+				</div>
+			`;
+		return `
 		<div class="review-div">
 
 			<div class="review-header">
@@ -232,16 +158,10 @@ function _renderPageReviewData(data) {
 				${item.message.length>180 ? "..." : ""}
 			</div>
 
-			<div class="review-action flex-end">
-				<button class="btn page-view-btn" onclick="_fetchEachReview('${item?.crId}', '${item?.crFlag}', 'PAGEFORM');">
-					<i class="bi bi-check-all"></i>
-					APPROVE
-				</button>
-			</div>
-
+			${reviewButton}
 		</div>
-	`).join("");
-
+		`;
+	}).join("");
 }
 
 //// Initialize Review Data Pagination ////
@@ -269,7 +189,7 @@ function _fetchEachReview(crId, crFlag , pageType) {
 		.then((response) => {
 			sessionStorage.setItem("getEachReviewDetailsSession", JSON.stringify(response.data[0]));
 			sessionStorage.setItem("pageType", pageType);
-			_getForm({page: 'updateReview', url: adminPortalMiddlewareUrl});
+			_getForm({page: 'updateReview', url: portalMiddleWareUrl});
 		 })
 		.catch((error) => {
 			_staffValidationCheck(error.response);
@@ -326,6 +246,7 @@ function _updateReview() {
 	}
 }
 
+/// Update Review Callback ///
 function _updateReviewCallback(formData) {
 	getEachReviewDetailsSession = JSON.parse(sessionStorage.getItem("getEachReviewDetailsSession"));
 	const pageType = sessionStorage.getItem("pageType");
@@ -388,4 +309,14 @@ function _updateReviewCallback(formData) {
 		console.error("Error:", error);
 		_callCatchError(() => _updateReviewCallback(formData));
 	}
+}
+
+//// Filter Review Data ////
+function _filtersReview(value) {
+  $("#fetchPageReviewContent .review-div").each(function () {
+    var text = $(this).text();
+    text.toLowerCase().indexOf(value.toLowerCase()) > -1
+      ? $(this).show()
+      : $(this).hide();
+  });
 }

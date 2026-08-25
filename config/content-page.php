@@ -1,19 +1,10 @@
 <?php if ($page == 'customreInfoPage') { ?>
     <div class="form-wrapper">
-        <div class="text_field_container col-3" id="firstName_container">
-            <script>
+        <div class="text_field_container col-3" id="FullName_container">
+           <script>
             textField({
-                id: 'firstName',
-                title: 'First Name',
-            });
-            </script>
-        </div>
-
-        <div class="text_field_container col-3" id="lastName_container">
-            <script>
-            textField({
-                id: 'lastName',
-                title: 'Last Name',
+                id: 'FullName',
+                title: 'Full Name',
             });
             </script>
         </div>
@@ -77,7 +68,6 @@
                     buttons: [{
                         id: "backBtn",
                         text: "Back",
-                        size: "btn-lg",
                         icon: "bi bi-arrow-left-circle",
                         variant: 'btn-outline',
                         onClick: "_getNextPage({page:'customreInfoPage'});"
@@ -85,9 +75,54 @@
                         id: "addressBtn",
                         text: "Save and Continue",
                         icon: "bi bi-arrow-right-circle",
-                        size: "btn-lg",
                         iconPosition: "right",
-                        onClick: "_getNextPage({page:'consentPage'});"
+                        onClick: "_getNextPage({page:'summaryPage'});"
+                    }]
+                });
+            </script>
+        </div>
+    </div>
+<?php } ?>
+
+<?php if ($page == 'summaryPage') { ?>
+    <div class="form-wrapper">
+        <div class="text_area_container" id="messageRequest_container">
+            <script>
+                textField({
+                    id: 'messageRequest',
+                    title: 'Describe Your Service Request',
+                    type: 'textarea',
+                    maxlength: 180,
+                });
+            </script>
+        </div>
+
+        <div class="check-box-container" id="notificationConsent_container">
+            <label class="check-box-label">
+                <input type="checkbox" id="notificationConsent" name="notificationConsent" value="1">
+
+                <span>
+                    By checking this box, I agree to receive emails, notifications, and other important updates from BowCare regarding my service request, including request status, appointment confirmations, service updates, reminders, and other information related to the services I have requested. I can opt out at any time.
+                </span>
+            </label>
+        </div>
+
+        <div class="btn-div btn-flex-end" id="backBtn">
+            <script>
+                generalButtons({
+                    container: "backBtn",
+                    buttons: [{
+                        id: "backBtn",
+                        text: "Back",
+                        icon: "bi bi-arrow-left-circle",
+                        variant: 'btn-outline',
+                        onClick: "_getNextPage({page:'addressPage'});"
+                    }, {
+                        id: "addressBtn",
+                        text: "Submit Request",
+                        icon: "bi bi-arrow-right-circle",
+                        iconPosition: "right",
+                        onClick: "_completeServiceRequest();"
                     }]
                 });
             </script>
@@ -96,6 +131,8 @@
 <?php } ?>
 
 <?php if ($page == 'galleryDetails') { ?>
+    <script>getEachGalleySessionData = JSON.parse(sessionStorage.getItem("getEachGalleySessionData"));</script>
+
     <div class="user-profile-div" data-aos="fade-left" data-aos-duration="900" onclick="event.stopPropagation();">
         <div class="form-title-wrapper">
             <div class="form-title-div">
@@ -120,30 +157,41 @@
                     <button class="gallery-nav-btn gallery-next" id="galleryNextBtn" onclick="_navigateGallery(1);">
                         <i class="bi bi-chevron-right"></i>
                     </button>
+
+                    <script>
+                        $(document).ready(function() {
+                            const galleryImage = getEachGalleySessionData?.seoFlyer ? galleryPixPath + "/" + getEachGalleySessionData?.seoFlyer + '?t=' + new Date().getTime() : "<?php echo $websiteUrl ?>/all-images/images/defaultPage.jpg";
+                            $("#galleryMainImage").attr("src", galleryImage).attr("alt", getEachGalleySessionData?.pageTitle + " Image");
+                        });
+                    </script>
                 </div>
 
                 <div class="bottom-img-div">
                     <div class="inner-img-container">
                         <div class="inner-img-div" id="fetchPagePictures">
-                            <div class="each-img-div" title="Click to Preview" id="img1"
-                                onclick="_viewPreviewImage('img1', 'galleryPreviewPix')">
-                                <img src="<?php echo $websiteUrl?>/uploaded_files/gallery/Plumber-Repairing.jpeg" alt="Plumber Repairing" />
-                            </div>
+                            <script>
+                                $(document).ready(function() {
+                                    const picturesArray = getEachGalleySessionData?.pagePicturesData ?? [];
+                                    let galleryPixHtml = '';
 
-                            <div class="each-img-div" title="Click to Preview" id="img2"
-                                onclick="_viewPreviewImage('img2', 'galleryPreviewPix')">
-                                <img src="<?php echo $websiteUrl?>/uploaded_files/gallery/Plumber-Repairing.jpeg" alt="Plumber Repairing" />
-                            </div>
+                                    for (let item of picturesArray) {
+                                        galleryPixHtml += `
+                                            <div class="each-img-div" title="Click to Preview" id="img${item.sn}"
+                                                onclick="_viewPreviewImage('img${item.sn}', 'galleryPreviewPix')">
+                                                <img src="${pagesPixPath}/${item.pagePix}"
+                                                alt="${pageTitle}" />
+                                            </div>
+                                        `;
+                                    }
+                                    $('#fetchPagePictures').html(galleryPixHtml);
 
-                            <div class="each-img-div" title="Click to Preview" id="img3"
-                                onclick="_viewPreviewImage('img3', 'galleryPreviewPix')">
-                               <img src="<?php echo $websiteUrl?>/uploaded_files/gallery/Plumber-Repairing.jpeg" alt="Plumber Repairing" />
-                            </div>
-
-                            <div class="each-img-div" title="Click to Preview" id="img4"
-                                onclick="_viewPreviewImage('img4', 'galleryPreviewPix')">
-                                <img src="<?php echo $websiteUrl?>/uploaded_files/gallery/Plumber-Repairing.jpeg" alt="Plumber Repairing" />
-                            </div>
+                                    if (picturesArray.length>0) {
+                                        $('.bottom-img-div').show();
+                                    } else {
+                                        $(".bottom-img-div").hide();
+                                    }
+                                });
+                            </script>                        
                         </div>
                     </div>
                 </div>  
@@ -151,13 +199,24 @@
                 
             <div class="gallery-info-back-div">
                 <div class="left-info-container">
-                    <h2>Emergency Plumbing Repair</h2>
+                    <h2 id="galleryTitle">
+                        <script>
+                            $("#galleryTitle").html(getEachGalleySessionData?.pageTitle);
+                        </script>
+                    </h2>
                     <div class="info-wrapper">
                         <div class="title">Plumbing</div>
-                        <div class="info"><i class="bi bi-calendar3"></i> <span>May 15, 2026</span></div>
+                        <div class="info"><i class="bi bi-calendar3"></i> <span id="craetedDate">
+                            <script>
+                            $("#craetedDate").html(_fetchFormatDate(getEachGalleySessionData?.updatedTime));
+                        </script></span></div>
                         <div class="info"><i class="bi bi-images"></i> <span>18</span></div>
                     </div>
-                    <p>Take a look at our skilled technicians delivering reliable maintenance and repair services with precision, professionalism, and attention to detail. Every project reflects our commitment to quality workmanship and customer satisfaction.</p>
+                    <p id="galleryDescription">
+                        <script>
+                            $("#galleryDescription").html(getEachGalleySessionData?.seoDescription);
+                        </script>
+                    </p>
 
                     <h4>Share this photo</h4>
                     <div class="social-info">
@@ -199,7 +258,9 @@
 
                                     <div class="list-content-div"> 
                                         <div>Date</div>
-                                        <span>May 15, 2026</span>
+                                        <span id="infoDate"><script>
+                                            $("#infoDate").html(_fetchFormatDate(getEachGalleySessionData?.updatedTime));
+                                        </script></span>
                                     </div>
 
                                     <div class="list-content-div"> 
@@ -211,6 +272,91 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
+
+<?php if ($page == 'reviewForm') { ?>
+    <div class="slide-form-div" data-aos="fade-in" data-aos-duration="900">
+        <div class="form-title-div">
+            <div class="title-container">
+                <div class="icon-div"><i class="bi bi-chat-quote-fill"></i></div>
+                <h3 id="pageTitle">WRITE A REVIEW</h3>
+            </div>
+            
+            <div class="btn-div">
+                <button class="btn" title="Close" onclick="_alertClose(<?php echo $modalLayer ?>);">
+                    <i class="bi bi-x-lg"></i> Close
+                </button>
+            </div>
+        </div>
+
+        <!-- /////////// Title ////////////////////////////// -->
+        <div class="container-back-div">
+            <div class="form-notification">
+               <p>You are about to share your experience</span>.
+                Please complete the form below with accurate details to successfully submit your review</span>.
+                </p>
+            </div>
+
+            <div class="main-content-div form-main-content-div">
+                <div class="other-tables-content-div">
+                    <div class="content-title">
+                        <div class="title">
+                            <i class="bi bi-chat-quote-fill"></i>
+                            <p>Write your review here</p>
+                        </div>
+                    </div>
+
+                    <div class="form-container">
+                        <div class="text_field_container" id="fullName_container">
+                            <script>
+                                textField({
+                                    id: 'fullName',
+                                    title: 'Full Name',
+                                });
+                            </script>
+                        </div>
+
+                        <div class="text_field_container" id="emailAddress_container">
+                            <script>
+                                textField({
+                                    id: 'emailAddress',
+                                    title: 'Email Address',
+                                    type: 'email',
+                                });
+                            </script>
+                        </div>
+
+                        <div class="text_field_container" id="phoneNumber_container">
+                            <script>
+                                textField({
+                                    id: 'phoneNumber',
+                                    title: 'Phone Number',
+                                    type: 'tel',
+                                });
+                            </script>
+                        </div>
+
+                        <div class="text_area_container" id="message_container">
+                            <script>
+                                textField({
+                                    id: 'message',
+                                    title: 'Write Your Review',
+                                    type: 'textarea',
+                                    maxlength: 180,
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-div">
+                <button class="btn" title="Send Review" id="submitBtn" onclick="_submitReview('REVIEW');">
+                    <i class="bi-send-check"></i> Send
+                </button>
             </div>
         </div>
     </div>

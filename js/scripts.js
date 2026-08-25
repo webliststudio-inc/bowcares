@@ -120,7 +120,7 @@ function _viewPreviewImage(divid) {
     current.addClass("active");
     const src = current.find("img").attr("src");
 
-    $("#galleryMainImage")
+    $("#galleryMainImage, #seoFlyer")
         .stop(true, true)
         .fadeOut(150, function () {
             $(this).attr("src", src).fadeIn(150);
@@ -296,5 +296,18 @@ function _changeMaintenanceStep(stepNumber, clickedStep) {
   setTimeout(function () {
     selectedStep.addClass('aos-animate');
   }, 10);
+}
+
+function _completeServiceRequest() {
+  _showCustomConfirm({
+    callback: () => {
+      _getNextPage({page:'customreInfoPage'});
+    },
+    title: "Request Submitted!",
+    message: "Your service request has been successfully submitted. Our team will review your request and contact you with the next steps and appointment details.",
+    alertType: "success",
+    trueActionBtnText: "Okay, Thanks",
+    closeOnOverlayClick: false,
+  });
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

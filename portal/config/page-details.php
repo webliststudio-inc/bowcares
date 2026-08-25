@@ -21,30 +21,14 @@
                     </div>
                 <?php } ?>
 
-                <?php if ($pageCategory == 'PORTFOLIO') { ?>
-                    <div class="text_field_container" id="projectStageId_container">
+                <?php if ($pageCategory == 'GALLERY') { ?>
+                    <div class="text_field_container" id="professionId_container">
                         <script>
                             selectField({
-                                id: 'projectStageId',
-                                title: 'Select Project Stage',
-                                fieldValue: useEachPageSession?.projectStageData?.projectStageId ?? '',
-                                fieldLabel: useEachPageSession?.projectStageData?.projectStageName ?? ''
+                                id: 'professionId',
+                                title: 'Select Gallery Category',
                             });
-                            _getSelectProjectStages('projectStageId');
-                        </script>
-                    </div>
-                <?php } ?>
-
-                <?php if ($pageCategory == 'PORTFOLIO') { ?>
-                    <div class="text_field_container" id="projectCategoryId_container">
-                        <script>
-                            selectField({
-                                id: 'projectCategoryId',
-                                title: 'Select Project Category',
-                                fieldValue: useEachPageSession?.projectCategoryData?.projectCategoryId ?? '',
-                                fieldLabel: useEachPageSession?.projectCategoryData?.projectCategoryName ?? ''
-                            });
-                            _getSelectProjectCategories('projectCategoryId');
+                            _getSelectProfessionCategories('professionId');
                         </script>
                     </div>
                 <?php } ?>
@@ -115,7 +99,7 @@
                 <script>
                     $(document).ready(function () {
                         const pageCategory = "<?php echo $pageCategory; ?>";
-                        const pixPath = pageCategory === 'BLOG' ? blogPixPath : pageCategory === 'SERVICE' ? servicePixPath : portfolioPixPath;
+                        const pixPath = pageCategory === 'BLOG' ? blogPixPath : pageCategory === 'SERVICE' ? servicePixPath : galleryPixPath;
                         const fetchSeoFlyer = useEachPageSession?.seoFlyer;
                         const seoFlyerUrl = fetchSeoFlyer ? pixPath + "/" + fetchSeoFlyer + '?t=' + new Date().getTime() : "<?php echo $websiteUrl ?>/all-images/images/sample.jpg";
 
@@ -153,7 +137,7 @@
                 <div class="issueText" id="issue_pageContentEditor"></div>
             </div>
 
-            <?php if ($pageCategory == 'PORTFOLIO') { ?>
+            <?php if ($pageCategory == 'GALLERY') { ?>
                 <div class="text-field-wrapper">
                     <div class="text_field_container" id="location_container">
                         <script>
@@ -225,6 +209,100 @@
                             accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .webp, .svg, .avif"
                             onchange="_savePagePictures('<?php echo $pageCategory; ?>');" style="display:none;" />
                     </label>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
+
+<?php if ($page == 'serviceFaqPage') { ?>
+    <div class="page-form-div animated fadeIn">
+        <div class="page-title">FREQUENTLY ASKED QUESTIONS</div>
+        <div class="form-div content-form">
+            <div class="form-input-div full-form-input-div">
+                <div class="text-field-wrapper">
+                    <div class="title">FAQ QUESTION</div>
+                    <div class="text_field_container" id="question_container">
+                        <script>
+                            textField({
+                                id: 'question',
+                                title: 'FAQ Question'
+                            });
+                        </script>
+                    </div>
+                </div>
+
+                <div class="title">FAQ ANSWER</div>
+                <script src="<?php echo $websiteUrl ?>/portal/js/TextEditor.js" referrerpolicy="origin"></script>
+                <script>
+                    tinymce.init({
+                        selector: '#answer', // change this value according to your HTML
+                        skin: $('html').hasClass('dark-mode') ? 'oxide-dark' : 'oxide',
+                        content_css: $('html').hasClass('dark-mode') ? 'dark' : 'default',
+                        plugins: "link, image, table"
+                    });
+                </script>
+
+                <div class="page-content-back-div">
+                    <textarea class="text_area" style="width:100%;" rows="5" id="answer" title="TYPE FULL PAGE CONTENT HERE" type="text" placeholder=""></textarea>
+                    <div class="issueText" id="issue_answer"></div>
+                </div>
+            </div>
+
+            <div class="btn-div">
+                <button class="btn" id="saveBtn" title="Save Page" onclick="_createProductFaq();"><i class="bi-save"></i> SAVE</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-form-div animated fadeIn">
+        <div class="page-title">FAQ LIST</div>
+        <div class="form-div full-form-input-div">
+            <div class="form-input-div full-form-input-div">
+                <div class="faq-toggle-back" id="faqPageContent">
+                    <div class="product-faq-toggle" id="faq_1">
+                        <div class="title-wrapper">
+                            <div class="text-back-div">
+                                <div class="icon-div" title="Delete this question">
+                                    <i class="bi bi-trash3"></i>
+                                </div>
+
+                                <div class="title-text">
+                                    <h3>What services does BowCares provide?</h3>
+                                </div>
+                            </div>
+
+                            <div class="expand-div" id="faqNum_1">
+                                &nbsp;<i class="bi-plus"></i>&nbsp;
+                            </div>
+                        </div>
+
+                        <div class="faq-answer-div" id="faqAnswer_1">
+                            <p>BowCares provides reliable maintenance, repair, installation, remodeling, painting, and property care services for residential, commercial, and corporate properties.</p>
+                        </div>
+                    </div>
+
+                    <div class="product-faq-toggle" id="faq_1">
+                        <div class="title-wrapper">
+                            <div class="text-back-div">
+                                <div class="icon-div" title="Delete this question">
+                                    <i class="bi bi-trash3"></i>
+                                </div>
+
+                                <div class="title-text">
+                                    <h3>What services does BowCares provide?</h3>
+                                </div>
+                            </div>
+
+                            <div class="expand-div" id="faqNum_1">
+                                &nbsp;<i class="bi-plus"></i>&nbsp;
+                            </div>
+                        </div>
+
+                        <div class="faq-answer-div" id="faqAnswer_1">
+                            <p>BowCares provides reliable maintenance, repair, installation, remodeling, painting, and property care services for residential, commercial, and corporate properties.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

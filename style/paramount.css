@@ -2,6 +2,7 @@ html {
 	height: 100%;
 	padding: 0px;
 	margin: 0px;
+  scroll-behavior: smooth;
 }
 
 * {
@@ -150,6 +151,7 @@ html {
   --panel-bg-color: #F2F4F4;
 
   --general-border-color: rgba(215,215,215,.5);
+  --permission-bg-color: #f1eeee;
 }
 
 html.dark-mode{
@@ -167,7 +169,7 @@ html.dark-mode{
   --sub-white-color: #333333;
   --link-color: #63b3ff;
   --close-color: #ff5c5c;
-  --active-color: #4caf50;
+  --active-color: #216d24;
   --active-color2: #2e7d32;
   --sub-text-color: #ff6b6b;
 
@@ -224,6 +226,7 @@ html.dark-mode{
   --panel-bg-color: #070707;
 
   --general-border-color: #1b1b1b;
+  --permission-bg-color: #1b1b1b;
 }
 
 h1,
@@ -311,6 +314,11 @@ a {
   outline: none !important;
 }
 
+.text_field_container .text_field:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px var(--bg-white) inset !important;
+    -webkit-text-fill-color: var(--sub-body-color) !important;
+}
+
 .text_field_container .select_text_field {
   width: 100%;
 }
@@ -393,7 +401,7 @@ a {
   cursor: pointer;
   background: rgba(156, 156, 156, 0.1);
   transition: all 0.2s ease-in 0.2s;
-  color: #444;
+  color: var(--sub-body-color);
 }
 
 .text_field_container .searchPanel ul li:hover {
@@ -597,6 +605,10 @@ a {
   right: 0px;
   top: calc(50% - 100px);
   z-index: 500;
+}
+
+#request-service-html .media-link-div {
+ display: none;
 }
 
 .media-link-div li {
@@ -1109,7 +1121,7 @@ a {
   justify-content: center;
   gap: 10px;
   color: var(--primary-color);
-  border: 1px solid rgba(204, 204, 204, 0.3);
+  border: 1px solid var(--general-border-color);
 }
 
 .empty-state-div .btn {
@@ -1353,9 +1365,9 @@ a {
   transform: scale(1.05); /* subtle hover grow */
 }
 .modal-overlay .modal-box .btn-div .false-btn {
-  background: linear-gradient(90deg, #faf5e5, #fff);
-  color: var(--body-color);
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: linear-gradient(90deg, var(--card-hover-gradient-end), var(--card-hover-gradient-start));
+  color: var(--sub-body-color);
+  border: 1px solid var(--general-border-color);
 }
 
 @media all and (max-width: 500px) {

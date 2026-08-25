@@ -65,146 +65,16 @@
                         </div>
                     </div>
 
-                    <div class="service-back-div">
-                        <div class="service-div" data-aos="fade-up" data-aos-duration="1200">
-                            <div class="image-div">
-                                <img src="<?php echo $websiteUrl ?>/uploaded_files/services/service-3.jpeg"
-                                    alt="Residential" />
-                            </div>
+                    <div class="service-back-div" id="allServicePageContent">
+                        <script>
+                            _getPageList({
+                                pageCategory: "SERVICE",
+                                pageContainer: "allServicePageContent"
+                            })
+                        </script>
 
-                            <div class="icon-div">
-                                <img src="<?php echo $websiteUrl ?>/all-images/images/icon.png"
-                                    alt="<?php echo $appName ?> Icon" />
-                            </div>
-
-                            <a href="<?php echo $websiteUrl ?>/services/residential">
-                                <div class="text-div">
-                                    <h3>Residential</h3>
-                                    <p>Comprehensive maintenance for warehouses, manufacturing plants, and industrial
-                                        facilities with a focus...</p>
-
-                                    <div class="btn-div" id="serviceBtn1">
-                                        <script>
-                                        generalButtons({
-                                            container: "serviceBtn1",
-                                            buttons: [{
-                                                id: "serviceBtn1",
-                                                text: "Learn More",
-                                                icon: "bi bi-arrow-right-circle",
-                                                width: "btn-full",
-                                                iconPosition: "right",
-                                                link: "<?php echo $websiteUrl ?>/services/residential"
-                                            }]
-                                        });
-                                        </script>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="service-div" data-aos="fade-up" data-aos-duration="1200">
-                            <div class="image-div">
-                                <img src="<?php echo $websiteUrl ?>/uploaded_files/services/service-1.jpeg"
-                                    alt="Corporate" />
-                            </div>
-
-                            <div class="icon-div">
-                                <img src="<?php echo $websiteUrl ?>/all-images/images/icon.png"
-                                    alt="<?php echo $appName ?> Icon" />
-                            </div>
-
-                            <a href="<?php echo $websiteUrl?>">
-                                <div class="text-div">
-                                    <h3>Corporate</h3>
-                                    <p>Professional maintenance solutions for offices, corporate facilities, and
-                                        business environments, ensuring...</p>
-
-                                    <div class="btn-div" id="serviceBtn2">
-                                        <script>
-                                        generalButtons({
-                                            container: "serviceBtn2",
-                                            buttons: [{
-                                                id: "serviceBtn2",
-                                                text: "Learn More",
-                                                icon: "bi bi-arrow-right-circle",
-                                                width: "btn-full",
-                                                iconPosition: "right"
-                                            }]
-                                        });
-                                        </script>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="service-div" data-aos="fade-up" data-aos-duration="1200">
-                            <div class="image-div">
-                                <img src="<?php echo $websiteUrl ?>/uploaded_files/services/service-2.jpeg"
-                                    alt="Commercial" />
-                            </div>
-
-                            <div class="icon-div">
-                                <img src="<?php echo $websiteUrl ?>/all-images/images/icon.png"
-                                    alt="<?php echo $appName ?> Icon" />
-                            </div>
-
-                            <a href="<?php echo $websiteUrl?>">
-                                <div class="text-div">
-                                    <h3>Commercial</h3>
-                                    <p>Reliable maintenance services for retail stores, restaurants, shopping centers,
-                                        and commercial...</p>
-
-                                    <div class="btn-div" id="serviceBtn3">
-                                        <script>
-                                        generalButtons({
-                                            container: "serviceBtn3",
-                                            buttons: [{
-                                                id: "serviceBtn",
-                                                text: "Learn More",
-                                                icon: "bi bi-arrow-right-circle",
-                                                width: "btn-full",
-                                                iconPosition: "right"
-                                            }]
-                                        });
-                                        </script>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="service-div" data-aos="fade-up" data-aos-duration="1200">
-                            <div class="image-div">
-                                <img src="<?php echo $websiteUrl ?>/uploaded_files/services/service-3.jpeg"
-                                    alt="Industrial" />
-                            </div>
-
-                            <div class="icon-div">
-                                <img src="<?php echo $websiteUrl ?>/all-images/images/icon.png"
-                                    alt="<?php echo $appName ?> Icon" />
-                            </div>
-
-                            <a href="<?php echo $websiteUrl?>">
-                                <div class="text-div">
-                                    <h3>Industrial</h3>
-                                    <p>Comprehensive maintenance for warehouses, manufacturing plants, and industrial
-                                        facilities with a focus...</p>
-
-                                    <div class="btn-div" id="serviceBtn4">
-                                        <script>
-                                        generalButtons({
-                                            container: "serviceBtn4",
-                                            buttons: [{
-                                                id: "serviceBtn",
-                                                text: "Learn More",
-                                                icon: "bi bi-arrow-right-circle",
-                                                width: "btn-full",
-                                                iconPosition: "right",
-                                            }]
-                                        });
-                                        </script>
-                                    </div>
-                                </div>
-                            </a>
+                        <div class="content-loading-div">
+                            <img src="<?php echo $websiteUrl ?>/all-images/images/spinner.gif" alt="Loading" />
                         </div>
                     </div>
                 </div>
