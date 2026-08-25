@@ -13,6 +13,7 @@ try {
     }
 
     ////////////////// Variables //////////////////
+    $faqKey = trim($data['faqKey'] ?? 'general');
     $categoryId = trim($data['categoryId'] ?? '');
     $faqQuestion = trim($data['faqQuestion'] ?? '');
     $faqAnswer = trim($data['faqAnswer'] ?? '');
@@ -23,6 +24,10 @@ try {
     validateEmptyField($faqQuestion, 'FAQ QUESTION');
     validateEmptyField($faqAnswer, 'FAQ ANSWER');
     validateEmptyField($statusId, 'STATUS');
+
+    if ($faqKey !== 'general') {
+        validateEmptyField($categoryId, 'FAQ PAGE ID');
+    }
 
     ////////////////// Check Duplicate FAQ //////////////////
     $checkQuery = "SELECT faqId FROM FAQ_TAB WHERE faqQuestion = ?";
@@ -37,10 +42,10 @@ try {
 
     ////////////////// Insert FAQ //////////////////
     $insertQuery = "INSERT INTO FAQ_TAB 
-    (categoryId, faqId, faqQuestion, faqAnswer, statusId, createdBy, createdTime ) VALUES 
-    (?,?,?,?,?,?,NOW())";
-    $insertParams = [$categoryId, $faqId, $faqQuestion, $faqAnswer, $statusId, $loginStaffId];
-    insertQuery($conn, $insertQuery, "ssssss", $insertParams);
+    (faqKey, categoryId, faqId, faqQuestion, faqAnswer, statusId, createdBy, createdTime ) VALUES 
+    (?,?,?,?,?,?,?,NOW())";
+    $insertParams = [$faqKey, $categoryId, $faqId, $faqQuestion, $faqAnswer, $statusId, $loginStaffId];
+    insertQuery($conn, $insertQuery, "sssssss", $insertParams);
 
     ////////////////// Fetch Created FAQ //////////////////
     $selectQuery = "SELECT * FROM FAQ_TAB WHERE faqId = ?";

@@ -14,8 +14,7 @@ try {
     ////////////////// Variables //////////////////
     $pageCategory = trim($_GET['pageCategory'] ?? ''); //// can be BLOG, PORTFOLIO, SERVICE
     $categoryId = trim($data['categoryId'] ?? ''); /// optional
-    $projectStageId = trim($data['projectStageId'] ?? ''); /// optional
-    $projectCategoryId = trim($data['projectCategoryId'] ?? ''); /// optional
+    $professionId = trim($data['professionId'] ?? ''); /// optional
     $pageTitle = trim($data['pageTitle'] ?? '');
     $pageUrl = trim($data['pageUrl'] ?? '');
     $seoKeywords = trim($data['seoKeywords'] ?? '');
@@ -36,9 +35,8 @@ try {
     if ($pageCategory === 'BLOG') {
         validateEmptyField($categoryId, 'CATEGORY ID');
     }
-    if ($pageCategory === 'PORTFOLIO') {
-        validateEmptyField($projectStageId, 'PROJECT STAGE ID');
-        validateEmptyField($projectCategoryId, 'PROJECT CATEGORY ID');
+    if ($pageCategory === 'GALLERY') {
+        validateEmptyField($professionId, 'PROFESSION ID');
         validateEmptyField($location, 'LOCATION');
     }
 
@@ -56,7 +54,7 @@ try {
 
     ////////////////// Insert Page //////////////////
     $insertQuery = "INSERT INTO `PAGES_TAB`
-    (`pageId`, `pageCategory`, `pageTitle`, `pageUrl`, `seoKeywords`, `seoDescription`, `seoFlyer`, `pageContent`, `statusId`, `createdBy`,`createdTime`) VALUES 
+    (`pageId`, `pageCategory`,`pageTitle`, `pageUrl`, `seoKeywords`, `seoDescription`, `seoFlyer`, `pageContent`, `statusId`, `createdBy`,`createdTime`) VALUES 
     (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
     $insertParams = [$pageId, $pageCategory, $pageTitle, $pageUrl, $seoKeywords, $seoDescription, $seoFlyer, $pageContent, $statusId, $loginStaffId];
     insertQuery($conn, $insertQuery, "ssssssssis", $insertParams);
@@ -68,11 +66,11 @@ try {
         $updateParams = [$categoryId, $pageId];
         updateQuery($conn, $updateQuery, "ss", $updateParams);
     }
-    if ($pageCategory === 'PORTFOLIO') {
+    if ($pageCategory === 'GALLERY') {
         /// update location in PAGES_TAB
-        $updateQuery = "UPDATE PAGES_TAB SET projectCategoryId = ?, projectStageId = ?, location = ? WHERE pageId = ?";
-        $updateParams = [$projectCategoryId, $projectStageId, $location, $pageId];
-        updateQuery($conn, $updateQuery, "ssss", $updateParams);
+        $updateQuery = "UPDATE PAGES_TAB SET professionId = ?, location = ? WHERE pageId = ?";
+        $updateParams = [$professionId, $location, $pageId];
+        updateQuery($conn, $updateQuery, "sss", $updateParams);
     }
 
     ////////////////// Fetch Created Page //////////////////
@@ -80,8 +78,7 @@ try {
     $selectParams = [$pageId];
     $pageData = selectQuery($conn, $selectQuery, "s", $selectParams)[0];
     $categoryId = $pageData['categoryId'];
-    $projectCategoryId = $pageData['projectCategoryId'];
-    $projectStageId = $pageData['projectStageId'];
+    $professionId = $pageData['professionId'];
     $statusId = $pageData['statusId'];
     $createdBy = $pageData['createdBy'];
     $updatedBy = $pageData['updatedBy'];
@@ -100,14 +97,10 @@ try {
         $categoryData = _get_category_details($conn, $categoryId);
         $pageData['categoryData'] = $categoryData;
     }
-    if ($pageCategory === 'PORTFOLIO') {
-        /// get categoryData
-        $projectStageData = _get_project_stage_details($conn, $projectStageId);
-        $pageData['projectStageData'] = $projectStageData;
-
-        /// get projectCategoryData
-        $projectCategoryData = _get_project_category_details($conn, $projectCategoryId);
-        $pageData['projectCategoryData'] = $projectCategoryData;
+    if ($pageCategory === 'GALLERY') {
+        /// get professionData
+        $professionData = _get_profession_details($conn, $professionId);
+        $pageData['professionData'] = $professionData;
     }
 
     ////////////////// Response //////////////////

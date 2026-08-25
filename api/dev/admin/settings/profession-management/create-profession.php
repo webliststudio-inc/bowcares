@@ -33,7 +33,8 @@ try {
     ////////////////// Generate Profession ID //////////////////
     $sequence = _get_sequence_count($conn, 'PRO');
     $professionId = 'PRO' . $sequence['no'] . date("Ymdhis");
-    $professionImage = "$professionId.png"; // Assuming the image is named after the professionId with a .png extension
+    $professionImage = "$professionId.jpg"; // Assuming the image is named after the professionId with a .jpg extension
+    $professionIcon = "$professionId.png"; // Assuming the icon is named after the professionId with a .png extension
     ////////////////// Insert Profession //////////////////
     $insertQuery = "
         INSERT INTO PROFESSION_TAB (
@@ -41,13 +42,14 @@ try {
             professionName,
             professionDescription,
             professionImage,
+            professionIcon,
             statusId,
             createdBy,
             createdTime
-        ) VALUES (?, ?, ?, ?, ?, ?, NOW())
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
     ";
-    $insertParams = [$professionId, $professionName, $professionDescription, $professionImage, $statusId, $loginStaffId];
-    insertQuery($conn, $insertQuery, "ssssis", $insertParams);
+    $insertParams = [$professionId, $professionName, $professionDescription, $professionImage, $professionIcon, $statusId, $loginStaffId];
+    insertQuery($conn, $insertQuery, "sssssis", $insertParams);
 
     ////////////////// Fetch Created Profession //////////////////
     $selectQuery = "SELECT * FROM PROFESSION_TAB WHERE professionId = ?";

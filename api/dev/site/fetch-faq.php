@@ -7,11 +7,16 @@ try {
         throw new ForbiddenException("Unauthorized access! Please log in.");
     }
     ////////////////// Variables //////////////////
+    $faqKey = trim($_GET['faqKey'] ?? 'general');
     $q = trim($_GET['q'] ?? '');
     $categoryId = trim($_GET['categoryId'] ?? '');
     $faqId = trim($_GET['faqId'] ?? '');
     $statusId = trim($_GET['statusId'] ?? 1); //// default statusId = 1 (ACTIVE)
     $limit = trim($_GET['limit'] ?? '');
+
+    if ($faqKey !== 'general') {
+        validateEmptyField($categoryId, 'FAQ PAGE ID');
+    }
     ////////////////// Build Query //////////////////
     $conditions = [];
     $params = [];
@@ -55,7 +60,7 @@ try {
         $whereLimit = "LIMIT $limit";
     }
 
-    $selectQuery = "SELECT faqId, faqQuestion, faqAnswer FROM FAQ_TAB WHERE $searchClause $extraWhere $whereLimit";
+    $selectQuery = "SELECT faqId, faqQuestion, faqAnswer FROM FAQ_TAB WHERE faqKey='$faqKey' AND $searchClause $extraWhere $whereLimit";
     $selectParams = array_merge($params);
 
     $allFAQData = selectQuery($conn, $selectQuery, $types, $selectParams);

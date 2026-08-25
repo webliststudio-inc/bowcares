@@ -105,20 +105,10 @@ function _get_category_details($conn, $categoryId)
     return ($getResult[0]);
 }
 
-// get PROJECT STAGE details
-function _get_project_stage_details($conn, $projectStageId)
+function _get_profession_details($conn, $professionId)
 {
-    $getQuery = "SELECT projectStageId, projectStageName FROM SETUP_PROJECT_STAGES_TAB WHERE projectStageId = ?";
-    $getParams = [$projectStageId];
-    $getResult = selectQuery($conn, $getQuery, 's', $getParams);
-    return ($getResult[0]);
-}
-
-/// get PROJECT CATEGORY details
-function _get_project_category_details($conn, $projectCategoryId)
-{
-    $getQuery = "SELECT projectCategoryId, projectCategoryName FROM PROJECT_CATEGORY_TAB WHERE projectCategoryId = ?";
-    $getParams = [$projectCategoryId];
+    $getQuery = "SELECT professionId, professionName FROM PROFESSION_TAB WHERE professionId = ?";
+    $getParams = [$professionId];
     $getResult = selectQuery($conn, $getQuery, 's', $getParams);
     return ($getResult[0]);
 }
