@@ -84,6 +84,7 @@ function _createOrUpdatePage(pageCategory){
 		////////get all needed values////////////
 		let issueCount = 0;
 		const categoryId = $('#categoryId').val()?.trim();
+		const professionId = $('#professionId').val()?.trim();
 		const pageTitle = $('#pageTitles').val()?.trim().replace(/['’]/g, '');
 		const pageUrl = $('#pageUrl').val()?.trim();
 		const seoKeywords = $('#seoKeywords').val()?.trim();
@@ -100,7 +101,8 @@ function _createOrUpdatePage(pageCategory){
 		issueCount += _validateEmptyValue("seoDescription", "SEO DESCRIPTION");
 		issueCount += _validateEmptyValue("statusId", "STATUS");
 		
-		if (pageCategory === 'GALLERY'){
+		if (pageCategory === 'GALLERY') {
+			issueCount += _validateEmptyValue("professionId", "GALLERY CATEGORY");
 			issueCount += _validateEmptyValue("location", "LOCATION");
 		}
 
@@ -108,10 +110,6 @@ function _createOrUpdatePage(pageCategory){
 			issueCount += _validateEmptyValue("categoryId", "CATEGORY");
 		} 
 		
-		if (pageCategory === 'PORTFOLIO') {
-			issueCount += _validateEmptyValue("projectStageId", "PROJECT STAGE");
-		}
-
 		if (!pageContent) {
 			$("#pageContentEditor").addClass("issue");
 			$("#issue_pageContentEditor").html("PAGE CONTENT REQUIRED");
@@ -145,6 +143,7 @@ function _createOrUpdatePage(pageCategory){
             statusId,
 			...(pageCategory === "BLOG" && { categoryId }),
 			...(pageCategory === "GALLERY" && { location }),
+			...(pageCategory === "GALLERY" && { professionId }),
 		};
 
 		////// confirm action////
@@ -338,7 +337,7 @@ function _savePagePicturesCallback(formData, pageCategory) {
 			accessKey: true,
 		})
 		.then((response) => {
-			const message = response.message;
+			const message = response?.message;
 			const pagePixNames = response?.pagePixNames || "";
 
 			_uploadPagePictures(formData, pagePixNames, message, pageCategory, pageId);
@@ -489,4 +488,242 @@ function _deleteOldPagePictures(oldPagePix, message, sn) {
 		console.error("Error:", error);
 		_callAjaxError(() => _deleteOldPagePictures(oldPagePix, message, sn));	
 	});	
+}
+
+
+//// fetch Page Faq Data ///
+function _fetchPageFaqData() {
+	$('#pagesFaqContent').html(`
+		<div class="content-loading-div">
+		<img src="${websiteUrl}/all-images/images/spinner.gif" alt="Loading" />
+	</div>`);
+
+	useEachPageSession = JSON.parse(sessionStorage.getItem("useEachPageSession"));
+	const pageId = useEachPageSession?.pageId;
+
+	try {
+		//// call endpoint //////
+		_callFetchEndPoints({
+			url: `admin/faq/fetch-faq?faqKey=page&categoryId=${pageId}`,
+			accessKey: true,
+		})
+		.then((response) => {
+            _initFetchPageFaqData(response?.data);
+		})
+		.catch((error) => {
+			_staffValidationCheck(error.response);
+			console.error("Error:", error);
+			if (error.status==0) {
+				_showFalseNotification({
+					container: "pagesFaqContent",
+					message: "Check your internet connection and try again",
+				});
+
+				_callAjaxError(() => _fetchPageFaqData(), error.message); // retry if needed
+			} else {
+				_showEmptyState({
+					container: "pagesFaqContent",
+					message: error.message,
+				});
+			}
+		});
+	} catch (error) {
+		console.error("Error:", error);
+		_callCatchError(() => _fetchPageFaqData());
+  	}
+}
+
+//// initiate fetch page faq data ///
+function _initFetchPageFaqData(data) {
+  	const content = data.map((item, index) => {
+    const faqId = `faq${index+1}`; // unique wrapper ID
+    const faqNumId = `faq${index+1}num`; // unique expand icon ID
+    const faqAnswerId = `faq${index+1}answer`; // unique answer div ID
+
+    return `
+		<div class="pages-faq-toggle" id="faq_${item?.faqId}">
+			<div class="title-wrapper" onclick="_collapse('${faqId}')">
+				<div class="text-back-div">
+					<div class="icon-div" title="Delete this qestion" id="deleteFaq_${item?.faqId}" onclick="_deleteFaq('${item?.faqId}');">
+						<i class="bi bi-trash3"></i>
+					</div>
+
+					<div class="title-text">
+						<h3>${item?.faqQuestion}</h3>
+					</div>
+				</div>
+				<div class="expand-div" id="${faqNumId}">
+					&nbsp;<i class="bi-plus"></i>&nbsp;
+				</div>
+			</div>
+
+			<div class="faq-answer-div" id="${faqAnswerId}">
+				<p>${item?.faqAnswer}</p>
+			</div>
+		</div>
+    `;
+  }).join("");
+
+  $('#pagesFaqContent').html(content);
+}
+
+//// create and update page faq ///
+function _createPageFaq() {
+	useEachPageSession = JSON.parse(sessionStorage.getItem("useEachPageSession"));
+	const pageId = useEachPageSession?.pageId;
+
+	try {
+		tinyMCE.triggerSave();
+
+		////////get all needed values////////////
+		let issueCount = 0;
+		const categoryId = pageId;
+		const faqKey = "page";
+		const faqQuestion = $('#faqQuestion').val().trim();
+		const faqAnswer = $('#faqAnswer').val().trim();
+		const statusId = 1;
+		
+		///// empty field validation//////////
+		issueCount += _validateEmptyValue("faqQuestion", "FAQ QUESTION");
+
+		$("#faqAnswer").removeClass("issue");
+  		$("#issue_faqAnswer").html("");
+
+		if (!faqAnswer) {
+			$("#faqAnswer").addClass("issue");
+			$("#issue_faqAnswer").html("FAQ ANSWER REQUIRED");
+			issueCount++;
+		}
+
+		if (issueCount > 0) return;
+
+		// Gather form data //
+		const formData = {
+			faqKey,
+			categoryId,
+			faqQuestion,
+			faqAnswer,
+			statusId,
+		};
+
+		////// confirm action////
+		_showCustomConfirm({
+		callback: () => {
+			_savePageFaqCallback(formData);
+		},
+			title: "Are you sure?",
+			message: 'Are you sure you want to save? This action is irreversible.',
+			alertType: "warning",
+			falseActionBtn: true,
+		});
+	} catch (error) {
+		console.error("Error:", error);
+		_callCatchError(() => _createPageFaq());
+	}
+}
+
+function _savePageFaqCallback(formData) {
+	///// get btn text/////
+	const btnText = $("#saveFaqBtn").html();
+	_btnDisable("saveFaqBtn", btnText, true);
+
+	//// call endpoint //////
+	_callRawEndPoints({
+		url: `admin/faq/create-faq`,
+		formData,
+		accessKey: true,
+	})
+	.then((response) => {
+		_clearFieldsValues();
+		_showCustomConfirm({
+			callback: () => {
+				_fetchPageFaqData();
+			},
+			title: 'Success!',
+			message: response?.message,
+			alertType: 'success',
+			trueActionBtnText: 'OK, Thanks.',
+		});
+		_btnDisable("saveFaqBtn", btnText, false);
+    })
+    .catch((error) => {
+		_staffValidationCheck(error.response);
+		console.error("Error:", error);
+		if (error.status==0) {
+			_callAjaxError(() => _savePageFaqCallback(formData), error.message); // retry if needed
+			_btnDisable("saveFaqBtn", btnText, false);
+		} else {
+			_actionAlert(error.message, false);
+			_btnDisable("saveFaqBtn", btnText, false);
+		}
+    });
+}
+
+/// CLEAR FIELDS VALUES ////
+function _clearFieldsValues(){
+	$('#faqQuestion').val('');
+	tinymce.get('faqAnswer').setContent('');
+}
+
+/// DELETE Pages FAQ ////
+function _deleteFaq(faqId) {
+	_showCustomConfirm({
+		callback: () => {
+			_deleteFaqCallback(faqId);
+		},
+		title: "Are you sure?",
+		message: 'Are you sure you want to delete this FAQ? This action is irreversible.',
+		alertType: "warning",
+		falseActionBtn: true,
+		closeOnOverlayClick: true,
+	});
+}
+
+/// DELETE FAQ CALLBACK ////
+function _deleteFaqCallback(faqId){
+	try {
+		///// get btn text/////
+		const btnText = $(`#deleteFaq_${faqId}`).html();
+		_btnDisable(`deleteFaq_${faqId}`, btnText, true);
+
+		// Count FAQs BEFORE deleting
+		const faqCount = $(".pages-faq-toggle").length;
+
+		//// call endpoint //////
+		_callFetchEndPoints({
+			url: `admin/faq/delete-faq?faqId=${faqId}`,
+			accessKey: true,	
+		})
+		.then((response) => {
+			$(`#faq_${faqId}`).fadeOut(300, function () {
+				$(this).remove();
+			});
+			if (faqCount === 1) {
+				_fetchPageFaqData();
+			}
+
+			_showCustomConfirm({
+				title: 'Success!',
+				message: response?.message,
+				alertType: 'success',
+				trueActionBtnText: 'OK, Thanks.',
+			});
+			_btnDisable(`deleteFaq_${faqId}`, btnText, false);
+		})
+		.catch((error) => {
+			_staffValidationCheck(error.response);
+			console.error("Error:", error);
+			if (error.status==0) {
+				_callAjaxError(() => _deleteFaqCallback(faqId), error.message); // retry if needed
+				_btnDisable(`deleteFaq_${faqId}`, btnText, false);
+			} else {
+				_actionAlert(error.message, false);
+				_btnDisable(`deleteFaq_${faqId}`, btnText, false);
+			}
+      	});
+	} catch (error) {
+		console.error("Error:", error);
+		_callCatchError(() => _deleteFaqCallback(faqId));
+		_btnDisable(`deleteFaq_${faqId}`, btnText, false);
+	}
 }

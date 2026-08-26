@@ -86,115 +86,13 @@
         <section class="service-slide-body-div">
             <div class="service-slide-body-div-in">
                 <div class="service-slider" id="indexProfessionContent">
-                    <!-- <script>
-                        _fetchIndexProfessionData();
-                    </script> -->
-                    <div class="each-services">
-                        <div class="img-div">
-                            <img src="<?php echo $websiteUrl?>/all-images/services/landscaping.png" alt="Landscaping">
-                        </div>
-
-                        <div class="text-div">
-                            <h4>Landscaping</h4>
-                        </div>
-                    </div>
-
-                    <div class="each-services">
-                        <div class="img-div">
-                            <img src="<?php echo $websiteUrl?>/all-images/services/plumbing.png" alt="Plumbing">
-                        </div>
-
-                        <div class="text-div">
-                            <h4>Plumbing</h4>
-                        </div>
-                    </div>
-
-                    <div class="each-services">
-                        <div class="img-div">
-                            <img src="<?php echo $websiteUrl?>/all-images/services/electrical.png" alt="Electrical">
-                        </div>
-
-                        <div class="text-div">
-                            <h4>Electrical</h4>
-                        </div>
-                    </div>
-
-                    <div class="each-services">
-                        <div class="img-div">
-                            <img src="<?php echo $websiteUrl?>/all-images/services/remodeling.png" alt="Remodeling">
-                        </div>
-
-                        <div class="text-div">
-                            <h4>Remodeling</h4>
-                        </div>
-                    </div>
-
-                    <div class="each-services">
-                        <div class="img-div">
-                            <img src="<?php echo $websiteUrl?>/all-images/services/roofing.png" alt="Roofing">
-                        </div>
-
-                        <div class="text-div">
-                            <h4>Roofing</h4>
-                        </div>
-                    </div>
-
-                    <div class="each-services">
-                        <div class="img-div">
-                            <img src="<?php echo $websiteUrl?>/all-images/services/painting.png" alt="Painting">
-                        </div>
-
-                        <div class="text-div">
-                            <h4>Painting</h4>
-                        </div>
-                    </div>
-
-                    <div class="each-services">
-                        <div class="img-div">
-                            <img src="<?php echo $websiteUrl?>/all-images/services/cleaning.png" alt="Cleaning">
-                        </div>
-
-                        <div class="text-div">
-                            <h4>Cleaning</h4>
-                        </div>
-                    </div>
-
-                    <div class="each-services">
-                        <div class="img-div">
-                            <img src="<?php echo $websiteUrl?>/all-images/services/window.png" alt="Windows">
-                        </div>
-
-                        <div class="text-div">
-                            <h4>Windows</h4>
-                        </div>
-                    </div>
-
-                    <div class="each-services">
-                        <div class="img-div">
-                            <img src="<?php echo $websiteUrl?>/all-images/services/concrete.png" alt="Concrete">
-                        </div>
-
-                        <div class="text-div">
-                            <h4>Concrete</h4>
-                        </div>
-                    </div>
+                    <script>
+                        _getProfessionList({
+                            pageContainer: "indexProfessionContent"
+                        })
+                    </script>
                 </div>
             </div>
-            <script>
-            $('.service-slider').slick({
-                slidesToShow: 5,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 0,
-                speed: 3000,
-                infinite: true,
-                cssEase: 'linear',
-                arrows: false,
-                pauseOnHover: false,
-                pauseOnFocus: false,
-                variableWidth: true
-            });
-            </script>
         </section>
 
         <section class="body-div net-bg-br">

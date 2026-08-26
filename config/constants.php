@@ -76,7 +76,8 @@ $userDeviceId = getBrowserId();
     var servicePixPath = websiteUrl + '/uploaded_files/services'; /// For Services Picture Path //
     var galleryPixPath = websiteUrl + '/uploaded_files/gallery'; /// For Gallery Pictures Path //
     var pagesPixPath = websiteUrl + '/uploaded_files/pagePictures'; /// For Pages Pictures Path //
-    var professionPixPath = websiteUrl + '/uploaded_files/professionImages'; /// For Profession Pictures Path //
+    var professionImagePath = websiteUrl + '/uploaded_files/professionImages'; /// For Profession Pictures Path //
+    var professionIconPath = websiteUrl + '/uploaded_files/professionIcon'; /// For Profession Icon Path //
     
     var pageCategory = {
         SERVICE: 'SERVICE',

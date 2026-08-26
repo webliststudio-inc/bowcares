@@ -50,6 +50,7 @@ function _getForm(options) {
           id,
           layer,
           action,
+          pageCategory,
           url,
         })
       );
@@ -547,4 +548,28 @@ function generalButtons(props) {
 	});
 
 	$(`#${container}`).html(template);
+}
+
+
+///// for FAQs
+function _collapse(div_id) {
+  const $currentFaq = $("#" + div_id);
+  const $currentIcon = $("#" + div_id + "num");
+  const $currentAnswer = $("#" + div_id + "answer");
+
+  $(".faq-toggle.active-faq").each(function () {
+    if (this.id !== div_id) {
+      $(this).removeClass("active-faq");
+      $(this).find(".expand-div").html('&nbsp;<i class="bi-plus"></i>&nbsp;');
+      $(this).find(".answer-div").slideUp("slow");
+    }
+  });
+
+  const isActive = $currentFaq.toggleClass("active-faq").hasClass("active-faq");
+  $currentIcon.html(
+    isActive
+      ? '&nbsp;<i class="bi-dash"></i>&nbsp;'
+      : '&nbsp;<i class="bi-plus"></i>&nbsp;',
+  );
+  $currentAnswer.slideToggle("slow");
 }

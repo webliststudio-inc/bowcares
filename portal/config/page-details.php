@@ -27,6 +27,8 @@
                             selectField({
                                 id: 'professionId',
                                 title: 'Select Gallery Category',
+                                fieldValue: useEachPageSession?.professionData?.professionId ?? '',
+                                fieldLabel: useEachPageSession?.professionData?.professionName ?? ''
                             });
                             _getSelectProfessionCategories('professionId');
                         </script>
@@ -222,10 +224,10 @@
             <div class="form-input-div full-form-input-div">
                 <div class="text-field-wrapper">
                     <div class="title">FAQ QUESTION</div>
-                    <div class="text_field_container" id="question_container">
+                    <div class="text_field_container" id="faqQuestion_container">
                         <script>
                             textField({
-                                id: 'question',
+                                id: 'faqQuestion',
                                 title: 'FAQ Question'
                             });
                         </script>
@@ -236,7 +238,7 @@
                 <script src="<?php echo $websiteUrl ?>/portal/js/TextEditor.js" referrerpolicy="origin"></script>
                 <script>
                     tinymce.init({
-                        selector: '#answer', // change this value according to your HTML
+                        selector: '#faqAnswer', // change this value according to your HTML
                         skin: $('html').hasClass('dark-mode') ? 'oxide-dark' : 'oxide',
                         content_css: $('html').hasClass('dark-mode') ? 'dark' : 'default',
                         plugins: "link, image, table"
@@ -244,13 +246,13 @@
                 </script>
 
                 <div class="page-content-back-div">
-                    <textarea class="text_area" style="width:100%;" rows="5" id="answer" title="TYPE FULL PAGE CONTENT HERE" type="text" placeholder=""></textarea>
-                    <div class="issueText" id="issue_answer"></div>
+                    <textarea class="text_area" style="width:100%;" rows="5" id="faqAnswer" title="TYPE FULL PAGE CONTENT HERE" type="text" placeholder=""></textarea>
+                    <div class="issueText" id="issue_faqAnswer"></div>
                 </div>
             </div>
 
             <div class="btn-div">
-                <button class="btn" id="saveBtn" title="Save Page" onclick="_createProductFaq();"><i class="bi-save"></i> SAVE</button>
+                <button class="btn" id="saveFaqBtn" title="Save Page Faq" onclick="_createPageFaq();"><i class="bi-save"></i> SAVE</button>
             </div>
         </div>
     </div>
@@ -259,50 +261,10 @@
         <div class="page-title">FAQ LIST</div>
         <div class="form-div full-form-input-div">
             <div class="form-input-div full-form-input-div">
-                <div class="faq-toggle-back" id="faqPageContent">
-                    <div class="product-faq-toggle" id="faq_1">
-                        <div class="title-wrapper">
-                            <div class="text-back-div">
-                                <div class="icon-div" title="Delete this question">
-                                    <i class="bi bi-trash3"></i>
-                                </div>
-
-                                <div class="title-text">
-                                    <h3>What services does BowCares provide?</h3>
-                                </div>
-                            </div>
-
-                            <div class="expand-div" id="faqNum_1">
-                                &nbsp;<i class="bi-plus"></i>&nbsp;
-                            </div>
-                        </div>
-
-                        <div class="faq-answer-div" id="faqAnswer_1">
-                            <p>BowCares provides reliable maintenance, repair, installation, remodeling, painting, and property care services for residential, commercial, and corporate properties.</p>
-                        </div>
-                    </div>
-
-                    <div class="product-faq-toggle" id="faq_1">
-                        <div class="title-wrapper">
-                            <div class="text-back-div">
-                                <div class="icon-div" title="Delete this question">
-                                    <i class="bi bi-trash3"></i>
-                                </div>
-
-                                <div class="title-text">
-                                    <h3>What services does BowCares provide?</h3>
-                                </div>
-                            </div>
-
-                            <div class="expand-div" id="faqNum_1">
-                                &nbsp;<i class="bi-plus"></i>&nbsp;
-                            </div>
-                        </div>
-
-                        <div class="faq-answer-div" id="faqAnswer_1">
-                            <p>BowCares provides reliable maintenance, repair, installation, remodeling, painting, and property care services for residential, commercial, and corporate properties.</p>
-                        </div>
-                    </div>
+                <div class="faq-toggle-back" id="pagesFaqContent">
+                    <script>
+                        _fetchPageFaqData();
+                    </script>
                 </div>
             </div>
         </div>

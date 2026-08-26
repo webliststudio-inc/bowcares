@@ -108,6 +108,8 @@ switch ($action){
 	case 'uploadProfessionImagePix':
 		$newProfessionImage = $_POST['newProfessionImage'] ?? '';
 		$professionImage = $_POST['professionImage'] ?? '';
+		$newProfessionIcon = $_POST['newProfessionIcon'] ?? '';
+		$professionIcon = $_POST['professionIcon'] ?? '';
 	
 		///// Validate SEO Flyer /////
 		if (!empty($professionImage)) {
@@ -115,12 +117,25 @@ switch ($action){
 			$professionImage = str_replace(' ', '+', $professionImage);
 			$professionImage = base64_decode($professionImage);
 		}
+
+		///// Validate SEO Flyer /////
+		if (!empty($professionIcon)) {
+    		$professionIcon = preg_replace('#^data:image/\w+;base64,#i', '', $professionIcon);
+			$professionIcon = str_replace(' ', '+', $professionIcon);
+			$professionIcon = base64_decode($professionIcon);
+		}
 		
 		$uploadProfessionImageDir = "../../uploaded_files/professionImages/";
+		$uploadProfessionIconDir = "../../uploaded_files/professionIcon/";
 		
 		//// Create Directory If Not Exists ////
 		if (!empty($newProfessionImage) && !empty($professionImage)) {
 			file_put_contents($uploadProfessionImageDir . $newProfessionImage, $professionImage);
+		}
+
+		//// Create Directory If Not Exists ////
+		if (!empty($newProfessionIcon) && !empty($professionIcon)) {
+			file_put_contents($uploadProfessionIconDir . $newProfessionIcon, $professionIcon);
 		}
     break;
 

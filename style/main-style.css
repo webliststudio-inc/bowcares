@@ -1206,9 +1206,12 @@ header .header-bottom .header-bottom-inner nav ul .mini-menu{
    font-family: sub-title-font;
    color: var(--primary-color);
    font-size: 16px;
+   text-transform: lowercase;
 }
 
-
+.service-slide-body-div .service-slide-body-div-in .service-slider .each-services .text-div h4::first-letter{
+   text-transform: capitalize;
+}
 
 
 
@@ -1279,7 +1282,8 @@ header .header-bottom .header-bottom-inner nav ul .mini-menu{
 }
 
 .service-back-div .page-service-div .icon-div{
-  top: 175px;
+  top: 185px;
+  left: 8%;
 }
 
 .service-back-div .service-div .icon-div img{
@@ -1300,7 +1304,13 @@ header .header-bottom .header-bottom-inner nav ul .mini-menu{
     color: var(--primary-color);
     font-family: sub-title-font;
     transition: all 0.2s ease-in 0.2s;
+    text-transform: lowercase;
 }
+
+.service-back-div .service-div .text-div h3::first-letter{
+    text-transform:capitalize;
+}
+
 
 .service-back-div .service-div .text-div:hover h3,
 .service-back-div .service-div .text-div h3:hover {
@@ -1310,6 +1320,13 @@ header .header-bottom .header-bottom-inner nav ul .mini-menu{
 .service-back-div .service-div .text-div p{
     font-size: 15px;
     color: var(--sub-body-color);
+    text-transform: lowercase;
+}
+
+.service-back-div .service-div .text-div p::first-letter{
+    font-size: 15px;
+    color: var(--sub-body-color);
+    text-transform:capitalize;
 }
 
 @media all and (max-width:970px) {	
