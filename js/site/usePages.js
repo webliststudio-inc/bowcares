@@ -5,14 +5,13 @@ function _getPageList(options) {
         limit = '',
         pageId = '',
 		pageContainer = '',
-		projectStageId = '',
 		categoryId = '',
-		projectCategoryId = ''
+		professionId = '',
     } = options;
 	try {
 		//// call endpoint //////
 		_callFetchEndPoints({
-			url: `site/fetch-page?pageCategory=${pageCategory}&pageId=${pageId}&limit=${limit||''}&projectStageId=${projectStageId||''}&categoryId=${categoryId||''}&projectCategoryId=${projectCategoryId||''}`,
+			url: `site/fetch-page?pageCategory=${pageCategory}&pageId=${pageId}&limit=${limit||''}&categoryId=${categoryId||''}&professionId=${professionId||''}`,
 		})
 		.then((response) => {
 			_pageListDisplay(response?.data, pageContainer);
@@ -92,10 +91,7 @@ function _indexServicesData(data, pageContainer) {
 							${item?.seoDescription?.substring(0, 90) || ''}
 							${item?.seoDescription?.length > 90 ?'...' : ''}
 						</p>
-						<div 
-							class="btn-div" 
-							id="${buttonId}"
-						></div>
+						<div class="btn-div" id="${buttonId}"></div>
 					</div>
 				</a>
 			</div>
@@ -295,7 +291,7 @@ function _pageGalleryListData(data, pageContainer) {
 	const content = data.map((item) => {
 	return `
 		<div class="gallery-card" onclick="_fetchEachGallery('${item?.pageId}');">
-			<div class="title ${item.professionNameData?.professionName}">${item.professionNameData?.professionName}</div>
+			<div class="title ${item?.professionData?.professionName}">${item?.professionData?.professionName}</div>
 			<div class="image-div">
 				<img src="${galleryPixPath}/${item?.seoFlyer}?t=${Date.now()}" alt="${item?.pageTitle}" />
 			</div>
@@ -304,7 +300,7 @@ function _pageGalleryListData(data, pageContainer) {
 				<div class="gallery-meta">
 					<div class="location"><i class="bi bi-calendar3"></i> <span>${_fetchFormatDate(item?.updatedTime)}</span>
 					</div>
-					<div class="location"><i class="bi bi-images"></i> <span>18</span></div>
+					<div class="location"><i class="bi bi-images"></i> <span>${item?.pagePicturesData?.length}</span></div>
 				</div>
 			</div>
 		</div>
@@ -499,23 +495,42 @@ function _filtersBlog(value) {
 }
 
 /// Fetch Faq List ///
-function _getFaqList(options) {
-    const {
-        pageContainer = "",
-		limit = '',
-		categoryId = ''
-    } = options;
+function _getFaqList(options = {}) {
+	const {
+		pageContainer = "",
+		limit,
+		categoryId,
+		faqKey,
+	} = options;
+
 	try {
-		//// call endpoint //////
+		///// append any option if passded ///
+		const params = new URLSearchParams();
+
+		if (limit !== undefined && limit !== null && limit !== '') {
+			params.append('limit', limit);
+		}
+
+		if (categoryId !== undefined && categoryId !== null && categoryId !== '') {
+			params.append('categoryId', categoryId);
+		}
+
+		if (faqKey !== undefined && faqKey !== null && faqKey !== '') {
+			params.append('faqKey', faqKey);
+		}
+
+		const queryString = params.toString();
+
 		_callFetchEndPoints({
-			url: `site/fetch-faq?limit=${limit}&categoryId=${categoryId||''}`,
+			url: `site/fetch-faq${queryString ? `?${queryString}` : ''}`,
 		})
 		.then((response) => {
 			_faqListDisplay(response?.data, pageContainer);
-		 })
-		 .catch((error) => {
+		})
+		.catch((error) => {
 			console.error("Error:", error);
-			if (error.status==0) {
+
+			if (error.status == 0) {
 				_showEmptyState({
 					container: pageContainer,
 					message: "Check your internet connection and try again",
@@ -529,7 +544,7 @@ function _getFaqList(options) {
 		});
 	} catch (error) {
 		console.error("Error:", error);
-  	}
+	}
 }
 
 //// Display Faq List ////
@@ -539,6 +554,9 @@ function _faqListDisplay(data, pageContainer) {
 	}
 	if (pageContainer=='faqPageContent') {
 	    _faqData(data, pageContainer);
+	}
+	if (pageContainer=='sitePagesFaqContent') {
+	    _siteFaqPagesData(data, pageContainer);
 	}
 }
 
@@ -588,6 +606,76 @@ function _faqData(data, pageContainer) {
   $(`#${pageContainer}`).html(content);
 }
 
+/// Initialize Fetch Pages Faq List ///
+function _siteFaqPagesData(data, pageContainer) {
+	const content = data.map((item, index) => {
+    return `
+      	<div class="faq-title" id="faq${index+1}">
+			<div class="inner-title-div" onclick="_collapse('faq${index+1}')">
+				<h2>${item?.faqQuestion}</h2>
+
+				<div class="expand-div" id="faq${index+1}num">
+					&nbsp;<i class="bi-plus"></i>&nbsp;
+				</div>
+			</div>
+
+			<div class="faq-answer-div" id="faq${index+1}answer" style="display: none;">
+				<p>
+					${item?.faqAnswer}
+				</p>
+			</div>
+		</div>
+    `;
+  }).join("");
+  $(`#${pageContainer}`).html(content);
+}
+
+/// Fetch Category List ///
+function _fetchProfessionTab(pageCategory, pageContainer) {
+	try {
+		//// call endpoint //////
+		_callFetchEndPoints({
+			url: `site/fetch-professions`,
+		})
+		.then((response) => {
+			let text = `
+				<button 
+					class="btn active" 
+					title="All"
+					onclick="_fetchTabPagesData('${pageCategory}', '${pageContainer}', '', '');">
+					All
+				</button>
+			`;
+			for (let i = 0; i < response?.data?.length; i++) {
+				const professionId = response?.data[i].professionId;
+				const value = response?.data[i].professionName;
+				text += `<button class="btn" title="${value}" onclick="_fetchTabPagesData('${pageCategory}', '${pageContainer}', '', '${professionId}');">${value}</button>`;
+			}
+			$('#fetchGalleryTabContnent').html(text);
+		 })
+		.catch((error) => {
+			console.error("Error:", error);
+			if (error.status==0) {
+				_showEmptyState({
+					container: 'fetchGalleryTabContnent',
+					message: "Check your internet connection and try again",
+				});
+			} else {
+				_showEmptyState({
+					container: 'fetchGalleryTabContnent',
+					message: error.message,
+				});
+			}
+		});
+	} catch (error) {
+		console.error("Error:", error);
+  	}
+}
+
+$(document).on('click', '#fetchGalleryTabContnent .btn', function () {
+	$(this).addClass('active').siblings('.btn').removeClass('active');
+});
+
 /// Fetch Category List ///
 function _fetchCategoryList(pageCategory, pageContainer) {
 	try {
@@ -596,13 +684,13 @@ function _fetchCategoryList(pageCategory, pageContainer) {
 			url: `site/fetch-information-category`,
 		})
 		.then((response) => {
-                let text = '';
-                for (let i = 0; i < response.data.length; i++) {
-                    const categoryId = response.data[i].categoryId;
-                    const value = response.data[i].categoryName;
-                    text += `<li title="${value}" onclick="_fetchTabPagesData('${pageCategory}', '${pageContainer}',  '', '${categoryId}', '');">${value}</li>`;
-				}
-        		$('#catId').html(text);
+			let text = '';
+			for (let i = 0; i < response.data.length; i++) {
+				const categoryId = response.data[i].categoryId;
+				const value = response.data[i].categoryName;
+				text += `<li title="${value}" onclick="_fetchTabPagesData('${pageCategory}', '${pageContainer}', '${categoryId}', '');">${value}</li>`;
+			}
+			$('#catId').html(text);
 		 })
 		.catch((error) => {
 			console.error("Error:", error);
@@ -624,7 +712,7 @@ function _fetchCategoryList(pageCategory, pageContainer) {
 }
 
 //// Fetch Tab Pages Data ///
-function _fetchTabPagesData(pageCategory, pageContainers, projectStageId, categoryId, projectCategoryId) {
+function _fetchTabPagesData(pageCategory, pageContainers, categoryId, professionId) {
     pageContainers.split(',').forEach(function(pageContainer){
         pageContainer = pageContainer.trim();
 
@@ -634,57 +722,45 @@ function _fetchTabPagesData(pageCategory, pageContainers, projectStageId, catego
             </div>
         `);
 
-        if (pageCategory == 'FAQ') {
-            _getFaqList({
-                pageContainer: pageContainer,
-                categoryId: categoryId
-            });
+		if (pageCategory === "FAQ") {
+			_getFaqList({
+				pageContainer: pageContainer,
+				categoryId: categoryId,
+			});
         } else {
             _getPageList({
                 pageCategory: pageCategory,
                 pageContainer: pageContainer,
-                projectStageId: projectStageId,
-                categoryId: categoryId,
-                projectCategoryId: projectCategoryId
+				categoryId: categoryId,
+				professionId: professionId,
             });
         }
     });
 }
 
-/// Fetch Index Profession Data ///
-function _fetchIndexProfessionData() {
+//// Fetch Profession List/////
+function _getProfessionList(options) {
+    const {
+        pageContainer = "",
+    } = options;
 	try {
 		//// call endpoint //////
 		_callFetchEndPoints({
-			url: `site/fetch-information-category`,
+			url: `site/fetch-professions`,
 		})
 		.then((response) => {
-			let text = '';
-			for (let i = 0; i < response?.data?.length; i++) {
-				text += `
-				<div class="each-services">
-					<div class="img-div">
-						<img src="${professionPixPath}/${data?.professionImage}?t=${new Date().getTime()}"
-						alt="${data?.professionName}">
-					</div>
-
-					<div class="text-div">
-						<h4>${data?.professionName}</h4>
-					</div>
-				</div>`
-			}
-			$('#indexProfessionContent').html(text);
+			_professionListDisplay(response?.data, pageContainer);
 		 })
-		.catch((error) => {
+		 .catch((error) => {
 			console.error("Error:", error);
 			if (error.status==0) {
 				_showEmptyState({
-					container: 'indexProfessionContent',
+					container: pageContainer,
 					message: "Check your internet connection and try again",
 				});
 			} else {
 				_showEmptyState({
-					container: 'indexProfessionContent',
+					container: pageContainer,
 					message: error.message,
 				});
 			}
@@ -692,4 +768,91 @@ function _fetchIndexProfessionData() {
 	} catch (error) {
 		console.error("Error:", error);
   	}
+}
+
+//// Display Profession List ////
+function _professionListDisplay(data, pageContainer) {
+    if (pageContainer=='indexProfessionContent') {
+	    _indexProfessionData(data, pageContainer);
+	}
+	if (pageContainer=='pagesProfessionContent') {
+	    _pagesProfessionData(data, pageContainer);
+	}
+}
+
+/// Fetch Index Profession Data////
+function _indexProfessionData(data, pageContainer) {
+	const content = data.map((item) => {
+    return `
+      	<div class="each-services" title="${item?.professionName}">
+			<div class="img-div">
+				<img src="${professionIconPath}/${item?.professionIcon}?t=${new Date().getTime()}"
+				alt="${item?.professionName}">
+			</div>
+
+			<div class="text-div">
+				<h4>${item?.professionName}</h4>
+			</div>
+		</div>
+    `;
+  }).join("");
+	$(`#${pageContainer}`).html(content);
+	$('.service-slider').slick({
+		slidesToShow: 5,
+		slidesToScroll: 1,
+		autoplay: true,
+		autoplaySpeed: 0,
+		speed: 3000,
+		infinite: true,
+		cssEase: 'linear',
+		arrows: false,
+		pauseOnHover: false,
+		pauseOnFocus: false,
+		variableWidth: true
+	});
+}
+
+/// Fetch Pages Profession Data////
+function _pagesProfessionData(data, pageContainer) {
+	const content = data.map((item, index) => {
+	const buttonId = `servicePageBtn_${index}`;
+
+		return `
+      	<div class="cg-carousel__slide js-carousel__slide" data-aos="fade-left" data-aos-duration="1200">
+			<div class="service-div page-service-div">
+				<div class="image-div">
+					<img src="${professionImagePath}/${item?.professionImage}?t=${new Date().getTime()}" alt="${item?.professionName}" />
+				</div>
+
+				<div class="icon-div">
+					<img src="${professionIconPath}/${item?.professionIcon}?t=${new Date().getTime()}"
+						alt="${item?.professionName}">
+				</div>
+
+				<div class="text-div">
+					<h3>${item?.professionName}</h3>
+					<p>${item?.professionDescription?.substring(0, 120)}...</p>
+
+					<div class="btn-div" id="${buttonId}"></div>
+				</div>
+			</div>
+		</div>
+    `;
+  }).join("");
+	$(`#${pageContainer}`).html(content);
+	_call_carousel(1);
+	
+	// Then inject the buttons
+	data.forEach((item, index) => {
+		generalButtons({
+			container: `servicePageBtn_${index}`,
+			buttons: [{
+				text: "Request Service Now",
+				icon: "bi bi-arrow-right-circle",
+				width: "btn-full",
+				iconPosition: "right",
+				link: `${websiteUrl}/request-service`
+			}]
+		});
+	});
 }

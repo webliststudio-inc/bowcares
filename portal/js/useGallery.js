@@ -1,28 +1,3 @@
-/// Get Select Project Stages ///
-function _getSelectProjectStages(fieldId) {
-	try {
-		//// call endpoint //////
-		_callFetchEndPoints({
-			url: `preset-data/fetch-project-stages?statusId=1`,
-			accessKey: true,
-		})
-		.then((response) => {
-			for (let i = 0; i < response.data.length; i++) {
-				const id = response.data[i].projectStageId;
-				const value = response.data[i].projectStageName;
-				$('#searchList_'+ fieldId).append('<li onclick="_clickOption(\'searchList_' + fieldId + '\', \'' + id + '\', \'' + value + '\');">'+ value +'</li>');
-			}				
-		 })
-		.catch((error) => {
-			_staffValidationCheck(error.response);
-			console.error("Error:", error);
-		});
-	} catch (error) {
-		console.error("Error:", error);
-		_actionAlert('An unexpected error occurred. Please try again.', false);
-  	}
-}
-
 /// Get Select Profession Categories ///
 function _getSelectProfessionCategories(fieldId) {
 	try {
@@ -92,20 +67,20 @@ function _fetchGalleryData() {
 function _renderGalleryData(data) {
   return data.map((item) => `
   	<div class="grid-div">
-		<div class="status-div ${item.professionNameData?.professionName}">${item.professionNameData?.professionName}</div>
+		<div class="status-div ${item?.professionData?.professionName}">${item?.professionData?.professionName}</div>
 		<div class="img-div">
-			<img src="${galleryPixPath}/${item.seoFlyer}?t=${Date.now()}" alt="${item.pageTitle}" />
+			<img src="${galleryPixPath}/${item?.seoFlyer}?t=${Date.now()}" alt="${item?.pageTitle}" />
 		</div>
 		<div class="text-div">
 			<div class="text-in">
-				<div class="text">UPDATED ON: <span>${_fetchFormatDate(item.updatedTime)}</span></div>
-				<div class="other-status ${item.statusData?.statusName}">${item.statusData?.statusName}</div>
+				<div class="text">UPDATED ON: <span>${_fetchFormatDate(item?.updatedTime)}</span></div>
+				<div class="other-status ${item?.statusData?.statusName}">${item?.statusData?.statusName}</div>
 			</div>
-			<h2 title="${item.pageTitle}" onclick="_fetchEachPageContent('${item.pageCategory}', '${item.pageId}');">${item.pageTitle}</h2>
-			<p>${item.seoDescription}</p>  
+			<h2 title="${item?.pageTitle}" onclick="_fetchEachPageContent('${item?.pageCategory}', '${item?.pageId}');">${item?.pageTitle}</h2>
+			<p>${item?.seoDescription}</p>  
 			<div class="bottom-content">
-				<div class="category"><i class="bi bi-images"></i> <span>13</span></div>
-				<div class="location"><i class="bi bi-geo-alt"></i> <span>${item.location}</span></div>
+				<div class="category"><i class="bi bi-images"></i> <span>${item?.pagePicturesData?.length}</span></div>
+				<div class="location"><i class="bi bi-geo-alt"></i> <span>${item?.location}</span></div>
 			</div>
 		</div>
 	</div>`).join("");

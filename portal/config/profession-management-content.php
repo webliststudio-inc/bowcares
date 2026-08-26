@@ -182,7 +182,7 @@
 
                     <script>
                         $(document).ready(function() {
-                            const professionImage = useEachProfessionSession?.professionImage ? professionPixPath + "/" + useEachProfessionSession.professionImage + '?t=' + new Date().getTime() : "<?php echo $websiteUrl ?>/uploaded_files/professionImages/defaults.png";
+                            const professionImage = useEachProfessionSession?.professionImage ? professionImagePath + "/" + useEachProfessionSession.professionImage + '?t=' + new Date().getTime() : "<?php echo $websiteUrl ?>/uploaded_files/professionImages/defaults.png";
                             $("#professionImagePreview").attr("src", professionImage).attr("alt", useEachProfessionSession?.professionName + " Image");
                         });
                     </script>
@@ -216,7 +216,7 @@
 
                     <script>
                         $(document).ready(function() {
-                            const professionIcon = useEachProfessionSession?.professionIcon ? professionPixPath + "/" + useEachProfessionSession.professionIcon + '?t=' + new Date().getTime() : "<?php echo $websiteUrl ?>/uploaded_files/professionImages/defaults.png";
+                            const professionIcon = useEachProfessionSession?.professionIcon ? professionIconPath + "/" + useEachProfessionSession.professionIcon + '?t=' + new Date().getTime() : "<?php echo $websiteUrl ?>/uploaded_files/professionImages/defaults.png";
                             $("#professionIconPreview").attr("src", professionIcon).attr("alt", useEachProfessionSession?.professionName + " Image");
                         });
                     </script>

@@ -205,12 +205,18 @@
                         </script>
                     </h2>
                     <div class="info-wrapper">
-                        <div class="title">Plumbing</div>
+                        <div class="title" id="galleryCategory">
+                            <script>
+                            $("#galleryCategory").html(getEachGalleySessionData?.professionData?.professionName);
+                        </script></div>
                         <div class="info"><i class="bi bi-calendar3"></i> <span id="craetedDate">
                             <script>
                             $("#craetedDate").html(_fetchFormatDate(getEachGalleySessionData?.updatedTime));
                         </script></span></div>
-                        <div class="info"><i class="bi bi-images"></i> <span>18</span></div>
+                        <div class="info"><i class="bi bi-images"></i> <span id="galleryCount">
+                            <script>
+                            $("#galleryCount").html(getEachGalleySessionData?.pagePicturesData?.length);
+                        </script></span></div>
                     </div>
                     <p id="galleryDescription">
                         <script>
@@ -253,7 +259,9 @@
                                 <div class="list-content-wrapper">
                                     <div class="list-content-div"> 
                                         <div>Category</div>
-                                        <span>Plumbing</span>
+                                        <span id="infoGalleryCategory"><script>
+                                            $("#infoGalleryCategory").html(getEachGalleySessionData?.professionData?.professionName);
+                                        </script></span>
                                     </div>
 
                                     <div class="list-content-div"> 
@@ -265,7 +273,9 @@
 
                                     <div class="list-content-div"> 
                                         <div>Location</div>
-                                        <span>Texas, USA</span>
+                                        <span id="location"><script>
+                                            $("#location").html(getEachGalleySessionData?.location);
+                                        </script></span>
                                     </div>
                                 </div>
                             </div>

@@ -56,6 +56,7 @@ function _addAndUpdateProfession() {
 		const professionDescription = $('#professionDescription').val()?.trim().replace(/['’]/g, '');
 		const statusId = $('#statusId').val().trim();
 		const professionImage = $("#professionImage").prop("files")[0];
+		const professionIcon = $("#professionIcon").prop("files")[0];
 
 		///// empty field validation //////////
 		issueCount += _validateEmptyValue("professionName", "PROFESSION NAME");
@@ -64,11 +65,22 @@ function _addAndUpdateProfession() {
 
 		if (!useEachProfessionSession){
 			if (!professionImage) {
-				$("#issues_professionImage").html("IMAGE IS REQUIRED").fadeIn();
+				$("#issues_professionImage").html("PROFESSION IMAGE IS REQUIRED").fadeIn();
 				$("#issueBorder").addClass("issue-border");
 				issueCount ++
 			} else {
 				$("#issues_professionImage").html("");
+				$("#issueBorder").removeClass("issue-border");
+			}
+		}
+
+		if (!useEachProfessionSession){
+			if (!professionIcon) {
+				$("#issues_professionIcon").html("PROFESSION ICON IS REQUIRED").fadeIn();
+				$("#issueBorder").addClass("issue-border");
+				issueCount ++
+			} else {
+				$("#issues_professionIcon").html("");
 				$("#issueBorder").removeClass("issue-border");
 			}
 		}
@@ -120,8 +132,9 @@ function _saveAddAndUpdateProfessionCallback(formData) {
 	.then((response) => {
 		const message = response?.message;
 		const newProfessionImage = response?.data?.professionImage;
+		const newProfessionIcon = response?.data?.professionIcon;
 
-		_uploadProfessionImage(newProfessionImage, message, btnText);
+		_uploadProfessionImage(newProfessionImage, newProfessionIcon, message, btnText);
 	})
 	.catch((error) => {
 		_staffValidationCheck(error.response);
@@ -144,15 +157,22 @@ function _saveAddAndUpdateProfessionCallback(formData) {
 }
 
 //// Upload Profession Image ////
-function _uploadProfessionImage(newProfessionImage, message, btnText) {
-	var professionImage = document.getElementById("professionImagePreview").src;
+function _uploadProfessionImage(newProfessionImage, newProfessionIcon, message, btnText) {
+	var professionImage = document.getElementById("professionImagePreview")?.src || "";
+	var professionIcon = document.getElementById("professionIconPreview")?.src || "";
 
-	// Only proceed if it's a NEW image (base64)
-    if (!professionImage.startsWith("data:image")) {
-        _showCustomConfirm({
+	var isNewProfessionImage = professionImage.startsWith("data:image");
+	var isNewProfessionIcon = professionIcon.startsWith("data:image");
+
+	// Nothing new to upload
+	if (!isNewProfessionImage && !isNewProfessionIcon) {
+		_showCustomConfirm({
 			callback: () => {
 				_alertClose();
-				_getPage({page: 'professionManagement', url: portalMiddleWareUrl});
+				_getPage({
+					page: 'professionManagement',
+					url: portalMiddleWareUrl
+				});
 			},
 			title: 'Success!',
 			message: message,
@@ -160,14 +180,24 @@ function _uploadProfessionImage(newProfessionImage, message, btnText) {
 			trueActionBtnText: 'OK, Thanks.',
 			closeOnOverlayClick: false,
 		});
-		_btnDisable("submitBtn", btnText, false);
-        return;
-    }
 
-    const formData = new FormData();
-    formData.append("action", "uploadProfessionImagePix");
-    formData.append("newProfessionImage", newProfessionImage);
-    formData.append("professionImage", professionImage);
+		_btnDisable("submitBtn", btnText, false);
+		return;
+	}
+
+	const formData = new FormData();
+	formData.append("action", "uploadProfessionImagePix");
+	// Only send profession image if a NEW image was selected
+	if (isNewProfessionImage) {
+		formData.append("newProfessionImage", newProfessionImage);
+		formData.append("professionImage", professionImage);
+	}
+
+	// Only send profession icon if a NEW icon was selected
+	if (isNewProfessionIcon) {
+		formData.append("newProfessionIcon", newProfessionIcon);
+		formData.append("professionIcon", professionIcon);
+	}
 
 	_callFileEndPoints({
 		url: portalMiddleWareUrl,
@@ -178,7 +208,10 @@ function _uploadProfessionImage(newProfessionImage, message, btnText) {
 		_showCustomConfirm({
 			callback: () => {
 				_alertClose();
-				_getPage({page: 'professionManagement', url: portalMiddleWareUrl});
+				_getPage({
+					page: 'professionManagement',
+					url: portalMiddleWareUrl
+				});
 			},
 			title: 'Success!',
 			message: message,
@@ -186,12 +219,21 @@ function _uploadProfessionImage(newProfessionImage, message, btnText) {
 			trueActionBtnText: 'OK, Thanks.',
 			closeOnOverlayClick: false,
 		});
+
 		_btnDisable("submitBtn", btnText, false);
 	})
 	.catch((error) => {
 		console.error("Error:", error);
-		_callAjaxError(() => _uploadProfessionImage(newProfessionImage, message, btnText), error.message);
-    });
+		_callAjaxError(
+			() => _uploadProfessionImage(
+				newProfessionImage,
+				newProfessionIcon,
+				message,
+				btnText
+			),
+			error.message
+		);
+	});
 }
 
 /// Fetch Profession Data ////
@@ -244,20 +286,18 @@ function _renderProfessionData(data) {
 			<div class="service-div">
 				<div class="status-div ${item.statusData?.statusName}">${item.statusData?.statusName}</div>
 				<div class="image-div">
-					<img src="${websiteUrl}/uploaded_files/gallery/Electrician-Installing.jpeg"
-                                alt="${item?.professionName}" />
+					<img src="${professionImagePath}/${item?.professionImage}?t=${new Date().getTime()}" alt="${item?.professionName}" />
 				</div>
 
 				<div class="service-icon-div">
-					<img src="${professionPixPath}/${item?.professionImage}?t=${new Date().getTime()}"
+					<img src="${professionIconPath}/${item?.professionIcon}?t=${new Date().getTime()}"
 						alt="${item?.professionName}">
 				</div>
 
 				<div class="text-div">
 					<h3>${item?.professionName}</h3>
 					<p>
-						${item?.professionDescription?.substring(0, 80) || ''}
-						${item?.professionDescription?.length > 80 ? '...' : ''}
+						${item?.professionDescription?.substring(0, 80)}...
 					</p>
 
 					<div class="btn-div">
