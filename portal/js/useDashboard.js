@@ -124,13 +124,6 @@ function _staffValidationCheck(code) {
   }
 }
 
-function _userRoleCheck(){
-	$('.switch input').on('change', function () {
-		const label = $(this).next().next(); // Grab the toggle-label span
-		label.text($(this).prop('checked') ? 'Yes' : 'No');
-	});
-}
-
 //// Get Status Preset Data ////
 function _getSelectStatusId(fieldId, statusIds) {
 	try {

@@ -1,11 +1,3 @@
-//// User Role Check /////
-function _userRoleCheck(){
-	$('.switch input').on('change', function () {
-		const label = $(this).next().next(); // Grab the toggle-label span
-		label.text($(this).prop('checked') ? 'Yes' : 'No');
-	});
-}
-
 //// Fetch Role Permissions /////
 function _fetchRolePermissions() {
 	let getEachRoleDetails = JSON.parse(sessionStorage.getItem("getEachRoleDetails"));

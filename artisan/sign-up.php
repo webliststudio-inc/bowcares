@@ -126,135 +126,11 @@
 
                                         <div class="permission-toggle-div">
                                             <div class="toggle-title">Available Professions</div>
-                                            <div class="fetch-toggle" id="professionToggle">
-                                                <div class="each-toggle-div">
-                                                    <span>Carpentry</span>
-                                                    <label for="profession_1" class="switch">
-                                                        <input type="checkbox" class="child profession-checkbox"
-                                                            id="profession_1" name="professionId[]" data-value="1">
-                                                        <span class="slider"></span>
-                                                        <span class="toggle-label">No</span>
-                                                    </label>
-                                                </div>
+                                            <div class="fetch-toggle" id="professionToggleContent">
+                                                <script>_fetchProfessionToggle();</script>
 
-                                                <div class="each-toggle-div">
-                                                    <span>Plumbing</span>
-                                                    <label for="profession_2" class="switch">
-                                                        <input type="checkbox" class="child profession-checkbox"
-                                                            id="profession_2" name="professionId[]" data-value="2">
-                                                        <span class="slider"></span>
-                                                        <span class="toggle-label">No</span>
-                                                    </label>
-                                                </div>
-
-                                                <div class="each-toggle-div">
-                                                    <span>Electrical</span>
-                                                    <label for="profession_3" class="switch">
-                                                        <input type="checkbox" class="child profession-checkbox"
-                                                            id="profession_3" name="professionId[]" data-value="3">
-                                                        <span class="slider"></span>
-                                                        <span class="toggle-label">No</span>
-                                                    </label>
-                                                </div>
-
-                                                <div class="each-toggle-div">
-                                                    <span>HVAC Technician</span>
-                                                    <label for="profession_4" class="switch">
-                                                        <input type="checkbox" class="child profession-checkbox"
-                                                            id="profession_4" name="professionId[]" data-value="4">
-                                                        <span class="slider"></span>
-                                                        <span class="toggle-label">No</span>
-                                                    </label>
-                                                </div>
-
-                                                <div class="each-toggle-div">
-                                                    <span>Painting</span>
-                                                    <label for="profession_5" class="switch">
-                                                        <input type="checkbox" class="child profession-checkbox"
-                                                            id="profession_5" name="professionId[]" data-value="5">
-                                                        <span class="slider"></span>
-                                                        <span class="toggle-label">No</span>
-                                                    </label>
-                                                </div>
-
-                                                <div class="each-toggle-div">
-                                                    <span>Roofing</span>
-                                                    <label for="profession_6" class="switch">
-                                                        <input type="checkbox" class="child profession-checkbox"
-                                                            id="profession_6" name="professionId[]" data-value="6">
-                                                        <span class="slider"></span>
-                                                        <span class="toggle-label">No</span>
-                                                    </label>
-                                                </div>
-
-                                                <div class="each-toggle-div">
-                                                    <span>Welding</span>
-                                                    <label for="profession_7" class="switch">
-                                                        <input type="checkbox" class="child profession-checkbox"
-                                                            id="profession_7" name="professionId[]" data-value="7">
-                                                        <span class="slider"></span>
-                                                        <span class="toggle-label">No</span>
-                                                    </label>
-                                                </div>
-
-                                                <div class="each-toggle-div">
-                                                    <span>Masonry</span>
-                                                    <label for="profession_8" class="switch">
-                                                        <input type="checkbox" class="child profession-checkbox"
-                                                            id="profession_8" name="professionId[]" data-value="8">
-                                                        <span class="slider"></span>
-                                                        <span class="toggle-label">No</span>
-                                                    </label>
-                                                </div>
-
-                                                <div class="each-toggle-div">
-                                                    <span>Flooring Installation</span>
-                                                    <label for="profession_9" class="switch">
-                                                        <input type="checkbox" class="child profession-checkbox"
-                                                            id="profession_9" name="professionId[]" data-value="9">
-                                                        <span class="slider"></span>
-                                                        <span class="toggle-label">No</span>
-                                                    </label>
-                                                </div>
-
-                                                <div class="each-toggle-div">
-                                                    <span>Appliance Repair</span>
-                                                    <label for="profession_10" class="switch">
-                                                        <input type="checkbox" class="child profession-checkbox"
-                                                            id="profession_10" name="professionId[]" data-value="10">
-                                                        <span class="slider"></span>
-                                                        <span class="toggle-label">No</span>
-                                                    </label>
-                                                </div>
-
-                                                <div class="each-toggle-div">
-                                                    <span>Handyman Services</span>
-                                                    <label for="profession_11" class="switch">
-                                                        <input type="checkbox" class="child profession-checkbox"
-                                                            id="profession_11" name="professionId[]" data-value="11">
-                                                        <span class="slider"></span>
-                                                        <span class="toggle-label">No</span>
-                                                    </label>
-                                                </div>
-
-                                                <div class="each-toggle-div">
-                                                    <span>Landscaping</span>
-                                                    <label for="profession_12" class="switch">
-                                                        <input type="checkbox" class="child profession-checkbox"
-                                                            id="profession_12" name="professionId[]" data-value="12">
-                                                        <span class="slider"></span>
-                                                        <span class="toggle-label">No</span>
-                                                    </label>
-                                                </div>
-
-                                                <div class="each-toggle-div">
-                                                    <span>Drywall Installation</span>
-                                                    <label for="profession_13" class="switch">
-                                                        <input type="checkbox" class="child profession-checkbox"
-                                                            id="profession_13" name="professionId[]" data-value="13">
-                                                        <span class="slider"></span>
-                                                        <span class="toggle-label">No</span>
-                                                    </label>
+                                                <div class="content-loading-div">
+                                                    <img src="<?php echo $websiteUrl ?>/all-images/images/spinner.gif" alt="Loading" />
                                                 </div>
                                             </div>
                                         </div>
@@ -272,9 +148,6 @@
                 </div>
             </div>
         </div>
-        <script>
-            _userRoleCheck();
-        </script>
     </section>
 
     <?php include 'bottom-scripts.php'?>

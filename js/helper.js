@@ -77,3 +77,11 @@ function thousandSeperator(val) {
   //   return formatter.format(val);
   return isNaN(parseFloat(formatter.format(val))) ? "-" : formatter.format(val);
 }
+
+//// User Role Check /////
+function _userRoleCheck(){
+	$('.switch input').on('change', function () {
+		const label = $(this).next().next(); // Grab the toggle-label span
+		label.text($(this).prop('checked') ? 'Yes' : 'No');
+	});
+}
