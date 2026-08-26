@@ -5010,6 +5010,14 @@ header .header-bottom .header-bottom-inner nav ul .mini-menu{
   gap: 15px;
 }
 
+.permission-form-back-div .issue-text{
+	color: #f00;
+	font-family: body-font;
+	font-size: 10px;
+	font-style: italic;
+  display: none;
+}
+
 .permission-form-back-div .title-div {
   display: flex;
   flex-direction: column;

@@ -74,6 +74,15 @@
                                         </script>
                                     </div>
 
+                                    <div class="text_field_container" id="phoneNumber_container">
+                                        <script>
+                                        textField({
+                                            id: 'phoneNumber',
+                                            title: 'Mobile Number',
+                                        });
+                                        </script>
+                                    </div>
+
                                     <div class="text_field_container" id="emailAddress_container">
                                         <script>
                                         textField({
@@ -83,10 +92,10 @@
                                         </script>
                                     </div>
 
-                                    <div class="text_field_container" id="password_container">
+                                    <div class="text_field_container" id="createPassword_container">
                                         <script>
                                         textField({
-                                            id: 'password',
+                                            id: 'createPassword',
                                             title: 'Create Password',
                                             type: 'password'
                                         });
@@ -97,7 +106,7 @@
                                         <script>
                                         textField({
                                             id: 'confirmPassword',
-                                            title: 'Confirm New Password',
+                                            title: 'Confirm Password',
                                             type: 'password'
                                         });
                                         </script>
@@ -134,13 +143,14 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="issue-text" id="issues_professionToggle"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="btn-div">
-                            <button class="btn" id="" title="Sign Up"
+                            <button class="btn" id="signUpBtn" title="Sign Up"
                                 onclick="window.location.href = artisanVerificationUrl;">Sign Up<i
                                     class="bi-check"></i></button>
                         </div>
