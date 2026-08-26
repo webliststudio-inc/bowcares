@@ -4198,7 +4198,7 @@ header .header-bottom .header-bottom-inner nav ul .mini-menu{
 	margin:12px;
 	height:13px;
 	color: var(--text-white);
-	font-size:12px;
+	font-size:11px;
 	font-family: sub-title-font;
 	background: var(--active-color);
 	border-radius: 5px 20px;
@@ -4342,6 +4342,11 @@ header .header-bottom .header-bottom-inner nav ul .mini-menu{
   box-shadow: 0 2px 6px rgba(0,0,0,.04);
   white-space: nowrap;
   transition: all .2s ease;
+  text-transform: lowercase;
+}
+
+.gallery-btn-nav .btn::first-letter{
+  text-transform: capitalize;
 }
 
 .gallery-btn-nav .active{
@@ -5080,6 +5085,15 @@ header .header-bottom .header-bottom-inner nav ul .mini-menu{
   font-family: body-font;
   font-size: 13px;
   color: var(--text-color);
+  text-transform: lowercase;
+}
+
+.permission-form-back-div
+  .permission-toggle-div
+  .fetch-toggle
+  .each-toggle-div
+  span::first-letter {
+  text-transform: capitalize;
 }
 
 .permission-form-back-div
