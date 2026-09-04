@@ -77,7 +77,8 @@ function otpField(options) {
     inputs += `
       <input
         class="otp_text_field"
-        type="number"
+        type="text"
+        inputmode="numeric"
         maxlength="1"
         data-index="${i}"
         ${onKeyPressFunction ? `onkeypress="${onKeyPressFunction}"` : ''}

@@ -127,7 +127,7 @@
 
                     <div class="form-wrapper">
                         <div id="page-content" data-aos="fade-in" data-aos-duration="1200">
-                            <?php include $websitePath . '/artisan/config/content-page.php'; ?>
+                            <?php include $websitePath . '/artisan/config/page-content.php'; ?>
                         </div>
 
                         <script>

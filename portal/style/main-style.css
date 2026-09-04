@@ -4287,7 +4287,7 @@ main {
 	font-size: 17px;
 }
 .user-profile-div .form-title-div .title-div h3 {
-  	color: var(--primary-color);
+  	color: var(--text-title-color);
 }
 .user-profile-div .form-title-div .btn-div {
 	display: flex;
@@ -4443,7 +4443,7 @@ main {
 
 .user-profile-div .profile-content-div .bg-img .mini-profile .text-back-div .inner-text .text-div .name{ 
     overflow: hidden;
-    color:  var(--sub-body-color);
+    color: var(--text-title-color);
     font-size: 25px;
     font-family: title-font;
 }
@@ -5286,7 +5286,7 @@ main {
 .artisan-statistics-text h4{
     font-size:15px;
 	font-family: sub-title-font;
-    color:#2d3748;
+    color:var(--text-title-color);
 }
 
 .artisan-statistics-text span{
@@ -5299,7 +5299,7 @@ main {
     font-size:25px;
 	line-height:30px;
 	font-family: title-font;
-    color:#0f172a;
+    color:var(--text-title-color);
 }
 
 
@@ -5553,7 +5553,7 @@ main {
     font-size:18px;
 	font-family: sub-title-font;
 	line-height:25px;
-    color:#1e293b;
+    color:var(--text-title-color);
 }
 
 .task-container .task-card .task-card-top .task-details .content .task-id{
@@ -5800,7 +5800,7 @@ main {
   min-height: 700px;
   display: flex;
   flex-direction: column;
-  border: 1px solid rgba(215, 215, 215, 0.6);
+  border: 1px solid var(--general-border-color);
   border-radius: 8px;
 }
 
@@ -5813,7 +5813,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(215, 215, 215, 0.6);
+  border-bottom: 1px solid var(--general-border-color);
 }
 
 .content-wrapper .header-div .title-nav-back-div {
