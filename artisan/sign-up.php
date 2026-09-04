@@ -39,123 +39,23 @@
             </header>
 
             <div class="form-back-div" data-aos="fade-in" data-aos-duration="1200">
-                <div class="form-div">
-                    <div class="top-div">
-                        <h1>🚀 Start Your Artisan Journey</h1>
-                        <p>Register today and grow your career with BowCare Maintenance Services.</p>
-                    </div>
-
-                    <div class="inner-form">
-                        <div class="main-content-div artisan-main-content-div">
-                            <div class="pages-tables-content-div form-main-content">
-                                <div class="content-title">
-                                    <div class="title">
-                                        <i class="bi bi-person-fill-add"></i>
-                                        <p>Create Account</p>
-                                    </div>
-                                </div>
-
-                                <div class="form-container">
-                                    <div class="text_field_container" id="firstName_container">
-                                        <script>
-                                        textField({
-                                            id: 'firstName',
-                                            title: 'First Name',
-                                        });
-                                        </script>
-                                    </div>
-
-                                    <div class="text_field_container" id="lastName_container">
-                                        <script>
-                                        textField({
-                                            id: 'lastName',
-                                            title: 'Last Name',
-                                        });
-                                        </script>
-                                    </div>
-
-                                    <div class="text_field_container" id="phoneNumber_container">
-                                        <script>
-                                        textField({
-                                            id: 'phoneNumber',
-                                            title: 'Mobile Number',
-                                        });
-                                        </script>
-                                    </div>
-
-                                    <div class="text_field_container" id="emailAddress_container">
-                                        <script>
-                                        textField({
-                                            id: 'emailAddress',
-                                            title: 'Email Address',
-                                        });
-                                        </script>
-                                    </div>
-
-                                    <div class="text_field_container" id="createPassword_container">
-                                        <script>
-                                        textField({
-                                            id: 'createPassword',
-                                            title: 'Create Password',
-                                            type: 'password'
-                                        });
-                                        </script>
-                                    </div>
-
-                                    <div class="text_field_container" id="confirmPassword_container">
-                                        <script>
-                                        textField({
-                                            id: 'confirmPassword',
-                                            title: 'Confirm Password',
-                                            type: 'password'
-                                        });
-                                        </script>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="main-content-div artisan-main-content-div">
-                            <div class="pages-tables-content-div form-main-content">
-                                <div class="content-title">
-                                    <div class="title">
-                                        <i class="bi bi-tools"></i>
-                                        <p>Toggle Professions</p>
-                                    </div>
-                                </div>
-
-                                <div class="form-container">
-                                    <div class="permission-form-back-div">
-                                        <div class="title-div">
-                                            <p>Use the toggles below to enable or disable artisan professions. Switching
-                                                to "Yes" makes
-                                                the profession available for artisan registration and job assignments.
-                                            </p>
-                                        </div>
-
-                                        <div class="permission-toggle-div">
-                                            <div class="toggle-title">Available Professions</div>
-                                            <div class="fetch-toggle" id="professionToggleContent">
-                                                <script>_fetchProfessionToggle();</script>
-
-                                                <div class="content-loading-div">
-                                                    <img src="<?php echo $websiteUrl ?>/all-images/images/spinner.gif" alt="Loading" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="issue-text" id="issues_professionToggle"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="btn-div">
-                            <button class="btn" id="signUpBtn" title="Sign Up"
-                                onclick="window.location.href = artisanVerificationUrl;">Sign Up<i
-                                    class="bi-check"></i></button>
-                        </div>
-                    </div>
+                <div id="page-content">
+                    <?php include $websitePath . '/artisan/config/page-content.php'; ?>
                 </div>
+
+                <script>
+                    $(document).ready(function () {
+                        let savedPage = sessionStorage.getItem("currentSignUpPage") ?? "artisanSignUpPage";
+
+                        _getPage({
+                            page: savedPage,
+                            url: artisanMiddleWareUrl
+                        });
+                        savedPage === "signUpotpVerificationPage"
+                        ? $(".form-back-div").addClass("center-content")
+                        : $(".form-back-div").removeClass("center-content");
+                    });
+                </script>
             </div>
         </div>
     </section>
