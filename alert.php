@@ -39,24 +39,22 @@
         <span>Home</span>
     </a>
 
-        <div class="cta-wrapper">
-            <a href="#" class="bottom-nav-cta">
-                <span class="cta-icon">
-                    <i class="bi bi-briefcase-fill"></i>
-                </span>
-            </a>
-
-            <span class="cta-text">
-                Join Our Team
+    <div class="cta-wrapper">
+        <a href="<?php echo $websiteUrl ?>/artisan/sign-up" class="bottom-nav-cta">
+            <span class="cta-icon">
+                <i class="bi bi-briefcase-fill"></i>
             </span>
-        </div>
-    
+        </a>
 
+        <span class="cta-text">
+            Join Our Team
+        </span>
+    </div>
+    
     <a href="tel:+1 (510) 479-1822" class="bottom-nav-item">
         <i class="bi bi-telephone-fill"></i>
         <span>Call Us</span>
     </a>
-
 </div>
 
 <div class="sidenavdiv">
@@ -207,7 +205,7 @@
             </div>
 
             <div class="alert-menu-buttons">
-                <a href="<?php echo $websiteUrl; ?>"
+                <a href="<?php echo $websiteUrl; ?>/request-service"
                 class="get-started-btn">
                     <i class="bi bi-arrow-right-circle"></i>
                     <span>Get Started</span>

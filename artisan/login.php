@@ -12,7 +12,7 @@
     <?php include 'alert.php' ?>
     <div class="mobile-header">
         <div class="inner-div">
-            <a href="<?php echo $websiteUrl ?>/training">
+             <a href="<?php echo $websiteUrl?>">
                 <div class="logo">
                     <img src="<?php echo $websiteUrl ?>/all-images/images/logo.png" alt="Logo">
                 </div>
