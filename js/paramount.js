@@ -263,14 +263,26 @@ function _validateEmail(fieldId, fieldName) {
 
 function _validateNumber(fieldId, number) {
   if (!number) return 0;
-  // Allow integer or decimal numbers (e.g. 123, 123.45, .5)
-  if (!/^\d+(\.\d+)?$/.test(number)) {
+
+  // Remove spaces, brackets, hyphens and dots
+  const cleanNumber = number.replace(/[\s().-]/g, "");
+
+  // Nigeria: 08012345678, 2348012345678, +2348012345678
+  // USA:     2015550123, 12015550123, +12015550123
+  const nigeriaPattern = /^(?:0\d{10}|234\d{10}|\+234\d{10})$/;
+  const usaPattern = /^(?:\d{10}|1\d{10}|\+1\d{10})$/;
+
+  if (!nigeriaPattern.test(cleanNumber) && !usaPattern.test(cleanNumber)) {
     $("#" + fieldId).addClass("issue");
     $("#issue_" + fieldId).html(
-      "NUMBER MUST CONTAIN ONLY DIGITS OR DECIMAL POINT"
+      "PLEASE ENTER A VALID PHONE NUMBER"
     );
     return 1;
   }
+
+  $("#" + fieldId).removeClass("issue");
+  $("#issue_" + fieldId).html("");
+
   return 0;
 }
 

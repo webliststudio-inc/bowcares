@@ -122,6 +122,17 @@
     padding: 40px 0px;
 }
 
+#page-content{
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    min-height: fit-content;
+    flex-shrink: 0;
+    gap: 20px;
+    padding: 40px 0px;
+}
+
 .login-session .login-div .form-back-div.center-content {
     align-items: center;
 }
@@ -208,8 +219,10 @@
 }
 
 .login-session .login-div .form-back-div .form-div .inner-form .forgot-pass-container .forgot-container{
+    width: 100%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 5px;
   cursor: pointer;
   color: var(--sub-body-color);
@@ -220,8 +233,49 @@
   color: var(--link-color);
 }
 
+.login-session .login-div .form-back-div .form-div .inner-form .forgot-pass-container .forgot-container .flex-div{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .login-session .login-div .form-back-div .form-div .inner-form .forgot-pass-container .forgot-container span:hover {
   color: var(--secondary-color);
+}
+
+.login-session .login-div .form-back-div .form-div .inner-form .forgot-pass-container .forgot-container .back-btn {
+    border: none;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-family: sub-title-font;
+    padding: 0px 12px;
+    font-size: 13px;
+    background: rgba(200, 200, 200, 0.7);
+    color: var(--sub-body-color);
+    white-space: nowrap;
+    transition: background-position 0.4s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.login-session .login-div .form-back-div .form-div .inner-form .forgot-pass-container .forgot-container .back-btn:hover{
+    background: var(--secondary-color);
+    color: var(--text-white);
+    background: linear-gradient(
+		90deg,
+		var(--primary-color),
+		var(--secondary-color)
+	);
+	background-size: 200% 100%;
+	background-position: right;
+	transform: scale(1.05); /* subtle hover grow */
+}
+
+.login-session .login-div .form-back-div .form-div .inner-form .forgot-pass-container .forgot-container .back-btn i {
+    font-size: 11px;
 }
 
 
