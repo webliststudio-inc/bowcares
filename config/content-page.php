@@ -311,7 +311,7 @@
             </div>
 
             <div class="main-content-div form-main-content-div">
-                <div class="other-tables-content-div">
+                <div class="pages-tables-content-div">
                     <div class="content-title">
                         <div class="title">
                             <i class="bi bi-chat-quote-fill"></i>

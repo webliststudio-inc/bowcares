@@ -12,7 +12,7 @@
     <?php include 'alert.php' ?>
     <div class="mobile-header">
         <div class="inner-div">
-            <a href="<?php echo $websiteUrl ?>/training">
+             <a href="<?php echo $websiteUrl?>">
                 <div class="logo">
                     <img src="<?php echo $websiteUrl ?>/all-images/images/logo.png" alt="Logo">
                 </div>
@@ -209,9 +209,9 @@
                                 </p>
 
                                 <div class="support-links">
-                                    <a href="tel:5104791822">
+                                    <a href="tel:+1 (832) 743-9353">
                                         <i class="bi bi-telephone"></i>
-                                        (510) 479-1822
+                                        (832) 743-9353
                                     </a>
                                     <a href="mailto:support@bowcares.com">
                                         <i class="bi bi-envelope"></i>

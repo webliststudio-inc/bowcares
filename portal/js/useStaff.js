@@ -205,28 +205,42 @@ function _renderStaffData(data, start) {
       (item, i) => `
 	  	<tr class="tb-row">
 			<td>${start + i + 1}</td>
-			<td class="clickable-td" title="Click to view staff profile" onclick="_fetchEachSaff('${item.staffId}');">
+			<td class="clickable-td" title="Click to view staff profile" onclick="_fetchEachSaff('${item?.staffId}');">
 				<div class="text-back-div">
-					<div class="image-div">
-						<img src="${websiteUrl}/all-images/images/avatar.jpg" alt="${item.firstName} ${item.lastName}"/>
+					<div class="icon-div">
+						${getFirstLettersOfEachWord(item?.firstName + " " + item?.lastName)}
 					</div>
 
 					<div class="text-div">
-						<div class="first-class">${item.firstName} ${item.lastName}</div>
-						<div class="second-class">${item.staffId}</div>
+						<div class="first-class">${item?.firstName} ${item?.lastName}</div>
+						<div class="second-class">${item?.staffId}</div>
 					</div>
 				</div>
 			</td>
 			<td>
 				<div class="text-div">
-					<div>${item.emailAddress}</div> 
-					<div">${item.phoneNumber}</div>
+					<div>${item?.emailAddress}</div> 
+					<div">${item?.phoneNumber}</div>
 				</div>
 			</td>
-			<td>${item.roleData?.roleName}</td>
-			<td>${item.lastLoginTime ? item.lastLoginTime : "00-00-00 00:00:00"}</td>
-			<td><div class="status-div ${item.statusData?.statusName}">${item.statusData?.statusName}</div></td>
-			<td><button class="btn view-btn" title="Click to view staff profile" onclick="_fetchEachSaff('${item.staffId}');">VIEW</button></td>
+			<td>${item?.roleData?.roleName}</td>
+			<td>
+				<div class="text-back-div">
+					<div class="text-div">
+						<div class="first-class date-item">
+							<i class="bi bi-calendar2-check"></i>
+							${item?.lastLoginTime ? _formatShortDate(item.lastLoginTime) : "00-00-00"}
+						</div>
+
+						<div class="second-class date-item">
+							<i class="bi bi-clock"></i>
+							${item?.lastLoginTime ? _formatTime(item.lastLoginTime) : "00:00:00"}
+						</div>
+					</div>
+				</div>
+			</td>
+			<td><div class="status-div ${item?.statusData?.statusName}">${item?.statusData?.statusName}</div></td>
+			<td><button class="btn view-btn" title="Click to view staff profile" onclick="_fetchEachSaff('${item?.staffId}');">VIEW</button></td>
 		</tr>`
     )
     .join("");

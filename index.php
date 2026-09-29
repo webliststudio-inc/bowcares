@@ -60,7 +60,7 @@
                 </div>
 
                 <div class="form-back-div" id="requestCallForm">
-                    <div class="main-content-div dash-main-content-div">
+                    <div class="main-content-div">
                         <div class="tables-content-div">
                             <div class="content-title">
                                 <div class="title">
