@@ -6,14 +6,14 @@ try {
 	}
 
 	// ////// get all input parameters
-	$firstName = $data['firstName'];
-	$lastName = $data['lastName'];
-	$emailAddress = $data['emailAddress'];
+	$firstName = strtoupper(trim($data['firstName']));
+	$lastName = strtoupper(trim($data['lastName']));
+	$emailAddress = trim($data['emailAddress']);
 	$phoneNumber = $data['phoneNumber'];
 	$password = $data['password'];
 	$confirmPassword = $data['confirmPassword'];
 	$professionIds = $data['professionIds'] ?? [];
-	$otp = $data['otp'];
+	$otp = trim($data['otp']);
 
 
 	//// validate input parameters
@@ -55,17 +55,16 @@ try {
 	$sequence = _get_sequence_count($conn, 'ART');
 	$artisanId = 'ART' . $sequence['no'] . date("Ymdhis");
 
-	$statusId = 8; // in awaiting approval
 	/* Secure password hashing */
 	$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 	// Convert professionIds array to comma-separated string
 	$professionIdsString = implode(',', array_column($professionIds, 'professionId'));
 
 	$insertQuery = "INSERT INTO `ARTISANS_TAB`
-	(`artisanId`, `firstName`, `lastName`, `emailAddress`, `phoneNumber`, `statusId`, `password`, `professionIds`, `createdTime`) VALUES 
-	(?, ?, ?, ?, ?, ?, ?, ?, NOW())";
-	$insertParams = [$artisanId, $firstName, $lastName, $emailAddress, $phoneNumber, $statusId, $hashedPassword, $professionIdsString];
-	insertQuery($conn, $insertQuery, "sssssiss", $insertParams);
+	(`artisanId`, `firstName`, `lastName`, `emailAddress`, `phoneNumber`, `statusId`, `availableStatusId`, `password`, `professionIds`, `createdTime`) VALUES 
+	(?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
+	$insertParams = [$artisanId, $firstName, $lastName, $emailAddress, $phoneNumber, PREFIX_STATUS['AWAITING_APPROVAL'], PREFIX_STATUS['IN_REVIEW'], $hashedPassword, $professionIdsString];
+	insertQuery($conn, $insertQuery, "sssssiiss", $insertParams);
 
 	//// fetct created artisan data
 	$selectQuery = "SELECT artisanId, firstName, lastName, emailAddress, phoneNumber, statusId, professionIds, createdTime FROM ARTISANS_TAB WHERE artisanId = ?";

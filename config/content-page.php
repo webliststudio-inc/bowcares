@@ -1,48 +1,48 @@
 <?php if ($page == 'customreInfoPage') { ?>
     <div class="form-wrapper">
         <div class="text_field_container col-3" id="FullName_container">
-           <script>
-            textField({
-                id: 'FullName',
-                title: 'Full Name',
-            });
+            <script>
+                textField({
+                    id: 'FullName',
+                    title: 'Full Name',
+                });
             </script>
         </div>
 
         <div class="text_field_container col-3" id="emailAddress_container">
             <script>
-            textField({
-                id: 'emailAddress',
-                title: 'Email Address',
-                type: 'email',
-            });
+                textField({
+                    id: 'emailAddress',
+                    title: 'Email Address',
+                    type: 'email',
+                });
             </script>
         </div>
 
         <div class="text_field_container col-3" id="phoneNumber_container">
             <script>
-            textField({
-                id: 'phoneNumber',
-                title: 'Phone Number',
-                type: 'tel',
-            });
+                textField({
+                    id: 'phoneNumber',
+                    title: 'Phone Number',
+                    type: 'tel',
+                });
             </script>
         </div>
 
         <div class="btn-div" id="formBtn">
             <script>
-            generalButtons({
-                container: "formBtn",
-                buttons: [{
-                    id: "formBtn",
-                    text: "Save and Continue",
-                    icon: "bi bi-arrow-right-circle",
-                    width: "btn-full",
-                    size: "btn-lg",
-                    iconPosition: "right",
-                    onClick: "_getNextPage({page:'addressPage'});"
-                }]
-            });
+                generalButtons({
+                    container: "formBtn",
+                    buttons: [{
+                        id: "formBtn",
+                        text: "Save and Continue",
+                        icon: "bi bi-arrow-right-circle",
+                        width: "btn-full",
+                        size: "btn-lg",
+                        iconPosition: "right",
+                        onClick: "_getNextPage({page:'addressPage'});"
+                    }]
+                });
             </script>
         </div>
     </div>
@@ -50,16 +50,23 @@
 
 <?php if ($page == 'addressPage') { ?>
     <div class="form-wrapper">
-        <div class="text_field_container col-3" id="addressId_container">
+        <div class="text_field_container col-3" id="destination_container">
             <script>
                 textField({
-                    id: 'addressId',
-                    title: 'Address',
+                    id: 'destination',
+                    title: 'Destination',
+                    onKeyPressFunction: 'getMapDetails()'
+
                 });
             </script>
         </div>
-                
-        <div id="map" style="height: 190px; border-radius: 12px;"></div>
+        <div id="output"></div>
+        <div id="map"></div>
+
+
+
+
+
 
         <div class="btn-div btn-flex-end" id="backBtn">
             <script>
@@ -102,7 +109,9 @@
                 <input type="checkbox" id="notificationConsent" name="notificationConsent" value="1">
 
                 <span>
-                    By checking this box, I agree to receive emails, notifications, and other important updates from BowCare regarding my service request, including request status, appointment confirmations, service updates, reminders, and other information related to the services I have requested. I can opt out at any time.
+                    By checking this box, I agree to receive emails, notifications, and other important updates from BowCare
+                    regarding my service request, including request status, appointment confirmations, service updates,
+                    reminders, and other information related to the services I have requested. I can opt out at any time.
                 </span>
             </label>
         </div>
@@ -131,7 +140,9 @@
 <?php } ?>
 
 <?php if ($page == 'galleryDetails') { ?>
-    <script>getEachGalleySessionData = JSON.parse(sessionStorage.getItem("getEachGalleySessionData"));</script>
+    <script>
+        getEachGalleySessionData = JSON.parse(sessionStorage.getItem("getEachGalleySessionData"));
+    </script>
 
     <div class="user-profile-div" data-aos="fade-left" data-aos-duration="900" onclick="event.stopPropagation();">
         <div class="form-title-wrapper">
@@ -149,7 +160,8 @@
         <div class="profile-content-div">
             <div class="main-picture-back-div">
                 <div class="main-picture-div gallery-main-picture-div" id="galleryPreviewPix">
-                    <img id="galleryMainImage" src="<?php echo $websiteUrl?>/uploaded_files/gallery/Plumber-Repairing.jpeg" alt="Gallery" />
+                    <img id="galleryMainImage" src="<?php echo $websiteUrl ?>/uploaded_files/gallery/Plumber-Repairing.jpeg"
+                        alt="Gallery" />
                     <button class="gallery-nav-btn gallery-prev" id="galleryPrevBtn" onclick="_navigateGallery(-1);">
                         <i class="bi bi-chevron-left"></i>
                     </button>
@@ -159,9 +171,12 @@
                     </button>
 
                     <script>
-                        $(document).ready(function() {
-                            const galleryImage = getEachGalleySessionData?.seoFlyer ? galleryPixPath + "/" + getEachGalleySessionData?.seoFlyer + '?t=' + new Date().getTime() : "<?php echo $websiteUrl ?>/all-images/images/defaultPage.jpg";
-                            $("#galleryMainImage").attr("src", galleryImage).attr("alt", getEachGalleySessionData?.pageTitle + " Image");
+                        $(document).ready(function () {
+                            const galleryImage = getEachGalleySessionData?.seoFlyer ? galleryPixPath + "/" +
+                                getEachGalleySessionData?.seoFlyer + '?t=' + new Date().getTime() :
+                                "<?php echo $websiteUrl ?>/all-images/images/defaultPage.jpg";
+                            $("#galleryMainImage").attr("src", galleryImage).attr("alt", getEachGalleySessionData
+                                ?.pageTitle + " Image");
                         });
                     </script>
                 </div>
@@ -170,7 +185,7 @@
                     <div class="inner-img-container">
                         <div class="inner-img-div" id="fetchPagePictures">
                             <script>
-                                $(document).ready(function() {
+                                $(document).ready(function () {
                                     const picturesArray = getEachGalleySessionData?.pagePicturesData ?? [];
                                     let galleryPixHtml = '';
 
@@ -185,18 +200,18 @@
                                     }
                                     $('#fetchPagePictures').html(galleryPixHtml);
 
-                                    if (picturesArray.length>0) {
+                                    if (picturesArray.length > 0) {
                                         $('.bottom-img-div').show();
                                     } else {
                                         $(".bottom-img-div").hide();
                                     }
                                 });
-                            </script>                        
+                            </script>
                         </div>
                     </div>
-                </div>  
-            </div>  
-                
+                </div>
+            </div>
+
             <div class="gallery-info-back-div">
                 <div class="left-info-container">
                     <h2 id="galleryTitle">
@@ -207,16 +222,19 @@
                     <div class="info-wrapper">
                         <div class="title" id="galleryCategory">
                             <script>
-                            $("#galleryCategory").html(getEachGalleySessionData?.professionData?.professionName);
-                        </script></div>
+                                $("#galleryCategory").html(getEachGalleySessionData?.professionData?.professionName);
+                            </script>
+                        </div>
                         <div class="info"><i class="bi bi-calendar3"></i> <span id="craetedDate">
-                            <script>
-                            $("#craetedDate").html(_fetchFormatDate(getEachGalleySessionData?.updatedTime));
-                        </script></span></div>
+                                <script>
+                                    $("#craetedDate").html(_fetchFormatDate(getEachGalleySessionData?.updatedTime));
+                                </script>
+                            </span></div>
                         <div class="info"><i class="bi bi-images"></i> <span id="galleryCount">
-                            <script>
-                            $("#galleryCount").html(getEachGalleySessionData?.pagePicturesData?.length);
-                        </script></span></div>
+                                <script>
+                                    $("#galleryCount").html(getEachGalleySessionData?.pagePicturesData?.length);
+                                </script>
+                            </span></div>
                     </div>
                     <p id="galleryDescription">
                         <script>
@@ -244,7 +262,7 @@
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="right-info-container">
                     <div class="main-content-div dash-main-content-div">
                         <div class="tables-content-div">
@@ -257,25 +275,32 @@
 
                             <div class="inner-table-content colum-table-content">
                                 <div class="list-content-wrapper">
-                                    <div class="list-content-div"> 
+                                    <div class="list-content-div">
                                         <div>Category</div>
-                                        <span id="infoGalleryCategory"><script>
-                                            $("#infoGalleryCategory").html(getEachGalleySessionData?.professionData?.professionName);
-                                        </script></span>
+                                        <span id="infoGalleryCategory">
+                                            <script>
+                                                $("#infoGalleryCategory").html(getEachGalleySessionData?.professionData
+                                                    ?.professionName);
+                                            </script>
+                                        </span>
                                     </div>
 
-                                    <div class="list-content-div"> 
+                                    <div class="list-content-div">
                                         <div>Date</div>
-                                        <span id="infoDate"><script>
-                                            $("#infoDate").html(_fetchFormatDate(getEachGalleySessionData?.updatedTime));
-                                        </script></span>
+                                        <span id="infoDate">
+                                            <script>
+                                                $("#infoDate").html(_fetchFormatDate(getEachGalleySessionData?.updatedTime));
+                                            </script>
+                                        </span>
                                     </div>
 
-                                    <div class="list-content-div"> 
+                                    <div class="list-content-div">
                                         <div>Location</div>
-                                        <span id="location"><script>
-                                            $("#location").html(getEachGalleySessionData?.location);
-                                        </script></span>
+                                        <span id="location">
+                                            <script>
+                                                $("#location").html(getEachGalleySessionData?.location);
+                                            </script>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -294,7 +319,7 @@
                 <div class="icon-div"><i class="bi bi-chat-quote-fill"></i></div>
                 <h3 id="pageTitle">WRITE A REVIEW</h3>
             </div>
-            
+
             <div class="btn-div">
                 <button class="btn" title="Close" onclick="_alertClose(<?php echo $modalLayer ?>);">
                     <i class="bi bi-x-lg"></i> Close
@@ -305,8 +330,8 @@
         <!-- /////////// Title ////////////////////////////// -->
         <div class="container-back-div">
             <div class="form-notification">
-               <p>You are about to share your experience</span>.
-                Please complete the form below with accurate details to successfully submit your review</span>.
+                <p>You are about to share your experience</span>.
+                    Please complete the form below with accurate details to successfully submit your review</span>.
                 </p>
             </div>
 
