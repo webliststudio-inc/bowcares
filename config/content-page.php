@@ -55,18 +55,9 @@
                 textField({
                     id: 'destination',
                     title: 'Destination',
-                    onKeyPressFunction: 'getMapDetails()'
-
                 });
             </script>
         </div>
-        <div id="output"></div>
-        <div id="map"></div>
-
-
-
-
-
 
         <div class="btn-div btn-flex-end" id="backBtn">
             <script>

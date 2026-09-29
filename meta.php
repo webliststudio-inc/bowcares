@@ -8,21 +8,25 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
 <link href="<?php echo $websiteUrl ?>/style/animate.css" type="text/css" rel="stylesheet" media="all">
 <link href="<?php echo $websiteUrl ?>/style/aos.css" type="text/css" rel="stylesheet" />
-<link href="<?php echo $websiteUrl ?>/style/paramount.css?v=<?php echo $codeVersion ?>" type="text/css" rel="stylesheet" />
-<link href="<?php echo $websiteUrl ?>/style/main-style.css?v=<?php echo $codeVersion ?>" type="text/css" rel="stylesheet" />
+<link href="<?php echo $websiteUrl ?>/style/paramount.css?v=<?php echo $codeVersion ?>" type="text/css"
+    rel="stylesheet" />
+<link href="<?php echo $websiteUrl ?>/style/main-style.css?v=<?php echo $codeVersion ?>" type="text/css"
+    rel="stylesheet" />
 
-<link href="<?php echo $websiteUrl?>/artisan/style/sign-up.css?v=<?php echo $codeVersion?>" type="text/css" rel="stylesheet" />
+<link href="<?php echo $websiteUrl ?>/artisan/style/sign-up.css?v=<?php echo $codeVersion ?>" type="text/css"
+    rel="stylesheet" />
 
-<script src="<?php echo $websiteUrl ?>/js/jquery-v3.6.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="<?php echo $websiteUrl ?>/js/paramount.js?v=<?php echo $codeVersion ?>"></script>
 <script src="<?php echo $websiteUrl ?>/js/scripts.js?v=<?php echo $codeVersion ?>"></script>
 <script src="<?php echo $websiteUrl ?>/js/useContact.js?v=<?php echo $codeVersion ?>"></script>
-<script src="<?php echo $websiteUrl?>/js/helper.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
+<script src="<?php echo $websiteUrl ?>/js/helper.js?v=<?php echo $codeVersion ?>" type="text/javascript"></script>
 <script src="<?php echo $websiteUrl ?>/js/textfield-selectfield.js?v=<?php echo $codeVersion ?>"></script>
 <script src="<?php echo $websiteUrl ?>/js/aos.js?v=<?php echo $codeVersion ?>"></script>
 
 <link href="<?php echo $websiteUrl ?>/slide-property/product-carousel/carousel.css" rel="stylesheet" type="text/css" />
-<script src="<?php echo $websiteUrl ?>/slide-property/product-carousel/carousel.js?v=<?php echo $codeVersion ?>" type="text/javascript"></script>
+<script src="<?php echo $websiteUrl ?>/slide-property/product-carousel/carousel.js?v=<?php echo $codeVersion ?>"
+    type="text/javascript"></script>
 
 <link href="<?php echo $websiteUrl ?>/slide-property/engine/style.css" rel="stylesheet" type="text/css" />
 <script src="<?php echo $websiteUrl ?>/js/site/usePages.js?v=<?php echo $codeVersion ?>"></script>

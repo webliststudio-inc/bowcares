@@ -1,23 +1,20 @@
-<?php include 'config/constants.php';?>
+<?php include 'config/constants.php'; ?>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http: //www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html id="request-service-html" lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <?php include 'meta.php'?>
+    <?php include 'meta.php' ?>
     <title><?php echo $appName ?> | Request a Maintenance Service</title>
     <meta name="keywords"
         content="<?php echo $appName ?>, request maintenance service, property maintenance USA, facility maintenance, handyman services, home repairs, commercial maintenance, residential maintenance, cleaning services, building repairs, maintenance request, BowCare services" />
     <meta name="description"
         content="Request reliable property maintenance, repair, cleaning, handyman, and facility services from BowCare Maintenance Services. Tell us what you need and our team will help you get started." />
-    <meta property="og:title"
-        content="<?php echo $appName ?> | Request a Maintenance Service" />
-    <meta property="og:image"
-        content="<?php echo $websiteUrl ?>/all-images/plugin-pix/bowcares.jpg" />
+    <meta property="og:title" content="<?php echo $appName ?> | Request a Maintenance Service" />
+    <meta property="og:image" content="<?php echo $websiteUrl ?>/all-images/plugin-pix/bowcares.jpg" />
     <meta property="og:description"
         content="Submit a service request to BowCare Maintenance Services for reliable property maintenance, repairs, cleaning, handyman, and facility services." />
-    <meta name="twitter:title"
-        content="<?php echo $appName ?> | Request a Maintenance Service" />
+    <meta name="twitter:title" content="<?php echo $appName ?> | Request a Maintenance Service" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="<?php echo $websiteUrl ?>/all-images/plugin-pix/bowcares.jpg" />
     <meta name="twitter:description"
@@ -25,26 +22,25 @@
 </head>
 
 <body>
-    <?php include 'alert.php'?>
+    <?php include 'alert.php' ?>
     <section class="login-session">
         <div class="graphics-div"></div>
         <div class="login-div">
             <header>
                 <div class="header-div-in">
-                    <a href="<?php echo $websiteUrl?>">
+                    <a href="<?php echo $websiteUrl ?>">
                         <div class="logo-div">
-                            <img src="<?php echo $websiteUrl?>/all-images/images/logo.png"
-                                alt="<?php echo $appName?> logo" />
+                            <img src="<?php echo $websiteUrl ?>/all-images/images/logo.png"
+                                alt="<?php echo $appName ?> logo" />
                         </div>
                     </a>
 
                     <div class="form-btn-div">
                         <span class="text">
-                           Need Help?
+                            Need Help?
                         </span>
 
-                        <button title="Contact Us"
-                            class="btn"
+                        <button title="Contact Us" class="btn"
                             onclick="window.location.href='<?php echo $websiteUrl ?>/contact-us';">
                             Contact Us
                         </button>
@@ -57,7 +53,8 @@
                     <div class="top-div">
                         <h1>🛠️ Request a Service</h1>
                         <p>
-                            Tell us what you need and our team will help you find the right maintenance service for your property.
+                            Tell us what you need and our team will help you find the right maintenance service for your
+                            property.
                         </p>
                     </div>
 
@@ -65,8 +62,8 @@
                         <div class="how-it-works-section">
                             <div class="how-it-works-back-div">
                                 <!-- STEP 1 -->
-                                <div class="how-it-works-div requst-how-it-works-div maintenance-step active-step" data-step="1" data-aos="fade-left"
-                                    data-aos-duration="1200">
+                                <div class="how-it-works-div requst-how-it-works-div maintenance-step active-step"
+                                    data-step="1" data-aos="fade-left" data-aos-duration="1200">
                                     <div class="step-info">
                                         <div class="step-number">1</div>
 
@@ -102,8 +99,8 @@
                                 </div>
 
                                 <!-- STEP 2 -->
-                                <div class="how-it-works-div requst-how-it-works-div maintenance-step" data-step="2" data-step="1" data-aos="fade-left"
-                                    data-aos-duration="1200">
+                                <div class="how-it-works-div requst-how-it-works-div maintenance-step" data-step="2"
+                                    data-step="1" data-aos="fade-left" data-aos-duration="1200">
                                     <div class="step-info">
                                         <div class="step-number">2</div>
 
@@ -143,8 +140,8 @@
                                 </div>
 
                                 <!-- STEP 3 -->
-                                <div class="how-it-works-div requst-how-it-works-div maintenance-step" data-step="3" data-step="1" data-aos="fade-left"
-                                    data-aos-duration="1200">
+                                <div class="how-it-works-div requst-how-it-works-div maintenance-step" data-step="3"
+                                    data-step="1" data-aos="fade-left" data-aos-duration="1200">
                                     <div class="step-info">
                                         <div class="step-number">3</div>
 
@@ -183,8 +180,8 @@
                                 </div>
 
                                 <!-- STEP 4 -->
-                                <div class="how-it-works-div requst-how-it-works-div maintenance-step" data-step="4" data-step="1" data-aos="fade-left"
-                                    data-aos-duration="1200">
+                                <div class="how-it-works-div requst-how-it-works-div maintenance-step" data-step="4"
+                                    data-step="1" data-aos="fade-left" data-aos-duration="1200">
                                     <div class="step-info">
                                         <div class="step-number">4</div>
 
@@ -281,16 +278,18 @@
                                         </script>
                                     </div>
 
-                                    <div class="text_field_container col-3" id="addressId_container">
+                                    <div class="text_field_container col-3" id="destination_container">
                                         <script>
                                             textField({
-                                                id: 'addressId',
-                                                title: 'Address',
+                                                id: 'destination',
+                                                title: 'Destination',
+                                                oninputFunction: 'getMapDetails()'
                                             });
                                         </script>
                                     </div>
-                                            
-                                    <div id="map" style="min-height: 50px; border-radius: 12px;"></div>
+
+                                    <div id="output"></div>
+                                    <div id="map" style="width=100%; height: 300px"></div>
 
                                     <div class="text_area_container" id="messageRequest_container">
                                         <script>
@@ -305,10 +304,15 @@
 
                                     <div class="check-box-container" id="notificationConsent_container">
                                         <label class="check-box-label">
-                                            <input type="checkbox" id="notificationConsent" name="notificationConsent" value="1">
+                                            <input type="checkbox" id="notificationConsent" name="notificationConsent"
+                                                value="1">
 
                                             <span>
-                                                By checking this box, I agree to receive emails, notifications, and other important updates from BowCare regarding my service request, including request status, appointment confirmations, service updates, reminders, and other information related to the services I have requested. I can opt out at any time.
+                                                By checking this box, I agree to receive emails, notifications, and
+                                                other important updates from BowCare regarding my service request,
+                                                including request status, appointment confirmations, service updates,
+                                                reminders, and other information related to the services I have
+                                                requested. I can opt out at any time.
                                             </span>
                                         </label>
                                     </div>
@@ -317,9 +321,7 @@
                         </div>
 
                         <div class="btn-div">
-                            <button class="btn"
-                                id="requestServiceBtn"
-                                title="Submit Service Request"
+                            <button class="btn" id="requestServiceBtn" title="Submit Service Request"
                                 onclick="_completeServiceRequest();">
                                 Submit Request
                                 <i class="bi-check"></i>
@@ -330,7 +332,12 @@
             </div>
         </div>
     </section>
+    <!-- Load Google Maps API with Places & call initMap -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNYG0x6xtJOeYx6PTmRjjqBVI9FPgGNSw&libraries=places&callback=initMap">
+        </script>
 
-    <?php include 'bottom-scripts.php'?>
+    <?php include 'bottom-scripts.php' ?>
 </body>
+
 </html>
