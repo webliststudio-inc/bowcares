@@ -13,9 +13,15 @@ try {
     }
 
     ////////////////// Variables //////////////////
+    $faqKey = trim($_GET['faqKey'] ?? 'general');
     $q = trim($_GET['q'] ?? '');
+    $categoryId = trim($_GET['categoryId'] ?? '');
     $faqId = trim($_GET['faqId'] ?? '');
     $statusId = trim($_GET['statusId'] ?? '');
+
+    if ($faqKey !== 'general') {
+        validateEmptyField($categoryId, 'FAQ PAGE ID');
+    }
 
     ////////////////// Build Query //////////////////
     $conditions = [];
@@ -25,6 +31,11 @@ try {
     if (!empty($faqId)) {
         $conditions[] = "faqId = ?";
         $params[] = $faqId;
+        $types .= "s";
+    }
+    if (!empty($categoryId)) {
+        $conditions[] = "categoryId = ?";
+        $params[] = $categoryId;
         $types .= "s";
     }
 
@@ -51,7 +62,7 @@ try {
     $params = array_merge([$searchValue, $searchValue], $params);
     $types = "ss" . $types;
 
-    $selectQuery = "SELECT * FROM FAQ_TAB WHERE $searchClause $extraWhere";
+    $selectQuery = "SELECT * FROM FAQ_TAB WHERE faqKey='$faqKey' AND $searchClause $extraWhere";
     $selectParams = array_merge($params);
 
     $allFAQData = selectQuery($conn, $selectQuery, $types, $selectParams);

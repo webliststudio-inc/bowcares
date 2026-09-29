@@ -9,10 +9,9 @@ try {
     ////////////////// Variables //////////////////
     $q = trim($_GET['q'] ?? '');
     $pageId = trim($_GET['pageId'] ?? '');
-    $pageCategory = trim($_GET['pageCategory'] ?? ''); //// can be BLOG, PORTFOLIO, SERVICE
+    $pageCategory = trim($_GET['pageCategory'] ?? ''); //// can be BLOG, GALLERY, SERVICE
     $limit = trim($_GET['limit'] ?? '');
-    $projectStageId = trim($_GET['projectStageId'] ?? '');
-    $projectCategoryId = trim($_GET['projectCategoryId'] ?? '');
+    $professionId = trim($_GET['professionId'] ?? '');
     $categoryId = trim($_GET['categoryId'] ?? '');
     ////////////////// Validation //////////////////
     validateEmptyField($pageCategory, 'PAGE CATEGORY');
@@ -47,14 +46,9 @@ try {
         $params[] = $pageId;
         $types .= "s";
     }
-    if (!empty($projectStageId)) {
-        $conditions[] = "projectStageId = ?";
-        $params[] = $projectStageId;
-        $types .= "s";
-    }
-    if (!empty($projectCategoryId)) {
-        $conditions[] = "projectCategoryId = ?";
-        $params[] = $projectCategoryId;
+    if (!empty($professionId)) {
+        $conditions[] = "professionId = ?";
+        $params[] = $professionId;
         $types .= "s";
     }
     if (!empty($categoryId)) {
@@ -106,8 +100,7 @@ try {
         $pagePicturesData = [];
         $pageId = $pageData['pageId'];
         $categoryId = $pageData['categoryId'];
-        $projectCategoryId = $pageData['projectCategoryId'];
-        $projectStageId = $pageData['projectStageId'];
+        $professionId = $pageData['professionId'];
         $statusId = $pageData['statusId'];
         $createdBy = $pageData['createdBy'];
         $updatedBy = $pageData['updatedBy'];
@@ -126,14 +119,10 @@ try {
             $categoryData = _get_category_details($conn, $categoryId);
             $pageData['categoryData'] = $categoryData;
         }
-        if ($pageCategory === 'PORTFOLIO') {
-            /// get categoryData
-            $projectStageData = _get_project_stage_details($conn, $projectStageId);
-            $pageData['projectStageData'] = $projectStageData;
-
-            /// get projectCategoryData
-            $projectCategoryData = _get_project_category_details($conn, $projectCategoryId);
-            $pageData['projectCategoryData'] = $projectCategoryData;
+        if ($pageCategory === 'GALLERY') {
+            /// get professionData
+            $professionData = _get_profession_details($conn, $professionId);
+            $pageData['professionData'] = $professionData;
         }
 
         /// get pagePicturesData

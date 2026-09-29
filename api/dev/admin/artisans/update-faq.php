@@ -3,7 +3,6 @@ require_once '../../config/connection.php';
 require_once '../../config/staff-session-check.php';
 
 try {
-
     if (!$checkBasicSecurity) {
         throw new ForbiddenException("Unauthorized access! Please log in.");
     }
@@ -13,39 +12,31 @@ try {
     }
 
     ////////////////// Variables //////////////////
-    $faqKey = trim($data['faqKey'] ?? 'general');
+    $faqId = trim($_GET['faqId'] ?? '');
     $categoryId = trim($data['categoryId'] ?? '');
     $faqQuestion = trim($data['faqQuestion'] ?? '');
     $faqAnswer = trim($data['faqAnswer'] ?? '');
     $statusId = trim($data['statusId'] ?? '');
 
     ////////////////// Validation //////////////////
+    validateEmptyField($faqId, 'FAQ ID');
     validateEmptyField($categoryId, 'FAQ CATEGORY');
     validateEmptyField($faqQuestion, 'FAQ QUESTION');
     validateEmptyField($faqAnswer, 'FAQ ANSWER');
     validateEmptyField($statusId, 'STATUS');
 
-    if ($faqKey !== 'general') {
-        validateEmptyField($categoryId, 'FAQ PAGE ID');
-    }
-
+    // Check if FAQ question already exists for another FAQ
     ////////////////// Check Duplicate FAQ //////////////////
-    $checkQuery = "SELECT faqId FROM FAQ_TAB WHERE faqQuestion = ?";
-    $existingFAQ = selectQuery($conn, $checkQuery, "s", [$faqQuestion]);
+    $checkQuery = "SELECT faqId FROM FAQ_TAB WHERE faqQuestion = ? AND faqId != ?";
+    $existingFAQ = selectQuery($conn, $checkQuery, "ss", [$faqQuestion, $faqId]);
     if (!empty($existingFAQ)) {
         throw new ConflictException("This FAQ with this question already exists. Please try another Question.");
     }
 
-    ////////////////// Generate FAQ ID //////////////////
-    $sequence = _get_sequence_count($conn, 'FAQ');
-    $faqId = 'FAQ' . $sequence['no'] . date("Ymdhis");
-
-    ////////////////// Insert FAQ //////////////////
-    $insertQuery = "INSERT INTO FAQ_TAB 
-    (faqKey, categoryId, faqId, faqQuestion, faqAnswer, statusId, createdBy, createdTime ) VALUES 
-    (?,?,?,?,?,?,?,NOW())";
-    $insertParams = [$faqKey, $categoryId, $faqId, $faqQuestion, $faqAnswer, $statusId, $loginStaffId];
-    insertQuery($conn, $insertQuery, "sssssss", $insertParams);
+    ////////////////// Update FAQ //////////////////
+    $updateSQL = "UPDATE FAQ_TAB SET categoryId = ?, faqQuestion = ?, faqAnswer = ?, statusId = ?, updatedBy = ?, updatedTime = NOW() WHERE faqId = ?";
+    $updateParams = [$categoryId, $faqQuestion, $faqAnswer, $statusId, $loginStaffId, $faqId];
+    updateQuery($conn, $updateSQL, "sssiss", $updateParams);
 
     ////////////////// Fetch Created FAQ //////////////////
     $selectQuery = "SELECT * FROM FAQ_TAB WHERE faqId = ?";
@@ -72,7 +63,7 @@ try {
     $response = [
         'response' => 200,
         'success' => true,
-        'message' => "FAQ CREATED SUCCESSFULLY!",
+        'message' => "FAQ UPDATED SUCCESSFULLY!",
         'data' => $faqData
     ];
 

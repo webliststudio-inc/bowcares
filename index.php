@@ -22,6 +22,11 @@
     <meta name="twitter:image" content="<?php echo $websiteUrl ?>/all-images/plugin-pix/bowcares.jpg" />
     <meta name="twitter:description"
         content="BowCare Maintenance Services delivers dependable property maintenance, facility care, cleaning, repair, and handyman solutions throughout the USA for homes, offices, and commercial buildings." />
+    <!-- Load Google Maps API with Places & call initMap -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNYG0x6xtJOeYx6PTmRjjqBVI9FPgGNSw&libraries=places&callback=initMap">
+        </script>
+    </body>
 </head>
 
 <body>
@@ -38,23 +43,23 @@
 
                     <div class="btn-div slide-btn-div" id="slideBtn">
                         <script>
-                        generalButtons({
-                            container: "slideBtn",
-                            buttons: [{
-                                id: "slideBtn",
-                                text: "Request a Service",
-                                size: "btn-lg",
-                                icon: "bi bi-calendar-check-fill",
-                                link: "<?php echo $websiteUrl ?>/request-service"
-                            }, {
-                                id: "ff",
-                                text: "Join Our Team",
-                                icon: "bi bi-briefcase-fill",
-                                size: "btn-lg",
-                                variant: 'btn-outline',
-                                link: "<?php echo $websiteUrl ?>/artisan/sign-up"
-                            }]
-                        });
+                            generalButtons({
+                                container: "slideBtn",
+                                buttons: [{
+                                    id: "slideBtn",
+                                    text: "Request a Service",
+                                    size: "btn-lg",
+                                    icon: "bi bi-calendar-check-fill",
+                                    link: "<?php echo $websiteUrl ?>/request-service"
+                                }, {
+                                    id: "ff",
+                                    text: "Join Our Team",
+                                    icon: "bi bi-briefcase-fill",
+                                    size: "btn-lg",
+                                    variant: 'btn-outline',
+                                    link: "<?php echo $websiteUrl ?>/artisan/sign-up"
+                                }]
+                            });
                         </script>
                     </div>
                 </div>
@@ -71,7 +76,7 @@
 
                             <div class="inner-table-content">
                                 <div id="page-content">
-                                    <?php $page='customreInfoPage';?>
+                                    <?php $page = 'customreInfoPage'; ?>
                                     <?php include $websitePath . '/config/content-page.php'; ?>
                                 </div>
                             </div>
@@ -106,16 +111,16 @@
 
                         <div class="btn-div" id="serviceButton">
                             <script>
-                            generalButtons({
-                                container: "serviceButton",
-                                buttons: [{
-                                    id: "btnStart",
-                                    text: "Explore All Services",
-                                    icon: "bi bi-arrow-right-circle",
-                                    iconPosition: "right",
-                                    link: "<?php echo $websiteUrl ?>/services"
-                                }, ]
-                            });
+                                generalButtons({
+                                    container: "serviceButton",
+                                    buttons: [{
+                                        id: "btnStart",
+                                        text: "Explore All Services",
+                                        icon: "bi bi-arrow-right-circle",
+                                        iconPosition: "right",
+                                        link: "<?php echo $websiteUrl ?>/services"
+                                    },]
+                                });
                             </script>
                         </div>
                     </div>
@@ -131,13 +136,13 @@
 
                         <div class="content-loading-div">
                             <img src="<?php echo $websiteUrl ?>/all-images/images/spinner.gif" alt="Loading" />
-                        </div>                     
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <?php _howItWorksSection('net-bg-tr');?>
+        <?php _howItWorksSection('net-bg-tr'); ?>
 
         <section class="body-div net-bg-bl">
             <div class="body-div-in">
@@ -165,16 +170,16 @@
 
                                 <div class="btn-div" id="indexJoinOurTeamBtn">
                                     <script>
-                                    generalButtons({
-                                        container: "indexJoinOurTeamBtn",
-                                        buttons: [{
-                                            id: "btnStart",
-                                            text: "Join Our Team",
-                                            icon: "bi bi-arrow-right-circle",
-                                            iconPosition: "right",
-                                            link: "<?php echo $websiteUrl ?>/artisan/sign-up"
-                                        }, ]
-                                    });
+                                        generalButtons({
+                                            container: "indexJoinOurTeamBtn",
+                                            buttons: [{
+                                                id: "btnStart",
+                                                text: "Join Our Team",
+                                                icon: "bi bi-arrow-right-circle",
+                                                iconPosition: "right",
+                                                link: "<?php echo $websiteUrl ?>/artisan/sign-up"
+                                            },]
+                                        });
                                     </script>
                                 </div>
                             </div>
@@ -252,16 +257,16 @@
 
                         <div class="btn-div" id="faqBtn">
                             <script>
-                            generalButtons({
-                                container: "faqBtn",
-                                buttons: [{
-                                    id: "faqBtn",
-                                    text: "Read More FAQ",
-                                    icon: "bi bi-arrow-right-circle",
-                                    iconPosition: "right",
-                                    link: "<?php echo $websiteUrl ?>/faq"
-                                }, ]
-                            });
+                                generalButtons({
+                                    container: "faqBtn",
+                                    buttons: [{
+                                        id: "faqBtn",
+                                        text: "Read More FAQ",
+                                        icon: "bi bi-arrow-right-circle",
+                                        iconPosition: "right",
+                                        link: "<?php echo $websiteUrl ?>/faq"
+                                    },]
+                                });
                             </script>
                         </div>
                     </div>
@@ -274,7 +279,7 @@
             </div>
         </section>
 
-        <?php _customerReviewSection('net-bg-br');?>
+        <?php _customerReviewSection('net-bg-br'); ?>
 
         <section class="body-div net-bg-tr">
             <div class="body-div-in">
@@ -287,16 +292,16 @@
 
                         <div class="btn-div" id="indexBlogBtn">
                             <script>
-                            generalButtons({
-                                container: "indexBlogBtn",
-                                buttons: [{
-                                    id: "indexBlogBtn",
-                                    text: "Explore All Blogs",
-                                    icon: "bi bi-arrow-right-circle",
-                                    iconPosition: "right",
-                                    link: "<?php echo $websiteUrl ?>/blog"
-                                }, ]
-                            });
+                                generalButtons({
+                                    container: "indexBlogBtn",
+                                    buttons: [{
+                                        id: "indexBlogBtn",
+                                        text: "Explore All Blogs",
+                                        icon: "bi bi-arrow-right-circle",
+                                        iconPosition: "right",
+                                        link: "<?php echo $websiteUrl ?>/blog"
+                                    },]
+                                });
                             </script>
                         </div>
                     </div>
@@ -308,7 +313,7 @@
                                 limit: 3,
                                 pageContainer: "indexBlogPageContainer"
                             })
-                        </script>   
+                        </script>
 
                         <div class="content-loading-div">
                             <img src="<?php echo $websiteUrl ?>/all-images/images/spinner.gif" alt="Loading" />
@@ -318,7 +323,7 @@
             </div>
         </section>
 
-        <?php include 'footer.php'?>
+        <?php include 'footer.php' ?>
     </section>
 </body>
 

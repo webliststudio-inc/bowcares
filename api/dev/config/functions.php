@@ -26,15 +26,11 @@ function _staff_accesskey_validation($conn, $accessKey)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 function _get_sequence_count($conn, $counterId)
 {
-    $getQuery = "SELECT counterValue FROM SETUP_COUNTER_TAB WHERE counterId = ? FOR UPDATE";
-    $getParams = [$counterId];
-    $getResult = selectQuery($conn, $getQuery, 's', $getParams);
-    $count = $getResult[0]['counterValue'];
-    $num = $count + 1;
+    $getQuery = "SELECT counterValue FROM SETUP_COUNTER_TAB WHERE counterId = '$counterId' FOR UPDATE";
+    $num = selectQuery($conn, $getQuery)[0]['counterValue'] + 1;
     ///// update the counter value in the database
-    $updateQuery = "UPDATE `SETUP_COUNTER_TAB` SET `counterValue` = ? WHERE counterId = ?";
-    $updateParams = [$num, $counterId];
-    updateQuery($conn, $updateQuery, 'is', $updateParams);
+    $updateQuery = "UPDATE `SETUP_COUNTER_TAB` SET `counterValue` = '$num' WHERE counterId = '$counterId'";
+    updateQuery($conn, $updateQuery);
     if ($num < 10) {
         $no = '00' . $num;
     } elseif ($num >= 10 && $num < 100) {
@@ -57,7 +53,7 @@ function updatePageViewsCount($conn, $publishId)
 function _get_smtp_details($conn)
 {
     $getQuery = "SELECT smtpHost, smtpUsername, smtpPassword, smtpPort, senderName, supportEmail FROM SETUP_BACKEND_SETTINGS_TAB WHERE settingsId = 'ID001'";
-    $getResult = selectQuery($conn, $getQuery, 's', []);
+    $getResult = selectQuery($conn, $getQuery);
     return json_encode($getResult[0]);
 }
 
@@ -105,20 +101,10 @@ function _get_category_details($conn, $categoryId)
     return ($getResult[0]);
 }
 
-// get PROJECT STAGE details
-function _get_project_stage_details($conn, $projectStageId)
+function _get_profession_details($conn, $professionId)
 {
-    $getQuery = "SELECT projectStageId, projectStageName FROM SETUP_PROJECT_STAGES_TAB WHERE projectStageId = ?";
-    $getParams = [$projectStageId];
-    $getResult = selectQuery($conn, $getQuery, 's', $getParams);
-    return ($getResult[0]);
-}
-
-/// get PROJECT CATEGORY details
-function _get_project_category_details($conn, $projectCategoryId)
-{
-    $getQuery = "SELECT projectCategoryId, projectCategoryName FROM PROJECT_CATEGORY_TAB WHERE projectCategoryId = ?";
-    $getParams = [$projectCategoryId];
+    $getQuery = "SELECT professionId, professionName FROM PROFESSION_TAB WHERE professionId = ?";
+    $getParams = [$professionId];
     $getResult = selectQuery($conn, $getQuery, 's', $getParams);
     return ($getResult[0]);
 }

@@ -13,10 +13,9 @@ try {
 
     ////////////////// Variables //////////////////
     $pageId = trim($_GET['pageId'] ?? '');
-    $pageCategory = trim($_GET['pageCategory'] ?? ''); //// can be BLOG, PORTFOLIO, SERVICE
+    $pageCategory = trim($_GET['pageCategory'] ?? ''); //// can be BLOG, GALLERY, SERVICE
     $categoryId = trim($data['categoryId'] ?? ''); /// 
-    $projectStageId = trim($data['projectStageId'] ?? ''); /// optional
-    $projectCategoryId = trim($data['projectCategoryId'] ?? ''); /// optional
+    $professionId = trim($data['professionId'] ?? ''); /// optional
     $pageTitle = trim($data['pageTitle'] ?? '');
     $pageUrl = trim($data['pageUrl'] ?? '');
     $seoKeywords = trim($data['seoKeywords'] ?? '');
@@ -38,9 +37,8 @@ try {
     if ($pageCategory === 'BLOG') {
         validateEmptyField($categoryId, 'CATEGORY ID');
     }
-    if ($pageCategory === 'PORTFOLIO') {
-        validateEmptyField($projectStageId, 'PROJECT STAGE ID');
-        validateEmptyField($projectCategoryId, 'PROJECT CATEGORY ID');
+    if ($pageCategory === 'GALLERY') {
+        validateEmptyField($professionId, 'PROFESSION ID');
         validateEmptyField($location, 'LOCATION');
     }
 
@@ -67,11 +65,11 @@ try {
         $updateParams = [$categoryId, $pageId];
         updateQuery($conn, $updateQuery, "ss", $updateParams);
     }
-    if ($pageCategory === 'PORTFOLIO') {
-        /// update projectStageId, projectCategoryId, and location in PAGES_TAB
-        $updateQuery = "UPDATE PAGES_TAB SET projectStageId = ?, projectCategoryId = ?, location = ? WHERE pageId = ?";
-        $updateParams = [$projectStageId, $projectCategoryId, $location, $pageId];
-        updateQuery($conn, $updateQuery, "ssss", $updateParams);
+    if ($pageCategory === 'GALLERY') {
+        /// update professionId and location in PAGES_TAB
+        $updateQuery = "UPDATE PAGES_TAB SET professionId = ?, location = ? WHERE pageId = ?";
+        $updateParams = [$professionId, $location, $pageId];
+        updateQuery($conn, $updateQuery, "sss", $updateParams);
     }
 
     ////////////////// Fetch Updated Page //////////////////
@@ -79,8 +77,7 @@ try {
     $selectParams = [$pageId];
     $pageData = selectQuery($conn, $selectQuery, "s", $selectParams)[0];
     $categoryId = $pageData['categoryId'];
-    $projectStageId = $pageData['projectStageId'];
-    $projectCategoryId = $pageData['projectCategoryId'];
+    $professionId = $pageData['professionId'];
     $statusId = $pageData['statusId'];
     $createdBy = $pageData['createdBy'];
     $updatedBy = $pageData['updatedBy'];
@@ -99,13 +96,10 @@ try {
         $categoryData = _get_category_details($conn, $categoryId);
         $pageData['categoryData'] = $categoryData;
     }
-    if ($pageCategory === 'PORTFOLIO') {
-        /// get projectStageData
-        $projectStageData = _get_project_stage_details($conn, $projectStageId);
-        $pageData['projectStageData'] = $projectStageData;
-        /// get projectCategoryData
-        $projectCategoryData = _get_project_category_details($conn, $projectCategoryId);
-        $pageData['projectCategoryData'] = $projectCategoryData;
+    if ($pageCategory === 'GALLERY') {
+        /// get professionData
+        $professionData = _get_profession_details($conn, $professionId);
+        $pageData['professionData'] = $professionData;
     }
 
     ////////////////// Response //////////////////

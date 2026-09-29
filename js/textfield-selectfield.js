@@ -6,6 +6,8 @@ function textField(options) {
     value = "",
     onKeyPressFunction = null,
     onKeyUpFunction = null,
+    onblurFunction = null,
+    oninputFunction = null,
     readonly = false,
     maxlength = null,
     rows = null,
@@ -23,7 +25,10 @@ function textField(options) {
       : `
           <input class="text_field" type="${type}" id="${id}" placeholder="" value="${value}"
             ${onKeyPressFunction ? `onkeypress="${onKeyPressFunction}"` : ""} 
-			${onKeyUpFunction ? `onkeyup="${onKeyUpFunction}"` : ""}
+            ${onKeyUpFunction ? `onkeyup="${onKeyUpFunction}"` : ""}
+            ${onblurFunction ? `onblur="${onblurFunction}"` : ""}
+            ${oninputFunction ? `oninput="${oninputFunction}"` : ""}
+
 			${readonly ? "readonly" : ""}
 			${maxlength ? `maxlength="${maxlength}"` : ""}/>
           <div class="placeholder">${title}:</div>
@@ -81,7 +86,7 @@ function otpField(options) {
         inputmode="numeric"
         maxlength="1"
         data-index="${i}"
-        ${onKeyPressFunction ? `onkeypress="${onKeyPressFunction}"` : ''}
+        ${onKeyPressFunction ? `onkeypress="${onKeyPressFunction}"` : ""}
       />
     `;
   }
@@ -113,10 +118,11 @@ function otpField(options) {
   otpInputs.on("paste", function (e) {
     e.preventDefault();
 
-    let pastedData = e.originalEvent.clipboardData.getData("text")
+    let pastedData = e.originalEvent.clipboardData
+      .getData("text")
       .replace(/\D/g, "")
       .slice(0, length);
-    
+
     for (let i = 0; i < pastedData.length; i++) {
       otpInputs.eq(i).val(pastedData[i]);
     }
@@ -210,27 +216,36 @@ $(document).on("click", ".toggle-password", function () {
   }
 });
 
-
 function _getSelectCategory(fieldId) {
-	try {
-		//// call endpoint //////
-		_callFetchEndPoints({
-			url: `admin/settings/information-category/fetch-information-category?statusId=1`,
-			accessKey: true,
-		})
-		.then((response) => {
-			for (let i = 0; i < response.data.length; i++) {
-				const id = response.data[i].categoryId;
-				const value = response.data[i].categoryName;
-				$('#searchList_'+ fieldId).append('<li onclick="_clickOption(\'searchList_' + fieldId + '\', \'' + id + '\', \'' + value + '\');">'+ value +'</li>');
-			}				
-		 })
-		.catch((error) => {
-			_staffValidationCheck(error.response);
-			console.error("Error:", error);
-		});
-	} catch (error) {
-		console.error("Error:", error);
-		_actionAlert('An unexpected error occurred. Please try again.', false);
-  	}
+  try {
+    //// call endpoint //////
+    _callFetchEndPoints({
+      url: `admin/settings/information-category/fetch-information-category?statusId=1`,
+      accessKey: true,
+    })
+      .then((response) => {
+        for (let i = 0; i < response.data.length; i++) {
+          const id = response.data[i].categoryId;
+          const value = response.data[i].categoryName;
+          $("#searchList_" + fieldId).append(
+            "<li onclick=\"_clickOption('searchList_" +
+              fieldId +
+              "', '" +
+              id +
+              "', '" +
+              value +
+              "');\">" +
+              value +
+              "</li>",
+          );
+        }
+      })
+      .catch((error) => {
+        _staffValidationCheck(error.response);
+        console.error("Error:", error);
+      });
+  } catch (error) {
+    console.error("Error:", error);
+    _actionAlert("An unexpected error occurred. Please try again.", false);
+  }
 }
