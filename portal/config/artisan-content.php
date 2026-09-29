@@ -115,9 +115,7 @@
                                             <span id="statusName"></span>
                                         </div>
                                     </div>
-
                                     | LAST LOGIN DATE:
-
                                     <strong id="lastLoginTime">
                                         <script>
                                         $("#lastLoginTime").html(
@@ -131,14 +129,14 @@
 
                                 <script>
                                 $(document).ready(function() {
-                                    const statusName =
-                                        getEachArtisanDetailsSession?.statusData?.statusName;
+                                    const statusClass = getEachArtisanDetailsSession?.statusData?.statusName.includes(" ")
+                                    ? getEachArtisanDetailsSession?.statusData?.statusName.toUpperCase().replace(/\s+/g, "-")
+                                    : getEachArtisanDetailsSession?.statusData?.statusName;
 
-                                    $("#statusName").html(statusName);
-                                    $("#statusBtn").addClass(statusName);
+                                    $("#statusName").html(statusClass);
+                                    $("#statusBtn").addClass(statusClass);
                                 });
                                 </script>
-
                             </div>
                         </div>
                     </div>
@@ -551,46 +549,94 @@
             </div>
 
             <div class="inner-table-content colum-table-content">
-
-                <div class="text_field_container col-1" id="updateProfessionId_container">
+                <div class="text_field_container col-1" id="updateStatus_container">
                     <script>
-                    selectField({
-                        id: 'updateProfessionId',
-                        title: 'Select Profession',
-                        fieldValue: getEachArtisanDetailsSession?.professionData?.professionId ?? '',
-                        fieldLabel: getEachArtisanDetailsSession?.professionData?.professionName ?? ''
-                    });
+                        selectField({
+                            id: 'updateStatus',
+                            title: 'Status',
+                            fieldValue: getEachArtisanDetailsSession?.statusData?.statusId ??
+                                '',
+                            fieldLabel: getEachArtisanDetailsSession?.statusData?.statusName ??
+                                ''
+                        });
                     </script>
                 </div>
 
-                <div class="text_field_container col-1" id="updateVerificationStatus_container">
+                <div class="text_field_container col-1" id="updateAvailabilityStatus_container">
                     <script>
-                    selectField({
-                        id: 'updateVerificationStatus',
-                        title: 'Verification Status',
-                        fieldValue: getEachArtisanDetailsSession?.verificationStatusData?.verificationStatusId ??
-                            '',
-                        fieldLabel: getEachArtisanDetailsSession?.verificationStatusData?.verificationStatusName ??
-                            ''
-                    });
-                    </script>
-                </div>
-
-                <div class="text_field_container col-2" id="updateAvailabilityStatus_container">
-                    <script>
-                    selectField({
-                        id: 'updateAvailabilityStatus',
-                        title: 'Availability Status',
-                        fieldValue: getEachArtisanDetailsSession?.availabilityStatusData?.availabilityStatusId ??
-                            '',
-                        fieldLabel: getEachArtisanDetailsSession?.availabilityStatusData?.availabilityStatusName ??
-                            ''
-                    });
+                        selectField({
+                            id: 'updateAvailabilityStatus',
+                            title: 'Availability Status',
+                            fieldValue: getEachArtisanDetailsSession?.availableStatusData?.statusId ?? '',
+                            fieldLabel: getEachArtisanDetailsSession?.availableStatusData?.statusName ?? ''
+                        });
                     </script>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- <div class="main-content-div dash-main-content-div">
+        <div class="tables-content-div">
+            <div class="content-title">
+                <div class="title">
+                    <i class="bi bi-tools"></i>
+                    <p>Professions</p>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="permission-form-back-div">
+                    <div class="title-div">
+                        <p>Use the toggles below to enable or disable artisan professions. Switching
+                            to "Yes" makes
+                            the profession available for artisan registration and job assignments.
+                        </p>
+                    </div>
+
+                    <div class="permission-toggle-div">
+                        <div class="toggle-title">Available Professions</div>
+                            <div class="fetch-toggle" id="profToggleContent">
+                                <script>
+                                    $(document).ready(function() {
+                                        const fetchProfession = getEachArtisanDetailsSession?.artisanProfessionData ?? [];
+                                        let professionHtml = '';
+
+                                        for (let i = 0; i < fetchProfession.length; i++) {
+                                            const { professionId, professionName } = fetchProfession[i];
+
+                                            const isChecked = true;
+                                            professionHtml += `
+                                                <div class="each-toggle-div">
+                                                    <span>${professionName}</span>
+                                                    <label for="professionId_${professionId}" class="switch">
+                                                        <input 
+                                                            type="checkbox"
+                                                            class="child artisan-checkbox"
+                                                            id="professionId_${professionId}"
+                                                            name="professionId[]"
+                                                            value="${professionId}"
+                                                            data-value="${professionId}"
+                                                            ${isChecked ? 'checked' : ''}
+                                                        >
+                                                        <span class="slider"></span>
+                                                        <span class="toggle-label">${isChecked ? 'Yes' : 'No'}</span>
+                                                    </label>
+                                                </div>
+                                            `;
+                                        }
+
+                                        $('#profToggleContent').html(professionHtml);
+                                        _userRoleCheck();
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                    <div class="issue-text" id="issues_professionToggle"></div>
+                </div>
+            </div>
+        </div>
+    </div> -->
 
     <div class="form-bottom-btn-div">
         <button class="btn" title="UPDATE ARTISAN PROFILE" id="updateBtn" onclick="">

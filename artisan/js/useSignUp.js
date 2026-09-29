@@ -73,7 +73,8 @@ function _proceedArtisanSignUp(isResendOtp = false) {
 		let emailAddress = $("#emailAddress").val()?.trim();
 		let password = $("#createPassword").val()?.trim();
 		let confirmPassword = $("#confirmPassword").val()?.trim();
-
+		let address = userEnteredAddress;
+		
 		// Use session values when resending ///
 		if (isResendOtp) {
 			firstName = artisanBioDataSession?.firstName;
@@ -82,6 +83,8 @@ function _proceedArtisanSignUp(isResendOtp = false) {
 			emailAddress = artisanBioDataSession?.emailAddress;
 			password = artisanBioDataSession?.password;
 			confirmPassword = artisanBioDataSession?.confirmPassword;
+			address = artisanBioDataSession?.address;
+			systemGeneratedAddress = artisanBioDataSession?.systemGeneratedAddress;
 		}
 		
 		let selectedProfessions = [];
@@ -103,6 +106,7 @@ function _proceedArtisanSignUp(isResendOtp = false) {
 			issueCount += _validateEmptyValue("confirmPassword", "CONFIRM PASSWORD");
 			issueCount += _validateEmail("emailAddress", "EMAIL ADDRESS");
 			issueCount += _validateNumber("phoneNumber", phoneNumber);
+			issueCount += _validateEmptyValue("destination", "ADDRESS");
 
 			if (password != confirmPassword) {
 				$("#confirmPassword").addClass("issue");
@@ -130,6 +134,8 @@ function _proceedArtisanSignUp(isResendOtp = false) {
 			password,
 			confirmPassword,
 			professionIds: selectedProfessions,
+			address,
+			systemGeneratedAddress,
 		};
 
         /// Set the Artisan Bio data in session ///
@@ -211,6 +217,8 @@ function _completeArtisanSignUp() {
 		const password = artisanBioDataSession?.password;
 		const confirmPassword = artisanBioDataSession?.confirmPassword;
 		const selectedProfessions = artisanBioDataSession?.professionIds || [];
+		const address = artisanBioDataSession?.address;
+		const systemGeneratedAddress = artisanBioDataSession?.systemGeneratedAddress;
 		
        	let issueCount = 0;
 		const otp = $("#otp").val().trim();
@@ -241,6 +249,8 @@ function _completeArtisanSignUp() {
 			confirmPassword,
 			otp,
 			professionIds: selectedProfessions,
+			address,
+			systemGeneratedAddress,
 		};
 
 		///// complete sign//////////

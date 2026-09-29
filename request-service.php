@@ -49,6 +49,13 @@
             </header>
 
             <div class="form-back-div" data-aos="fade-in" data-aos-duration="1200">
+                <script>
+                    let customerBioData = {};
+                    let customreBioDataSession = localStorage.getItem("customreBioDataSession");
+                    if (customreBioDataSession) {
+                        customerBioData = JSON.parse(customreBioDataSession);
+                    }
+                </script>
                 <div class="form-div">
                     <div class="top-div">
                         <h1>🛠️ Request a Service</h1>
@@ -249,11 +256,12 @@
                                 </div>
 
                                 <div class="form-container">
-                                    <div class="text_field_container col-3" id="FullName_container">
+                                    <div class="text_field_container col-3" id="fullName_container">
                                         <script>
                                             textField({
-                                                id: 'FullName',
+                                                id: 'fullName',
                                                 title: 'Full Name',
+                                                value: customerBioData?.fullName ?? "",
                                             });
                                         </script>
                                     </div>
@@ -264,6 +272,7 @@
                                                 id: 'emailAddress',
                                                 title: 'Email Address',
                                                 type: 'email',
+                                                value: customerBioData?.emailAddress ?? "",
                                             });
                                         </script>
                                     </div>
@@ -274,6 +283,7 @@
                                                 id: 'phoneNumber',
                                                 title: 'Phone Number',
                                                 type: 'tel',
+                                                value: customerBioData?.phoneNumber ?? "",
                                             });
                                         </script>
                                     </div>
@@ -282,19 +292,18 @@
                                         <script>
                                             textField({
                                                 id: 'destination',
-                                                title: 'Destination',
+                                                title: 'Address',
                                                 oninputFunction: 'getMapDetails()'
                                             });
                                         </script>
                                     </div>
-
                                     <div id="output"></div>
-                                    <div id="map" style="width=100%; height: 300px"></div>
+                                    <div id="map"></div>
 
-                                    <div class="text_area_container" id="messageRequest_container">
+                                    <div class="text_area_container" id="serviceDescription_container">
                                         <script>
                                             textField({
-                                                id: 'messageRequest',
+                                                id: 'serviceDescription',
                                                 title: 'Describe Your Service Request',
                                                 type: 'textarea',
                                                 maxlength: 180,
@@ -304,9 +313,7 @@
 
                                     <div class="check-box-container" id="notificationConsent_container">
                                         <label class="check-box-label">
-                                            <input type="checkbox" id="notificationConsent" name="notificationConsent"
-                                                value="1">
-
+                                            <input type="checkbox" id="notificationConsent" name="notificationConsent" value="1">
                                             <span>
                                                 By checking this box, I agree to receive emails, notifications, and
                                                 other important updates from BowCare regarding my service request,
@@ -322,7 +329,7 @@
 
                         <div class="btn-div">
                             <button class="btn" id="requestServiceBtn" title="Submit Service Request"
-                                onclick="_completeServiceRequest();">
+                                onclick="_pageRequestForService();">
                                 Submit Request
                                 <i class="bi-check"></i>
                             </button>

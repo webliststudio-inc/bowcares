@@ -112,6 +112,10 @@ html {
   --pending-color: rgba(218, 90, 31, 0.87);
   --pending-border: rgba(218,90,31,.1);
 
+  --in-review-bg: rgba(59, 130, 246, .1);
+  --in-review-color: rgba(37, 99, 235, .9);
+  --in-review-border: rgba(37, 99, 235, .12);
+
   --danger-bg: rgba(255,0,0,.1);
   --danger-color: rgb(255,0,0);
   --danger-border: rgba(255,0,0,.1);

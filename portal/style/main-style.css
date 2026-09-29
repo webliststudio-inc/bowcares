@@ -3001,6 +3001,20 @@ main {
 	color: var(--progress-color);
 }
 
+.table-div .table .AWAITING-APPROVAL
+{
+	background: var(--pending-bg);
+	color: var(--pending-color);
+	border: 1px solid var(--pending-border);
+}
+
+.table-div .table .IN-REVIEW
+{
+	background: var(--in-review-bg);
+	color: var(--in-review-color);
+	border: 1px solid var(--in-review-border);
+}
+
 .table-div .table .tb-row span{
 	cursor: pointer;
     color: var(--text-color);
@@ -4427,7 +4441,7 @@ main {
 	color: var(--text-white);
 	padding: 2px 10px;
 	border-radius: 15px;
-	font-size: 8px;
+	font-size: 10px;
 	font-family: sub-title-font;
 }
 
@@ -4439,6 +4453,12 @@ main {
 .user-profile-div .profile-content-div .bg-img .mini-profile .text-back-div .inner-text .text-div .SUSPEND{
 	background: var(--secondary-color);
 	color: var(--text-white);
+}
+
+.user-profile-div .profile-content-div .bg-img .mini-profile .text-back-div .inner-text .text-div .AWAITING-APPROVAL{
+	background: var(--pending-bg);
+	color: var(--pending-color);
+	border: 1px solid var(--pending-border);
 }
 
 .user-profile-div .profile-content-div .bg-img .mini-profile .text-back-div .inner-text .text-div .name{ 

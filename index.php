@@ -64,25 +64,7 @@
                     </div>
                 </div>
 
-                <div class="form-back-div" id="requestCallForm">
-                    <div class="main-content-div">
-                        <div class="tables-content-div">
-                            <div class="content-title">
-                                <div class="title">
-                                    <i class="bi-telephone-fill"></i>
-                                    <p>Request For a Call</p>
-                                </div>
-                            </div>
-
-                            <div class="inner-table-content">
-                                <div id="page-content">
-                                    <?php $page = 'customreInfoPage'; ?>
-                                    <?php include $websitePath . '/config/content-page.php'; ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php _serviceRequestForm(); ?>
             </div>
         </div>
     </div>

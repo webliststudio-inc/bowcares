@@ -19,7 +19,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="<?php echo $websiteUrl ?>/js/paramount.js?v=<?php echo $codeVersion ?>"></script>
 <script src="<?php echo $websiteUrl ?>/js/scripts.js?v=<?php echo $codeVersion ?>"></script>
-<script src="<?php echo $websiteUrl ?>/js/useContact.js?v=<?php echo $codeVersion ?>"></script>
 <script src="<?php echo $websiteUrl ?>/js/helper.js?v=<?php echo $codeVersion ?>" type="text/javascript"></script>
 <script src="<?php echo $websiteUrl ?>/js/textfield-selectfield.js?v=<?php echo $codeVersion ?>"></script>
 <script src="<?php echo $websiteUrl ?>/js/aos.js?v=<?php echo $codeVersion ?>"></script>

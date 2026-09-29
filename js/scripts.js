@@ -288,3 +288,148 @@ function _completeServiceRequest() {
   });
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+function _proceedIndexServiceRequest() {
+  try { 
+    ////////get all needed values////////////
+    let issueCount = 0;
+    const fullName = $("#fullName").val()?.trim();
+    const emailAddress = $("#emailAddress").val()?.trim();
+    const phoneNumber = $("#phoneNumber").val()?.trim();
+
+    ///// empty field validation//////////
+    issueCount += _validateEmptyValue("fullName", "FULL NAME");
+    issueCount += _validateEmptyValue("emailAddress", "EMAIL ADDRESS");
+    issueCount += _validateEmptyValue("phoneNumber", "MOBILE NUMBER");
+    issueCount += _validateNumber("phoneNumber", phoneNumber);
+    issueCount += _validateEmail("emailAddress", "EMAIL ADDRESS");
+
+    if (issueCount > 0) return;
+
+    const btnText = $("#proccedBtn").html();
+	  _btnDisable("proccedBtn", btnText, true);
+
+    const formData = {
+      fullName,   
+      emailAddress,
+      phoneNumber,
+    };
+
+    /// Set the Artisan Bio data in session ///
+    localStorage.setItem(
+      "customreBioDataSession",
+      JSON.stringify(formData)
+    );
+
+    //// Redirect to Customre Service Request Page  ////
+    window.location.href = customreServiceRequestUrl;
+    _btnDisable("proccedBtn", btnText, false);
+  } catch (error) {
+  console.error("Error:", error);
+    _callCatchError(() => _proceedIndexServiceRequest());
+  }
+}
+
+
+
+//// Page Request for Service
+function _pageRequestForService() {
+	try {
+    let issueCount = 0;
+		const fullName = $("#fullName").val().trim();
+    const emailAddress = $("#emailAddress").val().trim();
+    const phoneNumber = $("#phoneNumber").val().trim();
+    const serviceDescription = $("#serviceDescription").val().trim();
+    let serviceAddress = userEnteredAddress;
+    systemGeneratedAddress = systemGeneratedAddress;
+    let distance = systemGeneratedDistance;
+    let duration = systemGeneratedDuration;
+    
+    ///// empty field validation//////////
+    issueCount += _validateEmptyValue("fullName", "FULL NAME");
+    issueCount += _validateEmptyValue("emailAddress", "EMAIL ADDRESS");
+    issueCount += _validateEmptyValue("phoneNumber", "MOBILE NUMBER");
+    issueCount += _validateNumber("phoneNumber", phoneNumber);
+    issueCount += _validateEmail("emailAddress", "EMAIL ADDRESS");
+    issueCount += _validateEmptyValue("serviceDescription", "SERVICE DESCRIPTION");
+    issueCount += _validateEmptyValue("destination", "ADDRESS");
+
+		if (issueCount > 0) return;
+
+		// Gather form data
+		const formData = {
+			fullName,
+			emailAddress,
+			phoneNumber,
+      serviceDescription,
+      serviceAddress,
+      systemGeneratedAddress,
+      distance,
+      duration,
+		};
+
+    ////// confirm action////
+		_showCustomConfirm({
+      callback: () => {
+          _pageRequestForServiceCallback(formData);
+      },
+			title: "Are you sure?",
+			message: 'Are you sure you want to submit? This action is irreversible.',
+			alertType: "warning",
+			falseActionBtn: true,
+			closeOnOverlayClick: true,
+    });
+    } catch (error) {
+        console.error("Error:", error);
+        _callCatchError(() => _pageRequestForService());
+    }
+}
+
+//// Page Request for Service Callback ////////
+function _pageRequestForServiceCallback(formData) {
+    ///// get btn text /////
+    const btnText = $("#requestServiceBtn").html();
+    _btnDisable("requestServiceBtn", btnText, true);
+
+    ///// call endpoint //////
+    _callRawEndPoints({
+      url: `site/customers/create-service-request`,
+      formData,
+    })
+	.then((response) => {
+		_clearAllSession();
+		_showCustomConfirm({
+			callback: () => {
+				window.location.replace(customreServiceRequestUrl); 
+			},
+			title: "Request Submitted!",
+			message: response?.message,
+			alertType: "success",
+			trueActionBtnText: "Okay, Thanks",
+			closeOnOverlayClick: true,
+		});
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+        if (error.status == 0) {
+            _callAjaxError(() => _pageRequestForServiceCallback(formData), error.message);
+            _btnDisable("requestServiceBtn", btnText, false);
+        } else {
+        _showCustomConfirm({
+          title: "Invalid Service Request!",
+          message: error.message,
+          alertType: "error",
+          trueActionBtnText: "OK",
+          closeOnOverlayClick: true,
+        });
+        _btnDisable("requestServiceBtn", btnText, false);
+        }
+    });
+}
+
+//// Clear All Session Storage ///
+function _clearAllSession() {
+    localStorage.clear();
+    sessionStorage.clear();
+}

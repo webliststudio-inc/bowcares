@@ -25,5 +25,3 @@
 
 <script src="<?php echo $websiteUrl ?>/artisan/js/useAuth.js?v=<?php echo $codeVersion ?>"></script>
 <script src="<?php echo $websiteUrl ?>/artisan/js/useSignUp.js?v=<?php echo $codeVersion ?>"></script>
-
-<script src="<?php echo $websiteUrl ?>/js/useContact.js?v=<?php echo $codeVersion ?>"></script>
