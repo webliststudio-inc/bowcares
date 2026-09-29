@@ -201,6 +201,16 @@ function _showCustomConfirm(options) {
       }
     });
   }
+
+  // Press Enter to trigger YES button
+  $(document)
+    .off("keydown.customConfirm")
+    .on("keydown.customConfirm", function (e) {
+      if (e.key === "Enter" && $("#customConfirmModal").is(":visible")) {
+        e.preventDefault();
+        $("#confirmOkBtn").trigger("click");
+      }
+    });
 }
 function _modalClose() {
   $("#customConfirmModal").html("").fadeOut(200);

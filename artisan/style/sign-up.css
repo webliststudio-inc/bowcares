@@ -122,7 +122,7 @@
     padding: 40px 0px;
 }
 
-#page-content{
+.login-session .login-div .form-back-div #page-content{
     max-width: 500px;
     display: flex;
     flex-direction: column;
@@ -310,13 +310,16 @@
     width:100%;
     }
     .login-session .login-div header .header-div-in {
-        width: 90%;
+        width: 94%;
     }
 }
 
 @media all and (max-width: 550px) {
     .login-session .login-div .form-back-div .form-div{
-        max-width: 90%;
+        max-width: 94%;
+    }
+    .login-session .login-div .form-back-div #page-content{
+        max-width: 94%;
     }
     .login-session .login-div .form-back-div .form-div .top-div h1{
         font-size: 5.5vw;
