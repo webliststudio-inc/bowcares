@@ -1,4 +1,4 @@
-<?php include '../config/constants.php';?>
+<?php include '../config/constants.php'; ?>
 <?php include 'config/functions.php'; ?>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http: //www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -6,24 +6,24 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <?php include 'meta.php'?>
-    <title><?php echo $appName?> | Artisan Sign Up</title>
-    <meta name="keywords" content="Artisan Sign Up - <?php echo $appName?>" />
-    <meta name="description" content="Artisan Sign Up - <?php echo $appName?>" />
+    <?php include 'meta.php' ?>
+    <title><?php echo $appName ?> | Artisan Sign Up</title>
+    <meta name="keywords" content="Artisan Sign Up - <?php echo $appName ?>" />
+    <meta name="description" content="Artisan Sign Up - <?php echo $appName ?>" />
 </head>
 
 <body>
 
-    <?php include 'alert.php'?>
+    <?php include 'alert.php' ?>
     <section class="login-session">
         <?php _leftArtisanSideSection(); ?>
 
         <div class="login-div">
             <header>
                 <div class="header-div-in">
-                    <a href="<?php echo $websiteUrl?>">
-                        <div class="logo-div"><img src="<?php echo $websiteUrl?>/all-images/images/logo.png"
-                                alt="<?php echo $appName?> logo" /></div>
+                    <a href="<?php echo $websiteUrl ?>">
+                        <div class="logo-div"><img src="<?php echo $websiteUrl ?>/all-images/images/logo.png"
+                                alt="<?php echo $appName ?> logo" /></div>
                     </a>
 
                     <div class="form-btn-div">
@@ -51,16 +51,20 @@
                             page: savedPage,
                             url: artisanMiddleWareUrl
                         });
-                        savedPage === "signUpotpVerificationPage"
-                        ? $(".form-back-div").addClass("center-content")
-                        : $(".form-back-div").removeClass("center-content");
+                        savedPage === "signUpotpVerificationPage" ?
+                            $(".form-back-div").addClass("center-content") :
+                            $(".form-back-div").removeClass("center-content");
                     });
                 </script>
             </div>
         </div>
     </section>
+    <!-- Load Google Maps API with Places & call initMap -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNYG0x6xtJOeYx6PTmRjjqBVI9FPgGNSw&libraries=places&callback=initMap">
+        </script>
 
-    <?php include 'bottom-scripts.php'?>
+    <?php include 'bottom-scripts.php' ?>
 </body>
 
 </html>
