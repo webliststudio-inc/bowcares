@@ -184,22 +184,22 @@ function _renderTaskData(data, start) {
                         </div>
                     </td>
                     <td>
-                    <div class="service-type-div">
-                        ${
-                            item.serviceType?.slice(0, 2).map(service => `
-                                <span class="service-badge"><i class="bi bi-tools"></i> ${service}</span>
-                            `).join("")
-                        }
+                        <div class="service-type-div">
+                            ${
+                                item.serviceType?.slice(0, 2).map(service => `
+                                    <span class="service-badge"><i class="bi bi-tools"></i> ${service}</span>
+                                `).join("")
+                            }
 
-                        ${
-                            item.serviceType?.length > 2
-                            ? `<span class="service-badge more">
-                                +${item.serviceType.length - 2} more
-                            </span>`
-                            : ""
-                        }
-                    </div>
-                </td>
+                            ${
+                                item.serviceType?.length > 2
+                                ? `<span class="service-badge more">
+                                    +${item.serviceType.length - 2} more
+                                </span>`
+                                : ""
+                            }
+                        </div>
+                    </td>
                     <td>
                         <div class="text-back-div">
                             <div class="text-div">

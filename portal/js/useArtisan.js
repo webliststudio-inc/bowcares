@@ -25,72 +25,42 @@ function _filtersArtisans(value) {
     });
 }
 
-
 /// Fetch Artisan Data ///
 function _fetchArtisanData() {
-    const response = {
-        data: [
-			{
-				artisanId: "ARTSIAN2026050821029001",
-				firstName: "John",
-				lastName: "Smith",
-				emailAddress: "john.smith@bowcares.com",
-				phoneNumber: "+2348012345678",
-				lastLoginTime: "2026-08-03 09:15:22",
+	try {
+		//// call endpoint //////
+		_callFetchEndPoints({
+			url: `admin/artisans/fetch-artisans`,
+			accessKey: true,
+		})
+		.then((response) => {
+            _initFetchArtisanData(response?.data);
+		 })
+		.catch((error) => {
+			_staffValidationCheck(error.response);
+			console.error("Error:", error);
+			if (error.status==0) {
+				_showEmptyState({
+					container: "artisanContent",
+					message: "Check your internet connection and try again",
+                    colspan: 20,
+					paginationContainer: "artisanContentPaginationControls",
+				});
 
-				professionData: {
-					professionName: "Electrician"
-				},
-
-				statusData: {
-					statusId: "1",
-					statusName: "ACTIVE"
-				},
-
-				verificationStatus: "VERIFIED",
-				availabilityStatus: "AVAILABLE"
-			},
-
-			{
-				artisanId: "ARTSIAN2026050821029002",
-				firstName: "Samuel",
-				lastName: "George",
-				emailAddress: "samuel.george@bowcares.com",
-				phoneNumber: "+2348023456789",
-				lastLoginTime: "2026-08-02 15:42:10",
-
-				professionData: {
-					professionName: "Plumber"
-				},
-
-				statusData: {
-					statusId: "1",
-					statusName: "ACTIVE"
-				},
-
-				verificationStatus: "PENDING",
-				availabilityStatus: "BUSY"
-			},
-
-			{
-				artisanId: "ARTSIAN2026050821029003",
-				firstName: "Michael",
-				lastName: "Terry",
-				emailAddress: "michael.terry@bowcares.com",
-				phoneNumber: "+2348034567890",
-				lastLoginTime: "2026-08-01 11:30:00",
-
-				professionData: {
-					professionName: "Carpenter"
-				},
-
-				verificationStatus: "REJECTED",
-				availabilityStatus: "OFFLINE"
+				_callAjaxError(() => _fetchStaffData(), error.message); // retry if needed
+			} else {
+				_showEmptyState({
+					container: "artisanContent",
+					message: error.message,
+                    colspan: 20,
+					paginationContainer: "artisanContentPaginationControls",
+				});
 			}
-		]
-    };
-
-    _initFetchArtisanData(response.data);
+		});
+	} catch (error) {
+		console.error("Error:", error);
+		_callCatchError(() => _fetchArtisanData()); 
+  	}
 }
 
 /// Render Artisan Data ///
@@ -102,7 +72,7 @@ function _renderArtisanData(data, start) {
                 <td>${start + i + 1}</td>
 
                 <td class="clickable-td" title="Click to view artisan profile"
-                    onclick="_fetchEachArtisan('${item.artisanId}');">
+                    onclick="_fetchEachArtisan('${item?.artisanId}');">
 
                     <div class="text-back-div">
                         <div class="icon-div">
@@ -127,9 +97,23 @@ function _renderArtisanData(data, start) {
                         <div>${item?.phoneNumber}</div>
                     </div>
                 </td>
+                <td>
+                    <div class="service-type-div">
+                        ${
+                            item?.artisanProfessionData?.slice(0, 2).map(profession => `
+                                <span class="service-badge"><i class="bi bi-tools"></i> ${profession?.professionName}</span>
+                            `).join("")
+                        }
 
-                <td>${item?.professionData?.professionName ?? "N/A"}</td>
-
+                        ${
+                            item?.artisanProfessionData?.length > 2
+                            ? `<span class="service-badge more">
+                                +${item?.artisanProfessionData?.length - 2} more
+                            </span>`
+                            : ""
+                        }
+                    </div>
+                </td>
                 <td>
                     <div class="text-back-div">
                         <div class="text-div">
@@ -147,14 +131,14 @@ function _renderArtisanData(data, start) {
                 </td>
 
 				<td>
-					<div class="status-div ${item?.verificationStatus}">
-						${item?.verificationStatus}
+					<div class="status-div ${item?.statusData?.statusName}">
+						${item?.statusData?.statusName}
 					</div>
 				</td>
 
 				<td>
-					<div class="status-div ${item?.availabilityStatus}">
-						${item?.availabilityStatus}
+					<div class="status-div ${item?.availableStatusData?.statusName}">
+						${item?.availableStatusData?.statusName}
 					</div>
 				</td>
 
