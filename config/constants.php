@@ -71,6 +71,9 @@ $userDeviceId = getBrowserId();
     var portalMiddleWareUrl = websiteUrl + '/portal/config/code'; /// For Portal Login Middleware Url //
     var portalUrl = websiteUrl + '/portal'; /// For Portal Url //
 
+    /// Customre Service Request Urls ///
+    var customreServiceRequestUrl = websiteUrl + '/request-service'; /// For Customre Service Request Url //
+
     /// Pictures Paths ///
     var blogPixPath = websiteUrl + '/uploaded_files/blog'; /// For Blog Picture Path //
     var servicePixPath = websiteUrl + '/uploaded_files/services'; /// For Services Picture Path //

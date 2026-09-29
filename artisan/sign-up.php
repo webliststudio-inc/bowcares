@@ -60,9 +60,14 @@
         </div>
     </section>
     <!-- Load Google Maps API with Places & call initMap -->
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNYG0x6xtJOeYx6PTmRjjqBVI9FPgGNSw&libraries=places&callback=initMap">
-        </script>
+    <script>
+        const timestamp = new Date().getTime();
+        document.write(`
+            <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNYG0x6xtJOeYx6PTmRjjqBVI9FPgGNSw&libraries=places&callback=initMap&t=${timestamp}">
+            <\/script>
+        `);
+    </script>
 
     <?php include 'bottom-scripts.php' ?>
 </body>

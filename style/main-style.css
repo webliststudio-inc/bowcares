@@ -5226,3 +5226,9 @@ header .header-bottom .header-bottom-inner nav ul .mini-menu{
   font-size: 12px;
   font-family: body-font;
 }
+
+
+#map{
+    width: 100%;
+    height: 300px;
+}

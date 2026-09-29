@@ -1,4 +1,71 @@
 <?php
+function _serviceRequestForm()
+{ ?>
+<div class="form-back-div" id="requestCallForm" data-aos="fade-in" data-aos-duration="1200">
+                    <div class="main-content-div">
+                        <div class="tables-content-div">
+                            <div class="content-title">
+                                <div class="title">
+                                    <i class="bi-telephone-fill"></i>
+                                    <p>Request For a Call</p>
+                                </div>
+                            </div>
+
+                            <div class="inner-table-content">
+                                <div class="form-wrapper">
+                                    <div class="text_field_container col-3" id="fullName_container">
+                                        <script>
+                                            textField({
+                                                id: 'fullName',
+                                                title: 'Full Name',
+                                            });
+                                        </script>
+                                    </div>
+
+                                    <div class="text_field_container col-3" id="emailAddress_container">
+                                        <script>
+                                            textField({
+                                                id: 'emailAddress',
+                                                title: 'Email Address',
+                                                type: 'email',
+                                            });
+                                        </script>
+                                    </div>
+
+                                    <div class="text_field_container col-3" id="phoneNumber_container">
+                                        <script>
+                                            textField({
+                                                id: 'phoneNumber',
+                                                title: 'Phone Number',
+                                                type: 'tel',
+                                            });
+                                        </script>
+                                    </div>
+
+                                    <div class="btn-div" id="proccedBtn">
+                                        <script>
+                                            generalButtons({
+                                                container: "proccedBtn",
+                                                buttons: [{
+                                                    id: "proccedBtn",
+                                                    text: "Proceed",
+                                                    icon: "bi bi-arrow-right-circle",
+                                                    width: "btn-full",
+                                                    size: "btn-lg",
+                                                    iconPosition: "right",
+                                                    onClick: "_proceedIndexServiceRequest();"
+                                                }]
+                                            });
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<?php } ?>
+
+<?php
 function _otherPagesBtn($websiteUrl)
 { ?>
 <div class="btn-div slide-btn-div" id="otherPagesBtn">
@@ -69,65 +136,7 @@ function _otherPagesTitleContent($props)
         </div>
 
         <div class="right-wrapper" id="requestCallForm">
-            <div class="form-back-div">
-                <div class="main-content-div dash-main-content-div">
-                    <div class="tables-content-div">
-                        <div class="content-title">
-                            <div class="title">
-                                <i class="bi-telephone-fill"></i>
-                                <p>Request For a Call</p>
-                            </div>
-                        </div>
-
-                        <div class="inner-table-content">
-                            <div class="text_field_container col-3" id="FullName_container">
-                                <script>
-                                textField({
-                                    id: 'FullName',
-                                    title: 'Full Name',
-                                });
-                                </script>
-                            </div>
-
-                            <div class="text_field_container col-3" id="contactEmailAddress_container">
-                                <script>
-                                textField({
-                                    id: 'contactEmailAddress',
-                                    title: 'Email Address',
-                                    type: 'email',
-                                });
-                                </script>
-                            </div>
-
-                            <div class="text_field_container col-3" id="contactPhoneNumber_container">
-                                <script>
-                                textField({
-                                    id: 'contactPhoneNumber',
-                                    title: 'Phone Number',
-                                    type: 'tel',
-                                });
-                                </script>
-                            </div>
-
-                            <div class="btn-div" id="formBtn">
-                                <script>
-                                generalButtons({
-                                    container: "formBtn",
-                                    buttons: [{
-                                        id: "formBtn",
-                                        text: "Save and Continue",
-                                        icon: "bi bi-arrow-right-circle",
-                                        width: "btn-full",
-                                        size: "btn-lg",
-                                        iconPosition: "right"
-                                    }]
-                                });
-                                </script>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+             <?php _serviceRequestForm(); ?>
         </div>
     </div>
 </div>
