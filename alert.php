@@ -51,7 +51,7 @@
         </span>
     </div>
     
-    <a href="tel:+1 (510) 479-1822" class="bottom-nav-item">
+    <a href="tel:+1 (832) 743-9353" class="bottom-nav-item">
         <i class="bi bi-telephone-fill"></i>
         <span>Call Us</span>
     </a>
@@ -60,23 +60,23 @@
 <div class="sidenavdiv">
     <div class="live-chat-back-div">
 
-        <a href="tel:+1832-288-5625" title="Call Customer Care">
+        <a href="tel:+1 (832) 743-9353" title="Call Customer Care">
             <div class="chat-div">
                 <div class="icon-div" style="background:#008040;"><i class="bi-telephone-outbound"></i></div>
-                <div class="text">+1832-288-5625</div>
+                <div class="text">+1 (832) 743-9353</div>
                 <br clear="all" />
             </div>
         </a>
 
-        <a href="https://api.whatsapp.com/send?text=Greetings! I'd like to make an enquiry on the services you offer.&phone=+18322885625" target="_blank" title="Whatsapp">
+        <a href="https://api.whatsapp.com/send?text=Greetings! I'd like to make an enquiry on the services you offer.&phone=+1 (832) 743-9353" target="_blank" title="Whatsapp">
             <div class="chat-div">
                 <div class="icon-div" style="background:#25D366;"><i class="bi-whatsapp"></i></div>
-                <div class="text">+1832-288-5625</div>
+                <div class="text">+1 (832) 743-9353</div>
                 <br clear="all" />
             </div>
         </a>
 
-        <a href="https://www.facebook.com/" target="_blank" title="Facebook">
+        <a href="https://www.facebook.com/profile.php?id=61595073264053&mibextid=wwXIfr/" target="_blank" title="Facebook">
             <div class="chat-div">
                 <div class="icon-div" style="background:#2980b9;"><i class="bi-facebook"></i></div>
                 <div class="text">Facebook Page </div>
@@ -84,15 +84,15 @@
             </div>
         </a>
 
-        <a href="https://twitter.com/" target="_blank" title="Twitter">
+        <!-- <a href="https://twitter.com/" target="_blank" title="Twitter">
             <div class="chat-div">
                 <div class="icon-div" style="background:#3498db;"><i class="bi-twitter"></i></div>
                 <div class="text">Twitter Page</div>
                 <br clear="all" />
             </div>
-        </a>
+        </a> -->
 
-        <a href="https://www.instagram.com/" target="_blank" title="Instagram">
+        <a href="https://www.instagram.com/bowcares?stkn=MW5rdXUzd29oOG1kcA%3D%3D&utm_source=qr/" target="_blank" title="Instagram">
             <div class="chat-div">
                 <div class="icon-div" style="background-image: linear-gradient(to right,#03F, #F0F);"><i class="bi-instagram"></i></div>
                 <div class="text">Instagram Page</div>

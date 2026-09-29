@@ -105,18 +105,17 @@ function _renderArtisanData(data, start) {
                     onclick="_fetchEachArtisan('${item.artisanId}');">
 
                     <div class="text-back-div">
-                        <div class="image-div">
-                            <img src="${websiteUrl}/all-images/images/avatar.jpg"
-                                alt="${item.firstName} ${item.lastName}" />
+                        <div class="icon-div">
+                            ${getFirstLettersOfEachWord(item?.firstName + " " + item?.lastName)}
                         </div>
 
                         <div class="text-div">
                             <div class="first-class">
-                                ${item.firstName} ${item.lastName}
+                                ${item?.firstName} ${item?.lastName}
                             </div>
 
                             <div class="second-class">
-                                ${item.artisanId}
+                                ${item?.artisanId}
                             </div>
                         </div>
                     </div>
@@ -124,33 +123,45 @@ function _renderArtisanData(data, start) {
 
                 <td>
                     <div class="text-div">
-                        <div>${item.emailAddress}</div>
-                        <div>${item.phoneNumber}</div>
+                        <div>${item?.emailAddress}</div>
+                        <div>${item?.phoneNumber}</div>
                     </div>
                 </td>
 
-                <td>${item.professionData?.professionName ?? "N/A"}</td>
+                <td>${item?.professionData?.professionName ?? "N/A"}</td>
 
                 <td>
-                    ${item.lastLoginTime ? item.lastLoginTime : "00-00-00 00:00:00"}
+                    <div class="text-back-div">
+                        <div class="text-div">
+                            <div class="first-class date-item">
+                                <i class="bi bi-calendar2-check"></i>
+                                ${item?.lastLoginTime ? _formatShortDate(item.lastLoginTime) : "00-00-00"}
+                            </div>
+
+                            <div class="second-class date-item">
+                                <i class="bi bi-clock"></i>
+                                ${item?.lastLoginTime ? _formatTime(item.lastLoginTime) : "00:00:00"}
+                            </div>
+                        </div>
+                    </div>
                 </td>
 
 				<td>
-					<div class="status-div ${item.verificationStatus}">
-						${item.verificationStatus}
+					<div class="status-div ${item?.verificationStatus}">
+						${item?.verificationStatus}
 					</div>
 				</td>
 
 				<td>
-					<div class="status-div ${item.availabilityStatus}">
-						${item.availabilityStatus}
+					<div class="status-div ${item?.availabilityStatus}">
+						${item?.availabilityStatus}
 					</div>
 				</td>
 
                 <td>
                     <button class="btn view-btn"
                         title="Click to view artisan profile"
-                        onclick="_fetchEachArtisan('${item.artisanId}');">
+                        onclick="_fetchEachArtisan('${item?.artisanId}');">
                         VIEW
                     </button>
                 </td>

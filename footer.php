@@ -17,12 +17,12 @@
             </div>
 
             <div class="support-actions">
-                <a href="tel:8881234567" class="support-call-btn">
+                <a href="tel:+1 (832) 743-9353" class="support-call-btn">
                     <i class="bi bi-telephone"></i>
 
                     <span>
                         <strong>Call Us Now</strong>
-                        <small>+1 (510) 479-1822</small>
+                        <small>+1 (832) 743-9353</small>
                     </span>
                 </a>
 
@@ -86,11 +86,12 @@
                         who get the job done right. Reliable service you can trust, every time.</p>
                
                 <div class="icon-div">
-                    <button class="social-icon" title="Facebook"><i class="bi-facebook"></i></button>
-                    <button class="social-icon" title="Whatsapp"><i class="bi-whatsapp"></i></button>
-                    <button class="social-icon" title="Instagram"><i class="bi-instagram"></i></button>
-                    <button class="social-icon" title="Linkedin"><i class="bi-linkedin"></i></button>
-                    <button class="social-icon" title="Twitter"><i class="bi-twitter-x"></i></button>
+                    <a href="https://www.facebook.com/profile.php?id=61595073264053&mibextid=wwXIfr/" target="_blank" title="Facebook">
+                    <button class="social-icon" title="Facebook"><i class="bi-facebook"></i></button></a>
+                    <a href="https://api.whatsapp.com/send?text=Greetings! I'd like to make an enquiry on the services you offer.&phone=+1 (832) 743-9353" target="_blank" title="Whatsapp">
+                    <button class="social-icon" title="Whatsapp"><i class="bi-whatsapp"></i></button></a>
+                    <a href="https://www.instagram.com/bowcares?stkn=MW5rdXUzd29oOG1kcA%3D%3D&utm_source=qr/" target="_blank" title="Instagram">
+                    <button class="social-icon" title="Instagram"><i class="bi-instagram"></i></button></a>
                 </div> 
             </div>
 
@@ -150,7 +151,7 @@
                             <i class="bi bi-telephone-inbound-fill"></i>
                         </div>
                         <div class="text-div">
-                            <a href="tel:+880 278 367 367" title="Phone Number">+1 (510) 479-1822</a>
+                            <a href="tel:+1 (832) 743-9353" title="Phone Number">+1 (832) 743-9353</a>
                         </div>
                     </div>
 

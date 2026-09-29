@@ -18,7 +18,9 @@
 
                         <div class="text-div">
                             <h3>Call Us</h3>
-                            <p>+1 (510) 479-1822</p>
+                            <a href="tel:+1 (832) 743-9353" title="Call Us">
+                                <p>+1 (832) 743-9353</p>
+                            </a>
                         </div>
                     </div>
 
@@ -78,13 +80,13 @@
                                     <a href="https://www.youtube.com" target="_blank" title="YouTube">
                                         <li><i class="bi-youtube"></i></li>
                                     </a>
-                                    <a href="https://www.facebook.com" target="_blank" title="Facebook">
+                                    <a href="https://www.facebook.com/profile.php?id=61595073264053&mibextid=wwXIfr" target="_blank" title="Facebook">
                                         <li><i class="bi-facebook"></i></li>
                                     </a>
                                     <a href="mailto:info@bowcares.com" title="Mail Us">
                                         <li><i class="bi-envelope"></i></li>
                                     </a>
-                                    <a href="https://www.instagram.com" target="_blank"
+                                    <a href="https://www.instagram.com/bowcares?stkn=MW5rdXUzd29oOG1kcA%3D%3D&utm_source=qr" target="_blank"
                                         title="Instagram">
                                         <li><i class="bi-instagram"></i></li>
                                     </a>

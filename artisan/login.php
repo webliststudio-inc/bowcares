@@ -209,9 +209,9 @@
                                 </p>
 
                                 <div class="support-links">
-                                    <a href="tel:5104791822">
+                                    <a href="tel:+1 (832) 743-9353">
                                         <i class="bi bi-telephone"></i>
-                                        (510) 479-1822
+                                        (832) 743-9353
                                     </a>
                                     <a href="mailto:support@bowcares.com">
                                         <i class="bi bi-envelope"></i>
