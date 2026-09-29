@@ -67,7 +67,16 @@ function _fetchArtisanData() {
 function _renderArtisanData(data, start) {
     return data
         .map(
-            (item, i) => `
+            (item, i) => {
+                const statusClass = item.statusData?.statusName.includes(" ")
+                    ? item?.statusData?.statusName.toUpperCase().replace(/\s+/g, "-")
+                    : item?.statusData?.statusName;
+                
+                const availabilityStatusClass = item.availableStatusData?.statusName.includes(" ")
+                    ? item?.availableStatusData?.statusName.toUpperCase().replace(/\s+/g, "-")
+                    : item?.availableStatusData?.statusName;
+
+        return `
             <tr class="tb-row">
                 <td>${start + i + 1}</td>
 
@@ -99,19 +108,17 @@ function _renderArtisanData(data, start) {
                 </td>
                 <td>
                     <div class="service-type-div">
-                        ${
-                            item?.artisanProfessionData?.slice(0, 2).map(profession => `
+                        ${item?.artisanProfessionData?.slice(0, 2).map(profession => `
                                 <span class="service-badge"><i class="bi bi-tools"></i> ${profession?.professionName}</span>
                             `).join("")
-                        }
+                    }
 
-                        ${
-                            item?.artisanProfessionData?.length > 2
-                            ? `<span class="service-badge more">
+                        ${item?.artisanProfessionData?.length > 2
+                        ? `<span class="service-badge more">
                                 +${item?.artisanProfessionData?.length - 2} more
                             </span>`
-                            : ""
-                        }
+                        : ""
+                    }
                     </div>
                 </td>
                 <td>
@@ -131,13 +138,13 @@ function _renderArtisanData(data, start) {
                 </td>
 
 				<td>
-					<div class="status-div ${item?.statusData?.statusName}">
+					<div class="status-div ${statusClass}">
 						${item?.statusData?.statusName}
 					</div>
 				</td>
 
 				<td>
-					<div class="status-div ${item?.availableStatusData?.statusName}">
+					<div class="status-div ${availabilityStatusClass}"">
 						${item?.availableStatusData?.statusName}
 					</div>
 				</td>
@@ -150,7 +157,7 @@ function _renderArtisanData(data, start) {
                     </button>
                 </td>
             </tr>`
-        )
+        })
         .join("");
 }
 
@@ -170,58 +177,30 @@ function _initFetchArtisanData(data) {
 
 /// Fetch Each Artisan ///
 function _fetchEachArtisan(artisanId) {
-    $("#get-form-more-div")
-        .css({
-            'display': 'flex',
-            'justify-content': 'center',
-            'align-items': 'center'
-        })
-        .fadeIn(500);
-
+    $("#get-form-more-div").css({ 'display': 'flex', 'justify-content': 'center', 'align-items': 'center' }).fadeIn(500);
     try {
+        //// call endpoint //////
+        _callFetchEndPoints({
+            url: `admin/artisans/fetch-artisans?artisanId=${artisanId}`,
+            accessKey: true,
+        })
+        .then((response) => {
+            sessionStorage.setItem(
+                "getEachArtisanDetailsSession",
+                JSON.stringify(response?.data?.[0])
+            );
 
-        const responses = {
-            data: {
-                artisanId: artisanId,
-                firstName: "John",
-                lastName: "Smith",
-                emailAddress: "john.adewale@bowcares.com",
-                phoneNumber: "+2348012345678",
-                createdTime: "2026-07-15 10:25:00",
-                lastLoginTime: "2026-08-03 09:15:22",
-
-                professionData: {
-                    professionId: "PROF001",
-                    professionName: "Electrician"
-                },
-
-                statusData: {
-                    statusId: "1",
-                    statusName: "ACTIVE"
-                },
-
-				verificationStatusData: {
-					verificationStatusId: "1",
-					verificationStatusName: "VERIFIED"
-				},
-
-				availabilityStatusData: {
-					availabilityStatusId: "1",
-					availabilityStatusName: "AVAILABLE"
-				},
-            }
-        };
-
-        sessionStorage.setItem(
-            "getEachArtisanDetailsSession",
-            JSON.stringify(responses.data)
-        );
-
-        _getForm({
-            page: 'artisanProfile',
-            url: portalMiddleWareUrl
+            _getForm({
+                page: 'artisanProfile',
+                url: portalMiddleWareUrl
+            });
+        })
+        .catch((error) => {
+            _staffValidationCheck(error.response);
+            _alertClose();
+            console.error("Error:", error);
+            _callAjaxError(() => _fetchEachArtisan(artisanId), error.message); // retry if needed
         });
-
     } catch (error) {
         _alertClose();
         console.error("Error:", error);
