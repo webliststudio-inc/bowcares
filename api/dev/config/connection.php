@@ -28,6 +28,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 require_once 'crud.php';
 require_once 'errorHandlers.php';
+require_once 'prefix.php';
 require_once 'helper.php';
 require_once 'functions.php';
 require_once 'constants.php';
