@@ -28,6 +28,8 @@ switch ($action){
 		require_once('account-report/account-report-content.php');
 		require_once('system-alert-content.php');
 		require_once('profession-management-content.php');
+		require_once('customers-content.php');
+		require_once('pending-request-content.php');
 	break;
 
 	case 'get_form':
@@ -53,6 +55,8 @@ switch ($action){
 		require_once('account-report/account-report-content.php');
 		require_once('system-alert-content.php');
 		require_once('profession-management-content.php');
+		require_once('customers-content.php');
+		require_once('pending-request-content.php');
 	break;
 
 	case 'uploadPagePix':
