@@ -30,6 +30,22 @@
                             <span>Artisan</span>
                         </div>
 
+                        <div class="nav-div" title="Customers" id="customerPage"
+                            onclick="_getActivePage({page:'customerPage', divid:'customerPage'});">
+                            <i class="bi-people"></i>
+                            <span>Customers</span>
+                        </div>
+
+                        <div class="nav-div request-nav" title="Pending Request" id="pendingRequestPage"
+                            onclick="_getActivePage({page:'pendingRequestPage', divid:'pendingRequestPage'});">
+                            <div class="left-cont">
+                                <i class="bi-hourglass-split"></i>
+                                <span>Request</span>
+                            </div>
+
+                            <div class="request-count">20</div>
+                        </div>
+
                         <div class="nav-div" title="Task" id="taskPage"
                             onclick="_getActivePage({page:'taskPage', divid:'taskPage'});">
                             <i class="bi bi-list-check"></i>

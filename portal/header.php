@@ -4,9 +4,8 @@
         <div class="header-nav-div">
             <div class="left-nav">
                 <ul>
-                    <li class="active-li" title="Dashboard"
-                        onclick="_getActivePage({page:'dashboard', divid:'topDashboard'});" id="topDashboard"><i
-                            class="bi-speedometer2"></i> Dashboard</li>
+                    <li class="active-li" title="Dashboard" onclick="_getActivePage({page:'dashboard', divid:'topDashboard'});" id="topDashboard"><i class="bi-speedometer2"></i> Dashboard</li>
+                    <li title="Pending Request" onclick="_getActivePage({page:'pendingRequestPage', divid:'topPendingRequestPage'});" id="topPendingRequestPage"><i class="bi-hourglass-split"></i> Pending Request <div class="request-count">20</div></li>
                 </ul>
             </div>
 

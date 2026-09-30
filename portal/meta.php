@@ -48,3 +48,5 @@
 <script src="<?php echo $websiteUrl?>/portal/js/useTask.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
 <script src="<?php echo $websiteUrl?>/portal/js/useInvoice.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
 <script src="<?php echo $websiteUrl?>/portal/js/account-report/useAccountReport.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
+<script src="<?php echo $websiteUrl?>/portal/js/useCustomers.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>
+<script src="<?php echo $websiteUrl?>/portal/js/usePendingRequest.js?v=<?php echo $codeVersion?>" type="text/javascript"></script>

@@ -44,7 +44,7 @@ header .header-div-in .header-nav-div .left-nav	ul li{
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 5px;
+	gap: 8px;
 	list-style: none;
 	font-family: body-font;
 	color: var(--sub-body-color);
@@ -53,10 +53,6 @@ header .header-div-in .header-nav-div .left-nav	ul li{
 	font-size: 12px;
 	border-radius: 10px;
 	transition:all ease 0.2s;
-	-webkit-transition:all ease 0.2s;
-	-ms-transition:all ease 0.2s;
-	-o-transition:all ease 0.2s;
-	-moz-transition:all ease 0.2s;
 	cursor:pointer;
 }
 
@@ -69,6 +65,20 @@ header .header-div-in .header-nav-div .left-nav	ul .active-li
 header .header-div-in .header-nav-div .left-nav	ul li i{
 	color: var(--secondary-color);
 	font-size: 12px;
+}
+
+header .header-div-in .header-nav-div .left-nav	ul li .request-count{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: sub-title-font;
+	color: var(--text-white);
+	padding: 1px 6px;
+	background-color: var(--close-color);
+	font-size: 10px;
+	border-radius: 10px;
+	transition:all ease 0.2s;
+	cursor:pointer;
 }
 
 header .header-div-in .header-nav-div .right-nav{
@@ -416,10 +426,10 @@ header .header-div-in .header-nav-div .right-nav .right-icon-div .profile-div .i
 }
 
 .side-nav-div .div-in .nav-back-div .title-wrapper .nav-container .nav-div{	
-	width: calc(100% - 42px);
-	min-height: 40px;
+	width: calc(100% - 32px);
+	min-height: 35px;
     font-size: 13px;
-	padding: 0px 20px;
+	padding: 0px 15px;
 	border-radius: 10px;
 	font-family: sub-title-font;
 	color: var(--sub-body-color);
@@ -434,6 +444,25 @@ header .header-div-in .header-nav-div .right-nav .right-icon-div .profile-div .i
 .side-nav-div .div-in .nav-back-div .title-wrapper .nav-container .nav-div i{
     font-size: 16px;
 	color: var(--nav-icon-color);
+}
+
+.side-nav-div .div-in .nav-back-div .title-wrapper .nav-container .request-nav{	
+	align-items: center;
+	justify-content: space-between;
+}
+
+.side-nav-div .div-in .nav-back-div .title-wrapper .nav-container .request-nav .request-count{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: sub-title-font;
+	color: var(--text-white);
+	padding: 1px 6px;
+	background-color: var(--close-color);
+	font-size: 10px;
+	border-radius: 10px;
+	transition:all ease 0.2s;
+	cursor:pointer;
 }
 
 .side-nav-div .div-in .nav-back-div .title-wrapper .nav-container .nav-div:hover, 
