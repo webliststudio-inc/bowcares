@@ -112,7 +112,7 @@
 }
 
 .login-session .login-div .form-back-div .form-div{
-    max-width: 500px;
+    max-width: 550px;
     display: flex;
     flex-direction: column;
     height: fit-content;
@@ -123,7 +123,7 @@
 }
 
 .login-session .login-div .form-back-div #page-content{
-    max-width: 500px;
+    max-width: 550px;
     display: flex;
     flex-direction: column;
     height: fit-content;
@@ -131,6 +131,10 @@
     flex-shrink: 0;
     gap: 20px;
     padding: 40px 0px;
+}
+
+.login-session .login-div .form-back-div .accountType-form-div{
+    max-width: 700px !important;
 }
 
 .login-session .login-div .form-back-div.center-content {
@@ -299,6 +303,201 @@
     color: var(--link-color);
 }
 
+
+
+
+
+/* ///// Artisan Account Type Cards ////// */
+.login-session .login-div .form-back-div .accountType-form-div .accountTpye-title-div {
+    align-items: center;
+    gap: 8px;
+    width: 96%;
+}
+
+.login-session .login-div .form-back-div .accountType-form-div .accountTpye-title-div h3{
+    color: var(--sub-body-color);
+    font-size: 17px;
+    font-family: sub-title-font;
+    line-height: 24px;
+}
+
+.login-session .login-div .form-back-div .accountType-form-div .accountTpye-title-div h3 span{
+    color: var(--secondary-color);
+}
+
+.login-session .login-div .form-back-div .accountType-form-div .accountTpye-title-div h1{
+    font-size: 25px;
+    line-height: 30px;
+}
+
+.login-session .login-div .form-back-div .accountType-form-div .accountTpye-title-div p{
+    font-size: 14px;
+}
+
+
+.login-session .login-div .form-back-div .form-div .inner-form .back-btn {
+    width: fit-content;
+    border: none;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-family: sub-title-font;
+    padding: 0px 20px;
+    font-size: 13px;
+    background: rgba(200, 200, 200, 0.7);
+    color: var(--sub-body-color);
+    white-space: nowrap;
+    transition: background-position 0.4s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.login-session .login-div .form-back-div .form-div .inner-form .back-btn:hover{
+    background: var(--secondary-color);
+    color: var(--text-white);
+    background: linear-gradient(
+		90deg,
+		var(--primary-color),
+		var(--secondary-color)
+	);
+	background-size: 200% 100%;
+	background-position: right;
+	transform: scale(1.05); /* subtle hover grow */
+}
+
+.login-session .login-div .form-back-div .form-div .inner-form .back-btn i {
+    font-size: 11px;
+}
+
+.form-div .inner-form .card-wrapper {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+
+.form-div .inner-form .card-wrapper .card {
+    flex: 1;
+	background-image: linear-gradient(-120deg, #fdfbf7, #fff);
+	border: 1px solid var(--general-border-color);
+	border-radius: 15px;
+	box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.04);
+	box-sizing: border-box;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.form-div .inner-form .card-wrapper .card:hover {
+	border-color: rgb(255, 105, 0, 0.4);
+	transform: translateY(-2px);
+	box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+}
+
+.form-div .inner-form .card-wrapper .card .card-inner {
+    padding: 28px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 12px;
+}
+
+.form-div .inner-form .card-wrapper .card .card-inner .card-icon {
+	width: 55px;
+	height: 55px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgb(255, 105, 0, 0.1);
+	border-radius: 50%;
+	color: var(--secondary-color);
+	font-size: 24px;
+}
+
+.form-div .inner-form .card-wrapper .card .card-inner h2 {
+	font-size: 20px;
+    line-height: 25px;
+    font-family: sub-title-font;
+	color: var(--sub-body-color);
+}
+
+.form-div .inner-form .card-wrapper .card .card-inner p {
+	font-size: 14px;
+	line-height: 1.6;
+	color: var(--sub-body-color);
+}
+
+.form-div .inner-form .card-wrapper .card .card-inner .btn {
+	width: fit-content;
+	display: flex;
+	align-items: center;
+	gap: 7px;
+	font-family: sub-title-font;
+	border: none;
+    padding: 0px;
+	background: transparent;
+	color: var(--secondary-color);
+	font-size: 14px;
+	cursor: pointer;
+}
+
+
+
+.time-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.time-wrapper .time-input-div .time-input {
+    position: relative;
+    height: 40px;
+    display: flex;
+    align-items: flex-end;
+    padding: 0px 10px 5px;
+    border: 1px solid var(--general-border-color);
+    border-radius: 10px;
+    background: var(--bg-white);
+}
+
+.time-wrapper .time-input-div .time-input .placeholder {
+    position: absolute;
+    top: -9px;
+    left: 12px;
+    padding: 0 5px;
+    background: var(--bg-white);
+    font-size: 11px !important;
+    color: var(--sub-body-color);
+    font-family: body-font;
+}
+
+.time-wrapper .time-input-div .time-input .time-textfield {
+    height: 30px;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 14px;
+    font-family: sub-title-font;
+    color: var(--sub-body-color);
+}
+
+@media all and (max-width: 550px) {
+    .time-wrapper {
+       width: 100%;
+    }
+    .time-wrapper .time-input-div {
+        width: 100%;
+    }
+    .time-wrapper .time-input-div .time-input .placeholder {
+     font-size: 10px !important;
+    }
+    .time-wrapper .time-input-div .time-input .time-textfield {
+        width: 100%;
+        font-size: 12px;
+    }
+}
+
 @media all and (max-width: 840px) {
     .login-session .graphics-div{
         display: none;
@@ -317,6 +516,7 @@
 @media all and (max-width: 550px) {
     .login-session .login-div .form-back-div .form-div{
         max-width: 94%;
+        padding-bottom: 90px;
     }
     .login-session .login-div .form-back-div #page-content{
         max-width: 94%;
@@ -333,7 +533,30 @@
     }
 }
 
+@media (max-width: 700px) {
+    .login-session .login-div .form-back-div .accountType-form-div{
+        max-width: 94% !important;
+    }
+     .login-session .login-div .form-back-div .accountType-form-div .accountTpye-title-div{
+        justify-content: center;
+        align-items: center;
+    }
+    .login-session .login-div .form-back-div .accountType-form-div .accountTpye-title-div h1{
+        text-align: center;
+        font-size: 5.5vw;
+        line-height: 7vw;
+    }
+	.form-div .inner-form .card-wrapper {
+		width: 100%;
+        flex-direction: column;
+        gap: 20px;
+	}
+}
+
 #map{
     width: 100%;
     height: 300px;
 }
+
+
+

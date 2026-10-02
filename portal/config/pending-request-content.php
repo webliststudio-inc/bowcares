@@ -13,7 +13,7 @@
 
         <div class="btn-div">
             <div class="search-div">
-                <input type="text" onkeyup="_filterPendingRequests(this.value);" placeholder="Search Request Here...">
+                <input type="text" onkeyup="_filtersPendingRequests(this.value);" placeholder="Search Request Here...">
                 <i class="bi bi-search"></i>
             </div>
         </div>

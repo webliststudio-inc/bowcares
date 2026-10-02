@@ -29,8 +29,6 @@ function _filtersCustomers(value) {
 function _fetchCustomersData() {
 	try {
 		//// call endpoint //////
-
-		/*
 		_callFetchEndPoints({
 			url: `admin/customers/fetch-customers`,
 			accessKey: true,
@@ -49,7 +47,6 @@ function _fetchCustomersData() {
 					colspan: 20,
 					paginationContainer: "customerPageContentPaginationControls",
 				});
-
 				_callAjaxError(() => _fetchCustomersData(), error.message);
 			} else {
 				_showEmptyState({
@@ -60,61 +57,6 @@ function _fetchCustomersData() {
 				});
 			}
 		});
-		*/
-
-		//// Dummy Customer Data //////
-		const dummyCustomerData = [
-			{
-				customerId: "CUS-0001",
-				fullName: "Michael",
-				emailAddress: "michael.johnson@gmail.com",
-				phoneNumber: "+1 202 555 0145",
-                serviceAddress: "123 Main Street, Atlanta, GA",
-                systemGeneratedAddress: "123 Main Street, Atlanta, GA",
-				requestDate: "2026-09-28 10:30:00",
-				statusData: {
-					statusName: "ACTIVE"
-				}
-			},
-			{
-				customerId: "CUS-0002",
-				fullName: "Sarah",
-				emailAddress: "sarah.williams@gmail.com",
-				phoneNumber: "+1 202 555 0187",
-				serviceAddress: "45 Oak Avenue, Houston, TX",
-                systemGeneratedAddress: "45 Oak Avenue, Houston, TX",
-				requestDate: "2026-09-27 14:15:00",
-				statusData: {
-					statusName: "ACTIVE"
-				}
-			},
-			{
-				customerId: "CUS-0003",
-				fullName: "David",
-				emailAddress: "david.brown@gmail.com",
-				phoneNumber: "+1 202 555 0124",
-				serviceAddress: "78 Pine Street, Dallas, TX",
-                systemGeneratedAddress: "78 Pine Street, Dallas, TX",
-				requestDate: "2026-09-26 09:45:00",
-				statusData: {
-					statusName: "ACTIVE"
-				}
-			},
-			{
-				customerId: "CUS-0004",
-				fullName: "Jennifer",
-				emailAddress: "jennifer.davis@gmail.com",
-				phoneNumber: "+1 202 555 0198",
-				serviceAddress: "22 Lake Road, Miami, FL",
-                systemGeneratedAddress: "22 Lake Road, Miami, FL",
-				requestDate: "2026-09-25 16:20:00",
-				statusData: {
-					statusName: "ACTIVE"
-				}
-			}
-		];
-
-		_initFetchCustomerData(dummyCustomerData);
 	} catch (error) {
 		console.error("Error:", error);
 		_callCatchError(() => _fetchCustomersData());
@@ -159,33 +101,20 @@ function _renderCustomerData(data, start) {
 							<div>${item?.phoneNumber}</div>
 						</div>
 					</td>
-
-					<td>
-						<div class="text-div">
-							<div>${item?.serviceAddress}</div>
-						</div>
-					</td>
-
-                    <td>
-						<div class="text-div">
-							<div>${item?.systemGeneratedAddress}</div>
-						</div>
-					</td>
-
 					<td>
 						<div class="text-back-div">
 							<div class="text-div">
 								<div class="first-class date-item">
 									<i class="bi bi-calendar2-check"></i>
-									${item?.requestDate
-										? _formatShortDate(item.requestDate)
+									${item?.updatedTime
+										? _formatShortDate(item.updatedTime)
 										: "00-00-00"}
 								</div>
 
 								<div class="second-class date-item">
 									<i class="bi bi-clock"></i>
-									${item?.requestDate
-										? _formatTime(item.requestDate)
+									${item?.updatedTime
+										? _formatTime(item.updatedTime)
 										: "00:00:00"}
 								</div>
 							</div>
@@ -234,10 +163,7 @@ function _fetchEachCustomer(customerId) {
 		.fadeIn(500);
 
 	try {
-
 		//// call endpoint //////
-
-		/*
 		_callFetchEndPoints({
 			url: `admin/customers/fetch-customers?customerId=${customerId}`,
 			accessKey: true,
@@ -259,36 +185,6 @@ function _fetchEachCustomer(customerId) {
 			console.error("Error:", error);
 			_callAjaxError(() => _fetchEachCustomer(customerId), error.message);
 		});
-		*/
-
-		//// Dummy Customer Data //////
-		const response = {
-			customerId: "CUS-0001",
-			fullName: "Michael Johnson",
-			emailAddress: "michael.johnson@gmail.com",
-			phoneNumber: "+1 202 555 0145",
-			serviceAddress: "123 Main Street, Atlanta, GA",
-			systemGeneratedAddress: "123 Main Street, Atlanta, GA",
-			serviceDescription: "Kitchen sink is leaking and requires repair.",
-			requestDate: "2026-09-28 10:30:00",
-			statusData: {
-				statusId: 1,
-				statusName: "ACTIVE"
-			},
-		};
-
-		//// Store Customer Details //////
-		sessionStorage.setItem(
-			"getEachCustomerDetailsSession",
-			JSON.stringify(response)
-		);
-
-		//// Open Customer Profile //////
-		_getForm({
-			page: "customerProfile",
-			url: portalMiddleWareUrl
-		});
-
 	} catch (error) {
 		_alertClose();
 		console.error("Error:", error);

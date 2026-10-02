@@ -227,10 +227,62 @@
 <?php } ?>
 
 
+<!-- ///// Artisan Account Type Page ////// -->
+<?php if ($page == 'artisanAccountTypePage') { ?>
+    <div class="form-div accountType-form-div">
+        <div class="top-div accountTpye-title-div">
+            <h3>👋 Welcome Back <span>Artisan!</span></h3>
+            <h1>How would you like to register?</h1>
+            <p>Select an account type to continue.</p>
+        </div>
+
+        <div class="inner-form">
+            <div class="card-wrapper">
+                <div class="card" title="Self Employed" onclick="_nextSignUpPage({page: 'artisanSignUpPage', accountType: 'selfEmployed'});">
+                    <div class="card-inner">
+                        <div class="card-icon">
+                            <i class="bi bi-person"></i>
+                        </div>
+
+                        <h2>Self Employed</h2>
+
+                        <p>
+                            Register and manage your artisan services as an
+                        </p>
+
+                        <button title="Continue"  class="btn">
+                            Continue <i class="bi bi-arrow-right-circle"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" title="Company" onclick="_nextSignUpPage({page: 'artisanSignUpPage', accountType: 'company'});">
+                    <div class="card-inner">
+                        <div class="card-icon">
+                            <i class="bi bi-building"></i>
+                        </div>
+
+                        <h2>Company</h2>
+
+                        <p>
+                            Register and manage your artisan services under a company.
+                        </p>
+
+                        <button title="Continue" class="btn" onclick="">
+                            Continue <i class="bi bi-arrow-right-circle"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
+
 <!-- ///// Sign up Page /////// -->
 <?php if ($page == 'artisanSignUpPage') { ?>
     <script>
         artisanBioDataSession = JSON.parse(localStorage.getItem("artisanBioDataSession")) || {};
+        accountType = sessionStorage.getItem("artisanAccountType") || "";
     </script>
 
     <div class="form-div">
@@ -250,22 +302,12 @@
                     </div>
 
                     <div class="form-container">
-                        <div class="text_field_container" id="firstName_container">
+                        <div class="text_field_container" id="fullName_container">
                             <script>
                                 textField({
-                                    id: 'firstName',
-                                    title: 'First Name',
-                                    value: artisanBioDataSession?.firstName ?? ''
-                                });
-                            </script>
-                        </div>
-
-                        <div class="text_field_container" id="lastName_container">
-                            <script>
-                                textField({
-                                    id: 'lastName',
-                                    title: 'Last Name',
-                                    value: artisanBioDataSession?.lastName ?? ''
+                                    id: 'fullName',
+                                    title: accountType === 'company' ? 'Company Name' : 'Full Name',
+                                    value: artisanBioDataSession?.fullName ?? ''
                                 });
                             </script>
                         </div>
@@ -280,6 +322,16 @@
                             </script>
                         </div>
 
+                        <div class="text_field_container" id="homeNumber_container">
+                            <script>
+                                textField({
+                                    id: 'homeNumber',
+                                    title: 'Home Number',
+                                    value: artisanBioDataSession?.homeNumber ?? ''
+                                });
+                            </script>
+                        </div>
+
                         <div class="text_field_container" id="emailAddress_container">
                             <script>
                                 textField({
@@ -289,11 +341,23 @@
                                 });
                             </script>
                         </div>
+
+                        <div class="text_area_container" id="about_container">
+                            <script>
+                                textField({
+                                    id: 'about',
+                                    title: accountType === 'company' ? 'Tell Us About Your Company' : 'Tell Us About Yourself',
+                                    type: 'textarea',
+                                    maxlength: 180,
+                                });
+                            </script>
+                        </div>
+
                         <div class="text_field_container col-3" id="destination_container">
                             <script>
                                 textField({
                                     id: 'destination',
-                                    title: 'Address',
+                                    title: accountType === 'company' ? 'Company Address' : 'Address',
                                     oninputFunction: 'getMapDetails()',
                                     value: artisanBioDataSession?.address ?? ''
                                 });
@@ -345,6 +409,274 @@
                 <div class="pages-tables-content-div">
                     <div class="content-title">
                         <div class="title">
+                            <i class="bi bi-clock"></i>
+                            <p>Availability Time</p>
+                        </div>
+                    </div>
+
+                    <div class="form-container">
+                        <div class="permission-form-back-div">
+                            <div class="title-div">
+                                <p>
+                                    Set the days and times you are available to receive and attend to job requests.
+                                </p>
+                            </div>
+
+                            <div class="permission-toggle-div">
+                                <div class="toggle-title">Available Days</div>
+                                <div class="fetch-toggle" id="availabilitPageContent">
+                                    <script>
+                                        _fetchAvailabilityToggle();
+                                    </script>
+                                    <!-- <div class="each-toggle-div time-toggle-div">
+                                        <div class="left-cont">
+                                            <span>Monday</span>
+
+                                            <label for="monday" class="switch">
+                                                <input 
+                                                    type="checkbox"
+                                                    class="child artisan-checkbox"
+                                                    id="monday"
+                                                    name="availabilityDay[]"
+                                                    data-value="1"
+                                                >
+                                                <span class="slider"></span>
+                                                <span class="toggle-label">Yes</span>
+                                            </label>
+                                        </div>
+
+                                        <div class="time-wrapper">
+                                            <div class="time-input-div">
+                                                <div class="time-input">
+                                                    <span class="placeholder">Available From</span>
+                                                    <input class="time-textfield" type="time" id="mondayFrom">
+                                                </div>
+                                            </div>
+
+                                            <div class="time-input-div">
+                                                <div class="time-input">
+                                                    <span class="placeholder">Available To</span>
+                                                    <input class="time-textfield" type="time" id="mondayTo">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="each-toggle-div time-toggle-div">
+                                        <div class="left-cont">
+                                            <span>Tuesday</span>
+
+                                            <label for="tuesday" class="switch">
+                                                <input 
+                                                    type="checkbox"
+                                                    class="child artisan-checkbox"
+                                                    id="tuesday"
+                                                    name="availabilityDay[]"
+                                                    data-value="2"
+                                                >
+                                                <span class="slider"></span>
+                                                <span class="toggle-label">Yes</span>
+                                            </label>
+                                        </div>
+
+                                        <div class="time-wrapper">
+                                            <div class="time-input-div">
+                                                <div class="time-input">
+                                                    <span class="placeholder">Available From</span>
+                                                    <input class="time-textfield" type="time" id="tuesdayFrom">
+                                                </div>
+                                            </div>
+
+                                            <div class="time-input-div">
+                                                <div class="time-input">
+                                                    <span class="placeholder">Available To</span>
+                                                    <input class="time-textfield" type="time" id="tuesdayTo">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="each-toggle-div time-toggle-div">
+                                        <div class="left-cont">
+                                            <span>Wednesday</span>
+
+                                            <label for="wednesday" class="switch">
+                                                <input 
+                                                    type="checkbox"
+                                                    class="child artisan-checkbox"
+                                                    id="wednesday"
+                                                    name="availabilityDay[]"
+                                                    data-value="3"
+                                                >
+                                                <span class="slider"></span>
+                                                <span class="toggle-label">Yes</span>
+                                            </label>
+                                        </div>
+
+                                        <div class="time-wrapper">
+                                            <div class="time-input-div">
+                                                <div class="time-input">
+                                                    <span class="placeholder">Available From</span>
+                                                    <input class="time-textfield" type="time" id="wednesdayFrom">
+                                                </div>
+                                            </div>
+
+                                            <div class="time-input-div">
+                                                <div class="time-input">
+                                                    <span class="placeholder">Available To</span>
+                                                    <input class="time-textfield" type="time" id="wednesdayTo">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="each-toggle-div time-toggle-div">
+                                        <div class="left-cont">
+                                            <span>Thursday</span>
+
+                                            <label for="thursday" class="switch">
+                                                <input 
+                                                    type="checkbox"
+                                                    class="child artisan-checkbox"
+                                                    id="thursday"
+                                                    name="availabilityDay[]"
+                                                    data-value="4"
+                                                >
+                                                <span class="slider"></span>
+                                                <span class="toggle-label">Yes</span>
+                                            </label>
+                                        </div>
+
+                                        <div class="time-wrapper">
+                                            <div class="time-input-div">
+                                                <div class="time-input">
+                                                    <span class="placeholder">Available From</span>
+                                                    <input class="time-textfield" type="time" id="thursdayFrom">
+                                                </div>
+                                            </div>
+
+                                            <div class="time-input-div">
+                                                <div class="time-input">
+                                                    <span class="placeholder">Available To</span>
+                                                    <input class="time-textfield" type="time" id="thursdayTo">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="each-toggle-div time-toggle-div">
+                                        <div class="left-cont">
+                                            <span>Friday</span>
+
+                                            <label for="friday" class="switch">
+                                                <input 
+                                                    type="checkbox"
+                                                    class="child artisan-checkbox"
+                                                    id="friday"
+                                                    name="availabilityDay[]"
+                                                    data-value="5"
+                                                >
+                                                <span class="slider"></span>
+                                                <span class="toggle-label">Yes</span>
+                                            </label>
+                                        </div>
+
+                                        <div class="time-wrapper">
+                                            <div class="time-input-div">
+                                                <div class="time-input">
+                                                    <span class="placeholder">Available From</span>
+                                                    <input class="time-textfield" type="time" id="fridayFrom">
+                                                </div>
+                                            </div>
+
+                                            <div class="time-input-div">
+                                                <div class="time-input">
+                                                    <span class="placeholder">Available To</span>
+                                                    <input class="time-textfield" type="time" id="fridayTo">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="each-toggle-div time-toggle-div">
+                                        <div class="left-cont">
+                                            <span>Saturday</span>
+
+                                            <label for="saturday" class="switch">
+                                                <input 
+                                                    type="checkbox"
+                                                    class="child artisan-checkbox"
+                                                    id="saturday"
+                                                    name="availabilityDay[]"
+                                                    data-value="6"
+                                                >
+                                                <span class="slider"></span>
+                                                <span class="toggle-label">Yes</span>
+                                            </label>
+                                        </div>
+
+                                        <div class="time-wrapper">
+                                            <div class="time-input-div">
+                                                <div class="time-input">
+                                                    <span class="placeholder">Available From</span>
+                                                    <input class="time-textfield" type="time" id="saturdayFrom">
+                                                </div>
+                                            </div>
+
+                                            <div class="time-input-div">
+                                                <div class="time-input">
+                                                    <span class="placeholder">Available To</span>
+                                                    <input class="time-textfield" type="time" id="saturdayTo">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="each-toggle-div time-toggle-div">
+                                        <div class="left-cont">
+                                            <span>Sunday</span>
+
+                                            <label for="sunday" class="switch">
+                                                <input 
+                                                    type="checkbox"
+                                                    class="child artisan-checkbox"
+                                                    id="sunday"
+                                                    name="availabilityDay[]"
+                                                    data-value="7"
+                                                >
+                                                <span class="slider"></span>
+                                                <span class="toggle-label">Yes</span>
+                                            </label>
+                                        </div>
+
+                                        <div class="time-wrapper">
+                                            <div class="time-input-div">
+                                                <div class="time-input">
+                                                    <span class="placeholder">Available From</span>
+                                                    <input class="time-textfield" type="time" id="sundayFrom">
+                                                </div>
+                                            </div>
+
+                                            <div class="time-input-div">
+                                                <div class="time-input">
+                                                    <span class="placeholder">Available To</span>
+                                                    <input class="time-textfield" type="time" id="sundayTo">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="issue-text" id="issues_artisanAvailability"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-content-div">
+                <div class="pages-tables-content-div">
+                    <div class="content-title">
+                        <div class="title">
                             <i class="bi bi-lock"></i>
                             <p>Create Password</p>
                         </div>
@@ -380,9 +712,13 @@
                 <button class="btn" id="signUpBtn" title="Sign Up" onclick="_proceedArtisanSignUp();">Sign Up<i
                         class="bi-check"></i></button>
             </div>
+
+            <button class="back-btn" title="Back to previous"
+                onclick="_nextSignUpPage({page: 'artisanAccountTypePage'});"><i class="bi bi-arrow-left-circle"></i>
+                Back</button>
         </div>
     </div>
-<?php } ?>
+<?php  }?>
 
 <!-- ///// Sign up OTP Verification Page /////// -->
 <?php if ($page == 'signUpotpVerificationPage') { ?>

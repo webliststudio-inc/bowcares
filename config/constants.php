@@ -61,7 +61,6 @@ $userDeviceId = getBrowserId();
     /// Artisan Sign Up Middleware Urls ///
     var artisanMiddleWareUrl = websiteUrl + '/artisan/config/code'; /// For Artisan Login Middleware Url //
     var artisanSignUpUrl = websiteUrl + '/artisan/sign-up'; /// For Artisan Sign Up Url //
-    var artisanVerificationUrl = websiteUrl + '/artisan/verification'; /// For Artisan User Verification Url //
 
     /// Artisan Login Middleware Urls ///
     var artisanLoginUrl = websiteUrl + '/artisan/login'; /// For Artisan Login Url //

@@ -1,11 +1,26 @@
 /// next sign up page function ///
 function _nextSignUpPage(props) {
-	const { page = "" } = props;
+	const { page = "", accountType = "" } = props;
+
+	///// Set current sign up page in sessionStorage
 	sessionStorage.setItem("currentSignUpPage", page);
+
+	//// Set artisan account type in sessionStorage
+	sessionStorage.setItem("artisanAccountType", accountType);
+
 	_getPage({ page: page, className: 'other-pages-ajax-loader', url: artisanMiddleWareUrl });
-	page === "signUpotpVerificationPage"
-    ? $(".form-back-div").addClass("center-content")
-    : $(".form-back-div").removeClass("center-content");
+	if (page === "signUpotpVerificationPage" || page === "artisanAccountTypePage") {
+		$(".form-back-div").addClass("center-content");
+	} else {
+		$(".form-back-div").removeClass("center-content");
+	}
+
+	//// Initialize Map ////
+	setTimeout(function () {
+		if ($("#map").length && typeof initMap === "function") {
+			initMap();
+		}
+	}, 300);
 }
 
 /// Fetch Profession Toggle ///
@@ -59,6 +74,138 @@ function _initFetchProfessionToggle(data) {
     $('#professionToggleContent').html(professionHtml);
     _userRoleCheck();
 }
+
+
+
+/// Fetch Availability Toggle ///
+function _fetchAvailabilityToggle() {
+	try {
+
+		/*
+		_callFetchEndPoints({
+			url: `site/fetch-availability`,
+		})
+		.then((response) => {
+			_initFetchAvailabilityToggle(response?.data);
+		})
+		.catch((error) => {
+			console.error("Error:", error);
+		});
+		*/
+
+		//// Dummy Availability Data ////
+		const dummyAvailabilityData = [
+			{
+				availabilityId: 1,
+				availabilityName: "Monday"
+			},
+			{
+				availabilityId: 2,
+				availabilityName: "Tuesday"
+			},
+			{
+				availabilityId: 3,
+				availabilityName: "Wednesday"
+			},
+			{
+				availabilityId: 4,
+				availabilityName: "Thursday"
+			},
+			{
+				availabilityId: 5,
+				availabilityName: "Friday"
+			},
+			{
+				availabilityId: 6,
+				availabilityName: "Saturday"
+			},
+			{
+				availabilityId: 7,
+				availabilityName: "Sunday"
+			}
+		];
+
+		_initFetchAvailabilityToggle(dummyAvailabilityData);
+
+	} catch (error) {
+		console.error("Error:", error);
+	}
+}
+
+
+/// Initialize Fetch Availability Toggle ////
+function _initFetchAvailabilityToggle(data) {
+	let availabilityHtml = '';
+	const artisanBioDataSession = JSON.parse(
+		localStorage.getItem("artisanBioDataSession")
+	) || {};
+	const savedAvailabilityIds = artisanBioDataSession?.availabilityIds || [];
+
+	for (let i = 0; i < data?.length; i++) {
+		const { availabilityId, availabilityName } = data[i];
+		const isChecked = savedAvailabilityIds.some(
+			item => String(item.availabilityId) === String(availabilityId)
+		);
+
+		availabilityHtml += `
+			<div class="each-toggle-div time-toggle-div">
+				<div class="left-cont">
+					<span>${availabilityName}</span>
+					<label for="${availabilityName.toLowerCase()}" class="switch">
+						<input 
+							type="checkbox"
+							class="child artisan-checkbox"
+							id="${availabilityName.toLowerCase()}"
+							name="availabilityDay[]"
+							data-value="${availabilityId}"
+							${isChecked ? 'checked' : ''}
+						>
+
+						<span class="slider"></span>
+						<span class="toggle-label">${isChecked ? 'Yes' : 'No'}</span>
+					</label>
+				</div>
+
+				<div class="time-wrapper">
+					<div class="time-input-div">
+						<div class="time-input">
+							<span class="placeholder">Available From</span>
+
+							<input 
+								class="time-textfield" 
+								type="time" 
+								id="${availabilityName.toLowerCase()}From"
+							>
+						</div>
+					</div>
+
+					<div class="time-input-div">
+						<div class="time-input">
+							<span class="placeholder">Available To</span>
+
+							<input 
+								class="time-textfield" 
+								type="time" 
+								id="${availabilityName.toLowerCase()}To"
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+		`;
+	}
+	$('#availabilitPageContent').html(availabilityHtml);
+	_userRoleCheck();
+}
+
+
+
+
+
+
+
+
+
 
 ///// Create Artisan Account //// 
 function _proceedArtisanSignUp(isResendOtp = false) {

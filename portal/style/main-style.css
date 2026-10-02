@@ -2153,7 +2153,7 @@ main {
 	width: calc(100% - 60px);
     min-height: 30px;
     border: var(--general-border-color) 1px solid;
-	background: var(--white-color);
+	background: var(--bg-white);
     padding: 25px 30px;
     font-size: 15px;
 	box-sizing: border-box;

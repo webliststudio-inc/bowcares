@@ -4991,6 +4991,14 @@ header .header-bottom .header-bottom-inner nav ul .mini-menu{
   background: #fff;
 }
 
+.permission-form-back-div .permission-toggle-div .fetch-toggle .time-toggle-div .left-cont{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  gap: 15px;
+}
+
 .permission-form-back-div
   .permission-toggle-div
   .fetch-toggle
@@ -5227,6 +5235,15 @@ header .header-bottom .header-bottom-inner nav ul .mini-menu{
   font-family: body-font;
 }
 
+@media all and (max-width: 640px) {
+  .permission-form-back-div .permission-toggle-div .fetch-toggle .time-toggle-div{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+     padding: 10px 10px;
+     width: calc(100% - 20px);
+  }
+}
 
 #map{
     width: 100%;

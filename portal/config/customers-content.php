@@ -35,8 +35,6 @@
                                 <th>sn</th>
                                 <th>Customer Name</th>
                                 <th>Contact</th>
-                                <th>Address</th>
-                                <th>System Generated Address</th>
                                 <th>Date</th>
                                 <th>Status</th>
                                 <th>Action</th>
@@ -225,6 +223,18 @@
                         readonly: true,
                         value: getEachCustomerDetailsSession?.createdTime ?? ''
                     });
+                    </script>
+                </div>
+
+                <div class="text_field_container col-2" id="statusId_container">
+                    <script>
+                    selectField({
+                        id: 'statusId',
+                        title: 'Select Status',
+                        fieldValue: getEachCustomerDetailsSession?.statusData?.statusId ?? '',
+                        fieldLabel: getEachCustomerDetailsSession?.statusData?.statusName ?? ''
+                    });
+                    _getSelectStatusId('statusId', '1,2');
                     </script>
                 </div>
             </div>
