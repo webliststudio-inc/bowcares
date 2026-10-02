@@ -12,10 +12,8 @@ function _filtersPendingRequests(value) {
 function _fetchPendingRequestData() {
 	try {
 		//// call endpoint //////
-
-		/*
 		_callFetchEndPoints({
-			url: `admin/pending-requests/fetch-pending-requests`,
+			url: `admin/service-request/fetch-service-requests`,
 			accessKey: true,
 		})
 		.then((response) => {
@@ -33,7 +31,7 @@ function _fetchPendingRequestData() {
 					paginationContainer: "pendingRequestPageContentPaginationControls",
 				});
 
-				_callAjaxError(() => _fetchPendingRequestsData(), error.message);
+				_callAjaxError(() => _fetchPendingRequestData(), error.message);
 			} else {
 				_showEmptyState({
 					container: "pendingRequestPageContent",
@@ -43,41 +41,6 @@ function _fetchPendingRequestData() {
 				});
 			}
 		});
-		*/
-
-		//// Dummy Pending Request Data //////
-		const response = [
-			{
-				requestId: "REQ-0001",
-				customerData: {
-					customerId: "CUS-0001",
-					fullName: "Michael Johnson",
-					phoneNumber: "123-456-7890",
-				},
-				serviceDescription: "Customer reported persistent leakage from the plumbing system, replacing faulty parts, testing water flow, and ensuring the faucet is fully functional.",
-				requestDate: "2026-09-28 10:30:00",
-				statusData: {
-					statusName: "PENDING"
-				}
-			},
-			{
-				requestId: "REQ-0002",
-				customerData: {
-					customerId: "CUS-0002",
-					fullName: "Sarah Williams",
-					phoneNumber: "098-765-4321",
-				},
-				serviceDescription: "Customer reported a leaking pipe under the kitchen sink. The task involves replacing the damaged pipe, checking the surrounding connections, and testing the sink after repair.",
-				requestDate: "2026-09-27 14:15:00",
-				statusData: {
-					statusName: "PENDING"
-				}
-			},
-		];
-
-
-		//// Initialize Pending Requests //////
-		_initFetchPendingRequestsData(response);
 	} catch (error) {
 		console.error("Error:", error);
 		_callCatchError(() => _fetchPendingRequestData());
@@ -96,32 +59,32 @@ function _renderPendingRequestsData(data, start) {
 				<tr class="tb-row">
 					<td>${start + i + 1}</td>
 
-					<td>
+					<td class="clickable-td"
+						title="Attend to pending request"
+						onclick="_proccedAttendCustomer('${item?.serviceRequestId}')">
 						<div class="text-back-div">
 							<div class="text-div">
 								<div class="first-class">
-									${item?.requestId}
+									${item?.serviceRequestId}
 								</div>
 							</div>
 						</div>
 					</td>
 
-					<td class="clickable-td"
-						title="Click to view customer profile"
-						onclick="_fetchEachCustomer('${item?.customerId}');">
+					<td>
 
 						<div class="text-back-div">
 							<div class="icon-div">
-								${getFirstLettersOfEachWord(item?.customerData?.fullName)}
+								${getFirstLettersOfEachWord(item?.customerData?.[0]?.fullName)}
 							</div>
 
 							<div class="text-div">
 								<div class="first-class">
-									${item?.customerData?.fullName}
+									${item?.customerData?.[0]?.fullName}
 								</div>
 
 								<div class="second-class">
-									${item?.customerData?.phoneNumber}
+									${item?.customerData?.[0]?.phoneNumber}
 								</div>
 							</div>
 						</div>
@@ -142,25 +105,22 @@ function _renderPendingRequestsData(data, start) {
 
 					<td>
 						<div class="text-back-div">
-
 							<div class="text-div">
 
 								<div class="first-class date-item">
 									<i class="bi bi-calendar2-check"></i>
-									${item?.requestDate
-										? _formatShortDate(item.requestDate)
+									${item?.createdTime
+										? _formatShortDate(item.createdTime)
 										: "00-00-00"}
 								</div>
 
 								<div class="second-class date-item">
 									<i class="bi bi-clock"></i>
-									${item?.requestDate
-										? _formatTime(item.requestDate)
+									${item?.createdTime
+										? _formatTime(item.createdTime)
 										: "00:00:00"}
 								</div>
-
 							</div>
-
 						</div>
 					</td>
 
@@ -173,7 +133,7 @@ function _renderPendingRequestsData(data, start) {
 					<td>
 						<button class="btn view-btn"
 							title="Attend to pending request"
-							onclick="">
+							onclick="_proccedAttendCustomer('${item?.serviceRequestId}')">
 							ATTEND
 						</button>
 					</td>
@@ -197,8 +157,8 @@ function _initFetchPendingRequestsData(data) {
 	paginator.renderPage();
 }
 
-/// Fetch Each Customer ///
-function _fetchEachCustomer(customerId) {
+/// Attend to Pending Request ///
+function _proccedAttendCustomer(serviceRequestId) {
 	$("#get-form-more-div")
 		.css({
 			"display": "flex",
@@ -208,22 +168,19 @@ function _fetchEachCustomer(customerId) {
 		.fadeIn(500);
 
 	try {
-
 		//// call endpoint //////
-
-		/*
 		_callFetchEndPoints({
-			url: `admin/customers/fetch-customers?customerId=${customerId}`,
+			url: `admin/service-request/fetch-service-requests?serviceRequestId=${serviceRequestId}`,
 			accessKey: true,
 		})
 		.then((response) => {
 			sessionStorage.setItem(
-				"getEachCustomerDetailsSession",
+				"getEachServiceRequestSession",
 				JSON.stringify(response?.data?.[0])
 			);
 
 			_getForm({
-				page: 'customerProfile',
+				page: 'invoiceReg',
 				url: portalMiddleWareUrl
 			});
 		})
@@ -231,41 +188,11 @@ function _fetchEachCustomer(customerId) {
 			_staffValidationCheck(error.response);
 			_alertClose();
 			console.error("Error:", error);
-			_callAjaxError(() => _fetchEachCustomer(customerId), error.message);
+			_callAjaxError(() => _proccedAttendCustomer(serviceRequestId), error.message);
 		});
-		*/
-
-		//// Dummy Customer Data //////
-		const response = {
-			customerId: "CUS-0001",
-			fullName: "Michael Johnson",
-			emailAddress: "michael.johnson@gmail.com",
-			phoneNumber: "+1 202 555 0145",
-			serviceAddress: "123 Main Street, Atlanta, GA",
-			systemGeneratedAddress: "123 Main Street, Atlanta, GA",
-			serviceDescription: "Kitchen sink is leaking and requires repair.",
-			requestDate: "2026-09-28 10:30:00",
-			statusData: {
-				statusId: 1,
-				statusName: "ACTIVE"
-			},
-		};
-
-		//// Store Customer Details //////
-		sessionStorage.setItem(
-			"getEachCustomerDetailsSession",
-			JSON.stringify(response)
-		);
-
-		//// Open Customer Profile //////
-		_getForm({
-			page: "customerProfile",
-			url: portalMiddleWareUrl
-		});
-
 	} catch (error) {
 		_alertClose();
 		console.error("Error:", error);
-		_callCatchError(() => _fetchEachCustomer(customerId));
+		_callCatchError(() => _proccedAttendCustomer(serviceRequestId));
 	}
 }

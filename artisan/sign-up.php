@@ -39,21 +39,24 @@
             </header>
 
             <div class="form-back-div" data-aos="fade-in" data-aos-duration="1200">
-                <div id="page-content">
+                <div id="page-content" class="accountType-form-div">
                     <?php include $websitePath . '/artisan/config/page-content.php'; ?>
                 </div>
 
                 <script>
                     $(document).ready(function () {
-                        let savedPage = sessionStorage.getItem("currentSignUpPage") ?? "artisanSignUpPage";
+                        let savedPage = sessionStorage.getItem("currentSignUpPage") ?? "artisanAccountTypePage";
 
                         _getPage({
                             page: savedPage,
                             url: artisanMiddleWareUrl
                         });
-                        savedPage === "signUpotpVerificationPage" ?
-                            $(".form-back-div").addClass("center-content") :
+                        
+                       if (savedPage === "signUpotpVerificationPage" || savedPage === "artisanAccountTypePage") {
+                            $(".form-back-div").addClass("center-content");
+                        } else {
                             $(".form-back-div").removeClass("center-content");
+                        }
                     });
                 </script>
             </div>

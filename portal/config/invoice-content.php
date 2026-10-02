@@ -1,79 +1,83 @@
 <?php if ($page == 'invoicePage') { ?>
     <div class="page-title-div" data-aos="fade-in" data-aos-duration="1500">
-    <div class="title-div">
-        <div>
-            <div class="icon-div"><i class="bi bi-receipt"></i></div>
-        </div>
+        <div class="title-div">
+            <div>
+                <div class="icon-div"><i class="bi bi-receipt"></i></div>
+            </div>
 
-        <div class="text-div">
-            <h3>Invoices</h3>
-            <p>Manage customer invoices, monitor payment status, track outstanding balances, and maintain accurate billing records.</p>
-        </div>
-    </div>
-
-    <div class="btn-div">
-        <div class="search-div">
-            <input type="text" onkeyup="_filterInvoices(this.value);" placeholder="Search Invoice Here...">
-            <i class="bi bi-search"></i>
-        </div>
-
-        <button class="btn" title="CREATE NEW INVOICE"
-            onclick="_getForm({page: 'invoiceReg', url: portalMiddleWareUrl});">
-            <i class="bi bi-plus-square"></i> CREATE INVOICE
-        </button>
-    </div>
-</div>
-
-<div class="main-content-div" data-aos="fade-in" data-aos-duration="1500">
-    <div class="tables-content-div">
-        <div class="content-title">
-            <div class="title">
-                <i class="bi bi-receipt"></i>
-                <p>Invoices</p>
+            <div class="text-div">
+                <h3>Invoices</h3>
+                <p>Manage customer invoices, monitor payment status, track outstanding balances, and maintain accurate billing records.</p>
             </div>
         </div>
 
-        <div class="inner-table-content">
-            <div class="table-div animated fadeIn">
-                <table class="table" cellspacing="0" style="width:100%">
-                    <thead>
-                        <tr class="tb-col">
-                            <th>SN</th>
-                            <th>Invoice ID</th>
-                            <th>Task ID</th>
-                            <th>Customer</th>
-                            <th>Amount</th>
-                            <th>Service Type</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
+        <div class="btn-div">
+            <div class="search-div">
+                <input type="text" onkeyup="_filterInvoices(this.value);" placeholder="Search Invoice Here...">
+                <i class="bi bi-search"></i>
+            </div>
 
-                    <tbody id="invoiceContent">
-                        <script>
-                            _fetchInvoiceData();
-                        </script>
+            <button class="btn" title="CREATE NEW INVOICE"
+                onclick="_getForm({page: 'invoiceReg', url: portalMiddleWareUrl});">
+                <i class="bi bi-plus-square"></i> CREATE INVOICE
+            </button>
+        </div>
+    </div>
 
-                        <tr>
-                            <td colspan="20">
-                                <div class="content-loading-div">
-                                    <img src="<?php echo $websiteUrl ?>/all-images/images/spinner.gif" alt="Loading" />
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+    <div class="main-content-div" data-aos="fade-in" data-aos-duration="1500">
+        <div class="tables-content-div">
+            <div class="content-title">
+                <div class="title">
+                    <i class="bi bi-receipt"></i>
+                    <p>Invoices</p>
+                </div>
+            </div>
 
-                <!-- Pagination -->
-                <div id="invoiceContentPaginationControls" class="pagination-div"></div>
+            <div class="inner-table-content">
+                <div class="table-div animated fadeIn">
+                    <table class="table" cellspacing="0" style="width:100%">
+                        <thead>
+                            <tr class="tb-col">
+                                <th>SN</th>
+                                <th>Invoice ID</th>
+                                <th>Task ID</th>
+                                <th>Customer</th>
+                                <th>Amount</th>
+                                <th>Service Type</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="invoiceContent">
+                            <script>
+                                _fetchInvoiceData();
+                            </script>
+
+                            <tr>
+                                <td colspan="20">
+                                    <div class="content-loading-div">
+                                        <img src="<?php echo $websiteUrl ?>/all-images/images/spinner.gif" alt="Loading" />
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Pagination -->
+                    <div id="invoiceContentPaginationControls" class="pagination-div"></div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 <?php } ?>
 
 <?php if ($page == 'invoiceReg') { ?>
+    <script>
+        serviceRequestData = JSON.parse(sessionStorage.getItem("getEachServiceRequestSession"));
+    </script>
+
     <div class="slide-form-div" data-aos="fade-left" data-aos-duration="900">
         <div class="form-title-div">
             <div class="title-div">
@@ -108,11 +112,11 @@
                     </div>
 
                     <div class="form-container" id="existingCustomerForm">
-                        <div class="text_field_container" id="customerId_container">
+                        <div class="text_field_container" id="emailAddress_container">
                             <script>
-                                selectField({
-                                    id: 'customerId',
-                                    title: 'Select Existing Customer'
+                                textField({
+                                    id: 'emailAddress',
+                                    title: 'Email Address'
                                 });
                             </script>
                         </div>
@@ -132,7 +136,7 @@
                                 class="customer-btn"
                                 onclick="_showNewCustomerForm()">
                                 <i class="bi bi-person-plus-fill"></i>
-                                Add New Customer
+                                Verify Customer
                             </button>
                         </div>
                     </div>
@@ -181,35 +185,47 @@
                     <div class="content-title">
                         <div class="title">
                             <i class="bi bi-list-task"></i>
-                            <p>Task Information</p>
+                            <p>Service Information</p>
                         </div>
                     </div>
 
                     <div class="form-container">
-                        <div class="text_field_container" id="taskTitle_container">
+                        <div class="text_field_container" id="serviceTitle_container">
                             <script>
                                 textField({
-                                    id: 'taskTitle',
-                                    title: 'Task Title'
+                                    id: 'serviceTitle',
+                                    title: 'Service Title'
                                 });
                             </script>
                         </div>
 
-                        <div class="text_area_container" id="taskDescription_container">
+                        <div class="text_area_container" id="serviceDescription_container">
                             <script>
                                 textField({
-                                    id: 'taskDescription',
-                                    title: 'Task Description',
+                                    id: 'serviceDescription',
+                                    title: 'Service Description',
                                     type: 'textarea',
+                                    value: serviceRequestData?.serviceDescription ?? ''
                                 });
                             </script>
                         </div>
 
-                        <div class="text_field_container" id="amount_container">
+                        <div class="text_field_container" id="serviceAddress_container">
                             <script>
                                 textField({
-                                    id: 'amount',
-                                    title: 'Amount',
+                                    id: 'serviceAddress',
+                                    title: 'Service Address',
+                                    value: serviceRequestData?.serviceAddress ?? ''
+                                });
+                            </script>
+                        </div>
+
+                        <div class="text_field_container" id="systemGeneratedAddress_container">
+                            <script>
+                                textField({
+                                    id: 'systemGeneratedAddress',
+                                    title: 'System Generated Address',
+                                    value: serviceRequestData?.systemGeneratedAddress ?? ''
                                 });
                             </script>
                         </div>
@@ -381,35 +397,17 @@
                 <div class="tables-content-div form-table-content-div">
                     <div class="content-title">
                         <div class="title">
-                            <i class="bi bi-geo-alt"></i>
-                            <p>Location Information</p>
+                            <i class="bi bi-credit-card"></i>
+                            <p>Inspection Fee</p>
                         </div>
                     </div>
 
                     <div class="form-container">
-                        <div class="text_field_container" id="serviceAddress_container">
+                        <div class="text_field_container" id="inspectionFee_container">
                             <script>
                                 textField({
-                                    id: 'serviceAddress',
-                                    title: 'Service Address'
-                                });
-                            </script>
-                        </div>
-
-                        <div class="text_field_container" id="city_container">
-                            <script>
-                                textField({
-                                    id: 'city',
-                                    title: 'City'
-                                });
-                            </script>
-                        </div>
-
-                        <div class="text_field_container" id="state_container">
-                            <script>
-                                textField({
-                                    id: 'state',
-                                    title: 'State'
+                                    id: 'inspectionFee',
+                                    title: 'Inspection Fee',
                                 });
                             </script>
                         </div>
