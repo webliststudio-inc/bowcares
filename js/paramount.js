@@ -18,7 +18,11 @@ function _getPage(options) {
 			data: dataString,
 			cache: false,
 			success: function (html) {
-				$("#"+pageContainer).html(html);
+        $("#" + pageContainer).html(html);
+        //// Initialize Map ////
+        if ($("#map").length && typeof initMap === "function") {
+          initMap();
+        }
 			},
 		});
 }

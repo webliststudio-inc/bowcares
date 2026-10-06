@@ -312,12 +312,12 @@
                             </script>
                         </div>
 
-                        <div class="text_field_container" id="phoneNumber_container">
+                        <div class="text_field_container" id="mobileNumber_container">
                             <script>
                                 textField({
-                                    id: 'phoneNumber',
+                                    id: 'mobileNumber',
                                     title: 'Mobile Number',
-                                    value: artisanBioDataSession?.phoneNumber ?? ''
+                                    value: artisanBioDataSession?.mobileNumber ?? ''
                                 });
                             </script>
                         </div>
@@ -349,6 +349,7 @@
                                     title: accountType === 'company' ? 'Tell Us About Your Company' : 'Tell Us About Yourself',
                                     type: 'textarea',
                                     maxlength: 180,
+                                    value: artisanBioDataSession?.about ?? ''
                                 });
                             </script>
                         </div>
@@ -428,243 +429,6 @@
                                     <script>
                                         _fetchAvailabilityToggle();
                                     </script>
-                                    <!-- <div class="each-toggle-div time-toggle-div">
-                                        <div class="left-cont">
-                                            <span>Monday</span>
-
-                                            <label for="monday" class="switch">
-                                                <input 
-                                                    type="checkbox"
-                                                    class="child artisan-checkbox"
-                                                    id="monday"
-                                                    name="availabilityDay[]"
-                                                    data-value="1"
-                                                >
-                                                <span class="slider"></span>
-                                                <span class="toggle-label">Yes</span>
-                                            </label>
-                                        </div>
-
-                                        <div class="time-wrapper">
-                                            <div class="time-input-div">
-                                                <div class="time-input">
-                                                    <span class="placeholder">Available From</span>
-                                                    <input class="time-textfield" type="time" id="mondayFrom">
-                                                </div>
-                                            </div>
-
-                                            <div class="time-input-div">
-                                                <div class="time-input">
-                                                    <span class="placeholder">Available To</span>
-                                                    <input class="time-textfield" type="time" id="mondayTo">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="each-toggle-div time-toggle-div">
-                                        <div class="left-cont">
-                                            <span>Tuesday</span>
-
-                                            <label for="tuesday" class="switch">
-                                                <input 
-                                                    type="checkbox"
-                                                    class="child artisan-checkbox"
-                                                    id="tuesday"
-                                                    name="availabilityDay[]"
-                                                    data-value="2"
-                                                >
-                                                <span class="slider"></span>
-                                                <span class="toggle-label">Yes</span>
-                                            </label>
-                                        </div>
-
-                                        <div class="time-wrapper">
-                                            <div class="time-input-div">
-                                                <div class="time-input">
-                                                    <span class="placeholder">Available From</span>
-                                                    <input class="time-textfield" type="time" id="tuesdayFrom">
-                                                </div>
-                                            </div>
-
-                                            <div class="time-input-div">
-                                                <div class="time-input">
-                                                    <span class="placeholder">Available To</span>
-                                                    <input class="time-textfield" type="time" id="tuesdayTo">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="each-toggle-div time-toggle-div">
-                                        <div class="left-cont">
-                                            <span>Wednesday</span>
-
-                                            <label for="wednesday" class="switch">
-                                                <input 
-                                                    type="checkbox"
-                                                    class="child artisan-checkbox"
-                                                    id="wednesday"
-                                                    name="availabilityDay[]"
-                                                    data-value="3"
-                                                >
-                                                <span class="slider"></span>
-                                                <span class="toggle-label">Yes</span>
-                                            </label>
-                                        </div>
-
-                                        <div class="time-wrapper">
-                                            <div class="time-input-div">
-                                                <div class="time-input">
-                                                    <span class="placeholder">Available From</span>
-                                                    <input class="time-textfield" type="time" id="wednesdayFrom">
-                                                </div>
-                                            </div>
-
-                                            <div class="time-input-div">
-                                                <div class="time-input">
-                                                    <span class="placeholder">Available To</span>
-                                                    <input class="time-textfield" type="time" id="wednesdayTo">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="each-toggle-div time-toggle-div">
-                                        <div class="left-cont">
-                                            <span>Thursday</span>
-
-                                            <label for="thursday" class="switch">
-                                                <input 
-                                                    type="checkbox"
-                                                    class="child artisan-checkbox"
-                                                    id="thursday"
-                                                    name="availabilityDay[]"
-                                                    data-value="4"
-                                                >
-                                                <span class="slider"></span>
-                                                <span class="toggle-label">Yes</span>
-                                            </label>
-                                        </div>
-
-                                        <div class="time-wrapper">
-                                            <div class="time-input-div">
-                                                <div class="time-input">
-                                                    <span class="placeholder">Available From</span>
-                                                    <input class="time-textfield" type="time" id="thursdayFrom">
-                                                </div>
-                                            </div>
-
-                                            <div class="time-input-div">
-                                                <div class="time-input">
-                                                    <span class="placeholder">Available To</span>
-                                                    <input class="time-textfield" type="time" id="thursdayTo">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="each-toggle-div time-toggle-div">
-                                        <div class="left-cont">
-                                            <span>Friday</span>
-
-                                            <label for="friday" class="switch">
-                                                <input 
-                                                    type="checkbox"
-                                                    class="child artisan-checkbox"
-                                                    id="friday"
-                                                    name="availabilityDay[]"
-                                                    data-value="5"
-                                                >
-                                                <span class="slider"></span>
-                                                <span class="toggle-label">Yes</span>
-                                            </label>
-                                        </div>
-
-                                        <div class="time-wrapper">
-                                            <div class="time-input-div">
-                                                <div class="time-input">
-                                                    <span class="placeholder">Available From</span>
-                                                    <input class="time-textfield" type="time" id="fridayFrom">
-                                                </div>
-                                            </div>
-
-                                            <div class="time-input-div">
-                                                <div class="time-input">
-                                                    <span class="placeholder">Available To</span>
-                                                    <input class="time-textfield" type="time" id="fridayTo">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="each-toggle-div time-toggle-div">
-                                        <div class="left-cont">
-                                            <span>Saturday</span>
-
-                                            <label for="saturday" class="switch">
-                                                <input 
-                                                    type="checkbox"
-                                                    class="child artisan-checkbox"
-                                                    id="saturday"
-                                                    name="availabilityDay[]"
-                                                    data-value="6"
-                                                >
-                                                <span class="slider"></span>
-                                                <span class="toggle-label">Yes</span>
-                                            </label>
-                                        </div>
-
-                                        <div class="time-wrapper">
-                                            <div class="time-input-div">
-                                                <div class="time-input">
-                                                    <span class="placeholder">Available From</span>
-                                                    <input class="time-textfield" type="time" id="saturdayFrom">
-                                                </div>
-                                            </div>
-
-                                            <div class="time-input-div">
-                                                <div class="time-input">
-                                                    <span class="placeholder">Available To</span>
-                                                    <input class="time-textfield" type="time" id="saturdayTo">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="each-toggle-div time-toggle-div">
-                                        <div class="left-cont">
-                                            <span>Sunday</span>
-
-                                            <label for="sunday" class="switch">
-                                                <input 
-                                                    type="checkbox"
-                                                    class="child artisan-checkbox"
-                                                    id="sunday"
-                                                    name="availabilityDay[]"
-                                                    data-value="7"
-                                                >
-                                                <span class="slider"></span>
-                                                <span class="toggle-label">Yes</span>
-                                            </label>
-                                        </div>
-
-                                        <div class="time-wrapper">
-                                            <div class="time-input-div">
-                                                <div class="time-input">
-                                                    <span class="placeholder">Available From</span>
-                                                    <input class="time-textfield" type="time" id="sundayFrom">
-                                                </div>
-                                            </div>
-
-                                            <div class="time-input-div">
-                                                <div class="time-input">
-                                                    <span class="placeholder">Available To</span>
-                                                    <input class="time-textfield" type="time" id="sundayTo">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                 </div>
                             </div>
                             <div class="issue-text" id="issues_artisanAvailability"></div>
@@ -726,8 +490,7 @@
         $(document).ready(function () {
             artisanBioDataSession = JSON.parse(localStorage.getItem("artisanBioDataSession"));
 
-            $("#artisanFullName").html(capitalizeFirstLetterOfEachWord(artisanBioDataSession?.firstName + ' ' +
-                artisanBioDataSession?.lastName));
+            $("#artisanFullName").html(capitalizeFirstLetterOfEachWord(artisanBioDataSession?.fullName));
             $("#artisanEmailAddress").html(artisanBioDataSession?.emailAddress);
         });
     </script>
