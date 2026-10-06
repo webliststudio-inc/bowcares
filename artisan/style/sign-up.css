@@ -482,6 +482,19 @@
     color: var(--sub-body-color);
 }
 
+.time-wrapper .time-input-div .issueText {
+  margin-top: 1px;
+  color: #f00;
+  font-family: body-font;
+  font-size: 10px;
+  font-style: italic;
+}
+
+.time-wrapper .time-input-div .issue {
+  border: #f00 1px solid;
+  background: var(--bg-white);
+}
+
 @media all and (max-width: 550px) {
     .time-wrapper {
        width: 100%;

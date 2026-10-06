@@ -14,13 +14,6 @@ function _nextSignUpPage(props) {
 	} else {
 		$(".form-back-div").removeClass("center-content");
 	}
-
-	//// Initialize Map ////
-	setTimeout(function () {
-		if ($("#map").length && typeof initMap === "function") {
-			initMap();
-		}
-	}, 300);
 }
 
 /// Fetch Profession Toggle ///
@@ -75,8 +68,6 @@ function _initFetchProfessionToggle(data) {
     _userRoleCheck();
 }
 
-
-
 /// Fetch Availability Toggle ///
 function _fetchAvailabilityToggle() {
 	try {
@@ -94,70 +85,68 @@ function _fetchAvailabilityToggle() {
 		*/
 
 		//// Dummy Availability Data ////
-		const dummyAvailabilityData = [
+		const data = [
 			{
-				availabilityId: 1,
-				availabilityName: "Monday"
+				dayId: 1,
+				dayName: "SUNDAY"
 			},
 			{
-				availabilityId: 2,
-				availabilityName: "Tuesday"
+				dayId: 2,
+				dayName: "MONDAY"
 			},
 			{
-				availabilityId: 3,
-				availabilityName: "Wednesday"
+				dayId: 3,
+				dayName: "TUESDAY"
 			},
 			{
-				availabilityId: 4,
-				availabilityName: "Thursday"
+				dayId: 4,
+				dayName: "WEDNESDAY"
 			},
 			{
-				availabilityId: 5,
-				availabilityName: "Friday"
+				dayId: 5,
+				dayName: "THURSDAY"
 			},
 			{
-				availabilityId: 6,
-				availabilityName: "Saturday"
+				dayId: 6,
+				dayName: "FRIDAY"
 			},
 			{
-				availabilityId: 7,
-				availabilityName: "Sunday"
+				dayId: 7,
+				dayName: "SATURDAY"
 			}
 		];
 
-		_initFetchAvailabilityToggle(dummyAvailabilityData);
-
+		_initFetchAvailabilityToggle(data);
 	} catch (error) {
 		console.error("Error:", error);
 	}
 }
 
-
-/// Initialize Fetch Availability Toggle ////
+//// Initialize Fetch Availability Toggle ////
 function _initFetchAvailabilityToggle(data) {
 	let availabilityHtml = '';
-	const artisanBioDataSession = JSON.parse(
-		localStorage.getItem("artisanBioDataSession")
-	) || {};
-	const savedAvailabilityIds = artisanBioDataSession?.availabilityIds || [];
+	const artisanBioDataSession = JSON.parse(localStorage.getItem("artisanBioDataSession")) || {};
+	const savedAvailabilities = artisanBioDataSession?.availabilities || [];
 
 	for (let i = 0; i < data?.length; i++) {
-		const { availabilityId, availabilityName } = data[i];
-		const isChecked = savedAvailabilityIds.some(
-			item => String(item.availabilityId) === String(availabilityId)
+		const { dayId, dayName } = data[i];
+
+		const isChecked = savedAvailabilities.find(
+			item => item?.dayId === dayId
 		);
 
 		availabilityHtml += `
-			<div class="each-toggle-div time-toggle-div">
+			<div class="each-toggle-div time-toggle-div" data-day-id="${dayId}">
 				<div class="left-cont">
-					<span>${availabilityName}</span>
-					<label for="${availabilityName.toLowerCase()}" class="switch">
+					<span>${dayName}</span>
+
+					<label for="dayId_${dayId}" class="switch">
 						<input 
 							type="checkbox"
-							class="child artisan-checkbox"
-							id="${availabilityName.toLowerCase()}"
-							name="availabilityDay[]"
-							data-value="${availabilityId}"
+							class="child artisan-checkbox availability-checkbox"
+							id="dayId_${dayId}"
+							name="dayId[]"
+							data-value="${dayId}"
 							${isChecked ? 'checked' : ''}
 						>
 
@@ -172,11 +161,14 @@ function _initFetchAvailabilityToggle(data) {
 							<span class="placeholder">Available From</span>
 
 							<input 
-								class="time-textfield" 
-								type="time" 
-								id="${availabilityName.toLowerCase()}From"
+								class="time-textfield start-time"
+								type="time"
+								id="startTime_${dayId}"
+								data-day-id="${dayId}"
+								value="${isChecked?.startTime || ''}"
 							>
 						</div>
+						<div class="issueText" id="issue_startTime_${dayId}"></div>
 					</div>
 
 					<div class="time-input-div">
@@ -184,39 +176,36 @@ function _initFetchAvailabilityToggle(data) {
 							<span class="placeholder">Available To</span>
 
 							<input 
-								class="time-textfield" 
-								type="time" 
-								id="${availabilityName.toLowerCase()}To"
+								class="time-textfield end-time"
+								type="time"
+								id="endTime_${dayId}"
+								data-day-id="${dayId}"
+								value="${isChecked?.endTime || ''}"
 							>
 						</div>
+						<div class="issueText" id="issue_endTime_${dayId}"></div>
 					</div>
 				</div>
 			</div>
 		`;
 	}
+
 	$('#availabilitPageContent').html(availabilityHtml);
 	_userRoleCheck();
 }
 
-
-
-
-
-
-
-
-
-
 ///// Create Artisan Account //// 
 function _proceedArtisanSignUp(isResendOtp = false) {
 	let artisanBioDataSession = JSON.parse(localStorage.getItem("artisanBioDataSession"));
+	accountType = sessionStorage.getItem("artisanAccountType") || "";
 
 	try { 
 		////////get all needed values////////////
 		let issueCount = 0;
-		let firstName = $("#firstName").val()?.trim();
-		let lastName = $("#lastName").val()?.trim();
-		let phoneNumber = $("#phoneNumber").val()?.trim();
+		let fullName = $("#fullName").val()?.trim();
+		let mobileNumber = $("#mobileNumber").val()?.trim();
+		let homeNumber = $("#homeNumber").val()?.trim();
+		let about = $("#about").val()?.trim();
 		let emailAddress = $("#emailAddress").val()?.trim();
 		let password = $("#createPassword").val()?.trim();
 		let confirmPassword = $("#confirmPassword").val()?.trim();
@@ -224,9 +213,10 @@ function _proceedArtisanSignUp(isResendOtp = false) {
 		
 		// Use session values when resending ///
 		if (isResendOtp) {
-			firstName = artisanBioDataSession?.firstName;
-			lastName = artisanBioDataSession?.lastName;
-			phoneNumber = artisanBioDataSession?.phoneNumber;
+			fullName = artisanBioDataSession?.fullName;
+			mobileNumber = artisanBioDataSession?.mobileNumber;
+			homeNumber = artisanBioDataSession?.homeNumber;
+			about = artisanBioDataSession?.about;
 			emailAddress = artisanBioDataSession?.emailAddress;
 			password = artisanBioDataSession?.password;
 			confirmPassword = artisanBioDataSession?.confirmPassword;
@@ -234,26 +224,47 @@ function _proceedArtisanSignUp(isResendOtp = false) {
 			systemGeneratedAddress = artisanBioDataSession?.systemGeneratedAddress;
 		}
 		
+		//// Get Selected Professions ////
 		let selectedProfessions = [];
 		$('.artisan-checkbox:checked').each(function () {
 			selectedProfessions.push({ professionId: $(this).data('value') });
 		});
+
+		//// Get Selected Availability ////
+		let selectedAvailabilities = [];
+		$('.availability-checkbox:checked').each(function () {
+			const dayId = $(this).data('value');
+			const startTime = $(`#startTime_${dayId}`).val();
+			const endTime = $(`#endTime_${dayId}`).val();
+
+			selectedAvailabilities.push({
+				dayId: dayId,
+				startTime: startTime,
+				endTime: endTime
+			});
+		});
 		
+		//// Use session values when resending ///
 		if (isResendOtp) {
 			selectedProfessions = artisanBioDataSession?.professionIds;
+			selectedAvailabilities = artisanBioDataSession?.availabilities;
 		}
 		
+
+		//// Validate Form Data ////
 		if (!isResendOtp) {
 			///// empty field validation//////////
-			issueCount += _validateEmptyValue("firstName", "FIRST NAME");
-			issueCount += _validateEmptyValue("lastName", "LAST NAME");
+			issueCount += _validateEmptyValue("fullName", accountType === 'company' ? 'COMPANY NAME' : "FULL NAME");
 			issueCount += _validateEmptyValue("emailAddress", "EMAIL ADDRESS");
-			issueCount += _validateEmptyValue("phoneNumber", "MOBILE NUMBER");
+			issueCount += _validateEmptyValue("mobileNumber", "MOBILE NUMBER");
+			issueCount += _validateEmptyValue("homeNumber", "HOME NUMBER");
+			issueCount += _validateEmptyValue("about", accountType === 'company' ? 'ABOUT YOUR COMPANY' : "ABOUT");
 			issueCount += _validateEmptyValue("createPassword", "NEW PASSWORD");
 			issueCount += _validateEmptyValue("confirmPassword", "CONFIRM PASSWORD");
 			issueCount += _validateEmail("emailAddress", "EMAIL ADDRESS");
-			issueCount += _validateNumber("phoneNumber", phoneNumber);
-			issueCount += _validateEmptyValue("destination", "ADDRESS");
+			issueCount += _validateNumber("mobileNumber", mobileNumber);
+			issueCount += _validateNumber("homeNumber", homeNumber);
+			issueCount += _validateEmptyValue("destination", accountType === 'company' ? 'COMPANY ADDRESS' : "ADDRESS");
 
 			if (password != confirmPassword) {
 				$("#confirmPassword").addClass("issue");
@@ -261,28 +272,75 @@ function _proceedArtisanSignUp(isResendOtp = false) {
 				issueCount++
 			}
 
+			//// Check Professions ////
 			const checkedProfessions = $('input[name="professionId[]"]:checked').length;
-
 			if (checkedProfessions < 1) {
 				$("#issues_professionToggle").html("PROFESSION IS REQUIRED").fadeIn();
 				issueCount++
 			} else {
 				$("#issues_professionToggle").html("");
 			}
+
+			//// Check Availability ////
+			const checkedAvailabilty = $('input[name="dayId[]"]:checked').length;
+			if (checkedAvailabilty < 1) {
+				$("#issues_artisanAvailability").html("AVAILABLE DAY IS REQUIRED").fadeIn();
+				issueCount++;
+			} else {
+				$("#issues_artisanAvailability").html("");
+
+				//// Check Availability Time ////
+				$('.availability-checkbox:checked').each(function () {
+					const dayId = $(this).data('value');
+					
+					const startTimeInput = $(`#startTime_${dayId}`);
+					const endTimeInput = $(`#endTime_${dayId}`);
+
+					const startTimeContainer = startTimeInput.closest(".time-input");
+					const endTimeContainer = endTimeInput.closest(".time-input");
+
+					const startTime = startTimeInput.val();
+					const endTime = endTimeInput.val();
+
+					//// Check Start Time ////
+					if (!startTime) {
+						startTimeContainer.addClass("issue");
+						$(`#issue_startTime_${dayId}`).html("TIME FROM IS REQUIRED").fadeIn();
+
+						issueCount++;
+					} else {
+						startTimeContainer.removeClass("issue");
+						$(`#issue_startTime_${dayId}`).html("");
+					}
+
+					//// Check End Time ////
+					if (!endTime) {
+						endTimeContainer.addClass("issue");
+						$(`#issue_endTime_${dayId}`).html("TIME TO IS REQUIRED").fadeIn();
+
+						issueCount++;
+					} else {
+						endTimeContainer.removeClass("issue");
+						$(`#issue_endTime_${dayId}`).html("");
+					}
+				});
+			}
 		}
 
 		if (issueCount > 0) return;
 
 		const formData = {
-			firstName,
-			lastName,
+			fullName,
+			mobileNumber,
+			homeNumber,
 			emailAddress,
-			phoneNumber,
+			about,
 			password,
 			confirmPassword,
 			professionIds: selectedProfessions,
 			address,
 			systemGeneratedAddress,
+			availabilities: selectedAvailabilities,
 		};
 
         /// Set the Artisan Bio data in session ///
@@ -357,13 +415,15 @@ function _proceedArtisanSignUpCallback(formData, isResendOtp) {
 function _completeArtisanSignUp() {
 	try {
 		artisanBioDataSession = JSON.parse(localStorage.getItem("artisanBioDataSession")) || {};
-		const firstName = artisanBioDataSession?.firstName;
-		const lastName = artisanBioDataSession?.lastName;
+		const fullName = artisanBioDataSession?.fullName;
+		const mobileNumber = artisanBioDataSession?.mobileNumber;
+		const homeNumber = artisanBioDataSession?.homeNumber;
 		const emailAddress = artisanBioDataSession?.emailAddress;
-		const phoneNumber = artisanBioDataSession?.phoneNumber;
+		const about = artisanBioDataSession?.about
 		const password = artisanBioDataSession?.password;
 		const confirmPassword = artisanBioDataSession?.confirmPassword;
 		const selectedProfessions = artisanBioDataSession?.professionIds || [];
+		const selectedAvailabilities = artisanBioDataSession?.availabilities || [];
 		const address = artisanBioDataSession?.address;
 		const systemGeneratedAddress = artisanBioDataSession?.systemGeneratedAddress;
 		
@@ -388,16 +448,18 @@ function _completeArtisanSignUp() {
 
 		// Gather form data
 		const formData = {
-			firstName,
-			lastName,
+			fullName,
+			mobileNumber,
+			homeNumber,
 			emailAddress,
-			phoneNumber,
+			about,
 			password,
 			confirmPassword,
 			otp,
 			professionIds: selectedProfessions,
 			address,
 			systemGeneratedAddress,
+			availabilities: selectedAvailabilities,
 		};
 
 		///// complete sign//////////
