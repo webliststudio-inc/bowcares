@@ -14,7 +14,7 @@
 </script>
 
 <div class="media-link-div">
-  <a href="tel:+1 (832) 743-9353" title="Call Customer Care">
+  <a href="tel:(832) 743-9353" title="Call Customer Care">
     <li style="background:#008040;"><i class="bi-telephone-outbound-fill"></i></li>
   </a>
   <a href="https://www.facebook.com/profile.php?id=61595073264053&mibextid=wwXIfr/" target="_blank" title="Facebook">
@@ -26,7 +26,7 @@
   <a href="https://www.instagram.com/bowcares?stkn=MW5rdXUzd29oOG1kcA%3D%3D&utm_source=qr/" target="_blank" title="Instagram">
     <li style="background-image: linear-gradient(to right,#03F, #F0F);"><i class="bi-instagram"></i></li>
   </a>
-  <a href="https://api.whatsapp.com/" target="_blank" title="Whatsapp">
+  <a href="https://api.whatsapp.com/send?text=Greetings! I'd like to make an enquiry on the services you offer.&phone=(832) 743-9353" target="_blank" title="Whatsapp">
     <li style="background:#25D366;"><i class="bi-whatsapp"></i></li>
   </a>
 </div>

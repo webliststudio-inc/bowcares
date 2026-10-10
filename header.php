@@ -18,8 +18,8 @@
 
                         <div class="text-div">
                             <h3>Call Us</h3>
-                            <a href="tel:+1 (832) 743-9353" title="Call Us">
-                                <p>+1 (832) 743-9353</p>
+                            <a href="tel:(832) 743-9353" title="Call Us">
+                                <p>(832) 743-9353</p>
                             </a>
                         </div>
                     </div>

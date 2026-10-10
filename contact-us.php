@@ -74,7 +74,7 @@
 
                         <div class="text">
                             <h2>CALL US</h2>
-                            <p>+1 (832) 288-5625</p>
+                            <a href="tel:(832) 743-9353" title="Phone Number">(832) 743-9353</a>
                         </div>
                     </div>
                 </div>
@@ -85,9 +85,9 @@
 
                         <div class="text">
                             <h2>LOCATION</h2>
-                            <p> 13180 Westpark Drive <br>
-                            Ste 201 B/D <br>
-                            Houston, TX 77082 USA</p>
+                            <p> 13180 Westpark Dr. <br>
+                            Ste: 201B <br>
+                            Houston TX 77082</p>
                         </div>
                     </div>
                 </div>

@@ -1,12 +1,24 @@
-//// Filter Artisans ////
 //// Filter Tasks ////
 function _filterTasks(value) {
-    $("#taskContent .tb-row").each(function () {
-        var text = $(this).text();
-        text.toLowerCase().indexOf(value.toLowerCase()) > -1
-            ? $(this).show()
-            : $(this).hide();
+    const taskSearchData = JSON.parse(
+        sessionStorage.getItem("taskSearchData")
+    ) || [];
+
+    value = value.toLowerCase().trim();
+    const filteredData = taskSearchData.filter(function (task) {
+        const text = Object.values(task).join(" ").toLowerCase();
+        return text.indexOf(value) > -1;
     });
+
+    const paginator = new Paginator(
+        filteredData,
+        _renderTaskData,
+        "taskContentPaginationControls",
+        "taskContent",
+        10
+    );
+    __paginatorHandlers["taskContentPaginationControls"] = paginator;
+    paginator.renderPage();
 }
 
 
@@ -230,6 +242,12 @@ function _renderTaskData(data, start) {
 
 /// Initialize Fetch Task Data ///
 function _initFetchTaskData(data) {
+    //// Store all task data for search
+    sessionStorage.setItem(
+        "taskSearchData",
+        JSON.stringify(data)
+    );
+
     const paginator = new Paginator(
         data,
         _renderTaskData,

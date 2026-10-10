@@ -6,18 +6,18 @@
 
 <head>
     <?php include 'meta.php' ?>
-    <title><?php echo $appName ?> | Professional Property Maintenance & Facility Services in the USA</title>
+    <title><?php echo $appName ?> : Residential. Commercial. Industrial</title>
     <meta name="keywords"
         content="<?php echo $appName ?>, BowCare Maintenance Services, property maintenance USA, facility maintenance, building maintenance services, commercial maintenance, residential maintenance, handyman services, janitorial services, cleaning services USA, office maintenance, home maintenance, property repairs, facility management, preventive maintenance, maintenance contractors, building care services, property management support, maintenance company USA, repair and maintenance services" />
     <meta name="description"
         content="BowCare Maintenance Services provides reliable property maintenance, facility management, cleaning, repair, and handyman services across the USA. We help residential and commercial properties stay safe, clean, functional, and professionally maintained." />
     <meta property="og:title"
-        content="<?php echo $appName ?> | Professional Property Maintenance & Facility Services in the USA" />
+        content="<?php echo $appName ?> : Residential. Commercial. Industrial" />
     <meta property="og:image" content="<?php echo $websiteUrl ?>/all-images/plugin-pix/bowcares.jpg" />
     <meta property="og:description"
-        content="Trusted property maintenance company in the USA offering building maintenance, janitorial services, repairs, facility management, and preventive maintenance for residential and commercial properties." />
+        content="Electrical . HVAC . Plumbing . Mechanical . Wall Repairs . Carpentry . Roofing, and more." />
     <meta name="twitter:title"
-        content="<?php echo $appName ?> | Professional Property Maintenance & Facility Services in the USA" />
+        content="<?php echo $appName ?> : Residential. Commercial. Industrial" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="<?php echo $websiteUrl ?>/all-images/plugin-pix/bowcares.jpg" />
     <meta name="twitter:description"

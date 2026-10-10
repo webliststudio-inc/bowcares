@@ -51,7 +51,7 @@
         </span>
     </div>
     
-    <a href="tel:+1 (832) 743-9353" class="bottom-nav-item">
+    <a href="tel:(832) 743-9353" class="bottom-nav-item">
         <i class="bi bi-telephone-fill"></i>
         <span>Call Us</span>
     </a>
@@ -60,18 +60,18 @@
 <div class="sidenavdiv">
     <div class="live-chat-back-div">
 
-        <a href="tel:+1 (832) 743-9353" title="Call Customer Care">
+        <a href="tel:(832) 743-9353" title="Call Customer Care">
             <div class="chat-div">
                 <div class="icon-div" style="background:#008040;"><i class="bi-telephone-outbound"></i></div>
-                <div class="text">+1 (832) 743-9353</div>
+                <div class="text">(832) 743-9353</div>
                 <br clear="all" />
             </div>
         </a>
 
-        <a href="https://api.whatsapp.com/send?text=Greetings! I'd like to make an enquiry on the services you offer.&phone=+1 (832) 743-9353" target="_blank" title="Whatsapp">
+        <a href="https://api.whatsapp.com/send?text=Greetings! I'd like to make an enquiry on the services you offer.&phone=(832) 743-9353" target="_blank" title="Whatsapp">
             <div class="chat-div">
                 <div class="icon-div" style="background:#25D366;"><i class="bi-whatsapp"></i></div>
-                <div class="text">+1 (832) 743-9353</div>
+                <div class="text">(832) 743-9353</div>
                 <br clear="all" />
             </div>
         </a>

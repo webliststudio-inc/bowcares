@@ -17,12 +17,12 @@
             </div>
 
             <div class="support-actions">
-                <a href="tel:+1 (832) 743-9353" class="support-call-btn">
+                <a href="tel:(832) 743-9353" class="support-call-btn">
                     <i class="bi bi-telephone"></i>
 
                     <span>
                         <strong>Call Us Now</strong>
-                        <small>+1 (832) 743-9353</small>
+                        <small>(832) 743-9353</small>
                     </span>
                 </a>
 
@@ -88,7 +88,7 @@
                 <div class="icon-div">
                     <a href="https://www.facebook.com/profile.php?id=61595073264053&mibextid=wwXIfr/" target="_blank" title="Facebook">
                     <button class="social-icon" title="Facebook"><i class="bi-facebook"></i></button></a>
-                    <a href="https://api.whatsapp.com/send?text=Greetings! I'd like to make an enquiry on the services you offer.&phone=+1 (832) 743-9353" target="_blank" title="Whatsapp">
+                    <a href="https://api.whatsapp.com/send?text=Greetings! I'd like to make an enquiry on the services you offer.&phone=(832) 743-9353" target="_blank" title="Whatsapp">
                     <button class="social-icon" title="Whatsapp"><i class="bi-whatsapp"></i></button></a>
                     <a href="https://www.instagram.com/bowcares?stkn=MW5rdXUzd29oOG1kcA%3D%3D&utm_source=qr/" target="_blank" title="Instagram">
                     <button class="social-icon" title="Instagram"><i class="bi-instagram"></i></button></a>
@@ -140,9 +140,9 @@
                             <i class="bi bi-geo-alt-fill"></i>
                         </div>
                         <div class="text-div">
-                            13180 Westpark Drive <br>
-                            Ste 201 B/D <br>
-                            Houston, TX 77082 USA
+                            13180 Westpark Dr. <br>
+                            Ste: 201B <br>
+                            Houston TX 77082
                         </div>
                     </div>
 
@@ -151,7 +151,7 @@
                             <i class="bi bi-telephone-inbound-fill"></i>
                         </div>
                         <div class="text-div">
-                            <a href="tel:+1 (832) 743-9353" title="Phone Number">+1 (832) 743-9353</a>
+                            <a href="tel:(832) 743-9353" title="Phone Number">(832) 743-9353</a>
                         </div>
                     </div>
 
@@ -191,7 +191,7 @@
             <div class="text">
                 <div class="icon-div"><i class="bi bi-emoji-sunglasses"></i></div>
                 <div class="contnent">
-                    Proudly Serving homes and businesses <br> across the USA
+                    Serving homes and businesses
                 </div>
             </div>
         </div>

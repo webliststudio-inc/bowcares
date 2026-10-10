@@ -209,7 +209,7 @@
                                 </p>
 
                                 <div class="support-links">
-                                    <a href="tel:+1 (832) 743-9353">
+                                    <a href="tel:(832) 743-9353">
                                         <i class="bi bi-telephone"></i>
                                         (832) 743-9353
                                     </a>
